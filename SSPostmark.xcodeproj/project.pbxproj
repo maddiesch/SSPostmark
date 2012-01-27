@@ -1,0 +1,288 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DF75530714D329550067EAD7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF75530614D329550067EAD7 /* UIKit.framework */; };
+		DF75530914D329550067EAD7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF75530814D329550067EAD7 /* Foundation.framework */; };
+		DF75530B14D329550067EAD7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF75530A14D329550067EAD7 /* CoreGraphics.framework */; };
+		DF75531114D329550067EAD7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF75530F14D329550067EAD7 /* InfoPlist.strings */; };
+		DF75531314D329550067EAD7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DF75531214D329550067EAD7 /* main.m */; };
+		DF75531714D329550067EAD7 /* SSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF75531614D329550067EAD7 /* SSAppDelegate.m */; };
+		DF75531A14D329550067EAD7 /* SSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF75531914D329550067EAD7 /* SSViewController.m */; };
+		DF75531D14D329560067EAD7 /* SSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF75531B14D329550067EAD7 /* SSViewController.xib */; };
+		DF75532514D329690067EAD7 /* SSPostmark.m in Sources */ = {isa = PBXBuildFile; fileRef = DF75532414D329690067EAD7 /* SSPostmark.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DF75530214D329550067EAD7 /* SSPostmark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSPostmark.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF75530614D329550067EAD7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		DF75530814D329550067EAD7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DF75530A14D329550067EAD7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		DF75530E14D329550067EAD7 /* SSPostmark-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SSPostmark-Info.plist"; sourceTree = "<group>"; };
+		DF75531014D329550067EAD7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DF75531214D329550067EAD7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DF75531414D329550067EAD7 /* SSPostmark-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SSPostmark-Prefix.pch"; sourceTree = "<group>"; };
+		DF75531514D329550067EAD7 /* SSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSAppDelegate.h; sourceTree = "<group>"; };
+		DF75531614D329550067EAD7 /* SSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSAppDelegate.m; sourceTree = "<group>"; };
+		DF75531814D329550067EAD7 /* SSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSViewController.h; sourceTree = "<group>"; };
+		DF75531914D329550067EAD7 /* SSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSViewController.m; sourceTree = "<group>"; };
+		DF75531C14D329560067EAD7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SSViewController.xib; sourceTree = "<group>"; };
+		DF75532314D329690067EAD7 /* SSPostmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPostmark.h; sourceTree = "<group>"; };
+		DF75532414D329690067EAD7 /* SSPostmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmark.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DF7552FF14D329550067EAD7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF75530714D329550067EAD7 /* UIKit.framework in Frameworks */,
+				DF75530914D329550067EAD7 /* Foundation.framework in Frameworks */,
+				DF75530B14D329550067EAD7 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DF7552F714D329550067EAD7 = {
+			isa = PBXGroup;
+			children = (
+				DF75532314D329690067EAD7 /* SSPostmark.h */,
+				DF75532414D329690067EAD7 /* SSPostmark.m */,
+				DF75530C14D329550067EAD7 /* SSPostmark */,
+				DF75530514D329550067EAD7 /* Frameworks */,
+				DF75530314D329550067EAD7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DF75530314D329550067EAD7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DF75530214D329550067EAD7 /* SSPostmark.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DF75530514D329550067EAD7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DF75530614D329550067EAD7 /* UIKit.framework */,
+				DF75530814D329550067EAD7 /* Foundation.framework */,
+				DF75530A14D329550067EAD7 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DF75530C14D329550067EAD7 /* SSPostmark */ = {
+			isa = PBXGroup;
+			children = (
+				DF75531514D329550067EAD7 /* SSAppDelegate.h */,
+				DF75531614D329550067EAD7 /* SSAppDelegate.m */,
+				DF75531814D329550067EAD7 /* SSViewController.h */,
+				DF75531914D329550067EAD7 /* SSViewController.m */,
+				DF75531B14D329550067EAD7 /* SSViewController.xib */,
+				DF75530D14D329550067EAD7 /* Supporting Files */,
+			);
+			path = SSPostmark;
+			sourceTree = "<group>";
+		};
+		DF75530D14D329550067EAD7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DF75530E14D329550067EAD7 /* SSPostmark-Info.plist */,
+				DF75530F14D329550067EAD7 /* InfoPlist.strings */,
+				DF75531214D329550067EAD7 /* main.m */,
+				DF75531414D329550067EAD7 /* SSPostmark-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DF75530114D329550067EAD7 /* SSPostmark */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DF75532014D329560067EAD7 /* Build configuration list for PBXNativeTarget "SSPostmark" */;
+			buildPhases = (
+				DF7552FE14D329550067EAD7 /* Sources */,
+				DF7552FF14D329550067EAD7 /* Frameworks */,
+				DF75530014D329550067EAD7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SSPostmark;
+			productName = SSPostmark;
+			productReference = DF75530214D329550067EAD7 /* SSPostmark.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DF7552F914D329550067EAD7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Schipper Studios";
+			};
+			buildConfigurationList = DF7552FC14D329550067EAD7 /* Build configuration list for PBXProject "SSPostmark" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DF7552F714D329550067EAD7;
+			productRefGroup = DF75530314D329550067EAD7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DF75530114D329550067EAD7 /* SSPostmark */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DF75530014D329550067EAD7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF75531114D329550067EAD7 /* InfoPlist.strings in Resources */,
+				DF75531D14D329560067EAD7 /* SSViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DF7552FE14D329550067EAD7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF75531314D329550067EAD7 /* main.m in Sources */,
+				DF75531714D329550067EAD7 /* SSAppDelegate.m in Sources */,
+				DF75531A14D329550067EAD7 /* SSViewController.m in Sources */,
+				DF75532514D329690067EAD7 /* SSPostmark.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		DF75530F14D329550067EAD7 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DF75531014D329550067EAD7 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		DF75531B14D329550067EAD7 /* SSViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DF75531C14D329560067EAD7 /* en */,
+			);
+			name = SSViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DF75531E14D329560067EAD7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		DF75531F14D329560067EAD7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DF75532114D329560067EAD7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SSPostmark/SSPostmark-Prefix.pch";
+				INFOPLIST_FILE = "SSPostmark/SSPostmark-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		DF75532214D329560067EAD7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SSPostmark/SSPostmark-Prefix.pch";
+				INFOPLIST_FILE = "SSPostmark/SSPostmark-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DF7552FC14D329550067EAD7 /* Build configuration list for PBXProject "SSPostmark" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DF75531E14D329560067EAD7 /* Debug */,
+				DF75531F14D329560067EAD7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DF75532014D329560067EAD7 /* Build configuration list for PBXNativeTarget "SSPostmark" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DF75532114D329560067EAD7 /* Debug */,
+				DF75532214D329560067EAD7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DF7552F914D329550067EAD7 /* Project object */;
+}
