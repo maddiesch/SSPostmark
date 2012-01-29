@@ -33,7 +33,7 @@
             [self sendEmailWithParamaters:params];
         }];
         NSOperationQueue* queue = [[NSOperationQueue alloc]init];
-        queue.name = @"com.sspostmark.queue";
+        queue.name = pm_ASYNC_QUEUE_NAME;
         [queue addOperation:opp];
     } else {
         [self sendEmailWithParamaters:params];

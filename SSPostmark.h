@@ -12,7 +12,18 @@
     #warning "This project uses NSJSONSerialization.  Only available in iOS >= 5.0"
 #endif
 
+/**
+ *
+ *  Set your API key
+ *
+ */
 #define pm_YOUR_API_KEY @"POSTMARK_API_TEST"
+/**
+ *
+ *  Set async queue name
+ *
+ */
+#define pm_ASYNC_QUEUE_NAME @"com.sspostmark.queue"
 
 /**
  *
