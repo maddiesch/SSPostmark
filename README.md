@@ -15,6 +15,8 @@ This is a simple Objective-C class to send email using the Postmark API.
 3. Call `SSPostmark* postmark = [[SSPostmark alloc]init];`.  This gives you the postmark instance to work with.
 
 4. At the very least make sure your usage class implements `-(void)postmark:(id)postmark returnedMessage:(NSDictionary *)message withStatusCode:(NSUInteger)code`
+	
+	- If you want to receive notifications be sure to register and listen for notifications named `#define pm_POSTMARK_NOTIFICATION`
 
 5. Set the QSPostmark delegate `postmark.delegate = self;`.  This allows us to receive the messages back from the service.
 
