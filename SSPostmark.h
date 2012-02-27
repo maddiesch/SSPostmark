@@ -62,6 +62,13 @@
 
 /**
  *
+ *  Notification Center Callbacks
+ *
+ */
+#define pm_POSTMARK_NOTIFICATION @"com.sspostmark.response"
+
+/**
+ *
  *  Keys for the NSDictionary Items
  *
  *

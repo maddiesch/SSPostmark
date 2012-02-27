@@ -17,4 +17,7 @@
 
 @property (strong, nonatomic) SSViewController *viewController;
 
+
+- (void)testNotifications:(NSNotification *)notification;
+
 @end

@@ -116,6 +116,7 @@
             [[self delegate] postmark:self returnedMessage:resp withStatusCode:[[resp objectForKey:@"ErrorCode"] integerValue]];
         });
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:pm_POSTMARK_NOTIFICATION object:self userInfo:resp];
 }
 
 #pragma mark - Helper methods
