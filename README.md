@@ -12,33 +12,32 @@ This is a simple Objective-C class to send email using the Postmark API.
 
 2. In `SSPostmark.h` change `#define pm_YOUR_API_KEY @"POSTMARK_API_TEST"` to `#define pm_YOUR_API_KEY @"< Whatever your private API key is >"`
 
-3. Call `SSPostmark* postmark = [[SSPostmark alloc]init];`.  This gives you the postmark instance to work with.
+3. Call `SSPostmark *postmark = [[SSPostmark alloc] init];`.  This gives you the postmark instance to work with.
 
-4. At the very least make sure your usage class implements `-(void)postmark:(id)postmark returnedMessage:(NSDictionary *)message withStatusCode:(NSUInteger)code`
+4. At the very least make sure your usage class implements `- (void)postmark:(id)postmark returnedMessage:(NSDictionary *)message withStatusCode:(NSUInteger)code` or responds to `pm_POSTMARK_NOTIFICATION` with `NSNotificationCenter`
 	
 	- If you want to receive notifications be sure to register and listen for notifications named `#define pm_POSTMARK_NOTIFICATION`
 
 5. Set the QSPostmark delegate `postmark.delegate = self;`.  This allows us to receive the messages back from the service.
 
-6. Pass an NSDictionary containing the following keys to `[postmark sendEmailWithParamaters:<NSDictionary> asynchronously:<BOOL>];`
-	- `kSSPostmarkHTMLBody` : `NSString`
-	- `kSSPostmarkTextBody` : `NSString`
-	- `kSSPostmarkFrom` : `NSString`
-	- `kSSPostmarkTo` : `NSString`
-	- `kSSPostmarkCC` : `NSString` :: OPTIONAL
-	- `kSSPostmarkBCC` : `NSString` :: OPTIONAL
-	- `kSSPostmarkSubject` : `NSString`
-	- `kSSPostmarkTag` : `NSString`
-	- `kSSPostmarkReplyTo` : `NSString`
-	- `kSSPostmarkHeaders` : `NSString` :: OPTIONAL
+6. Create an instance of SSPostmarkMessage
+
+		SSPostmarkMessage *mail = [SSPostmarkMessage new]
+		mail.to = @"test.email@domain.com";
+		mail.subject = @"Testing The Mailtoobz";
+		mail.textBody = @"Test Email";
+		mail.tag = @"ObjectCTest";
+		mail.fromEmail = @"test.email.sender@domain.com";
+		mail.replyTo = @"test.email.sender@domain.com";
 	
-7. Wait for the response from the server.
+7. Call `sendEmail:<# Instance of SSPostmarkMessage #>`
+	
+8. Wait for the response from the server on delegate or notification listener.
 
 ***
 
-- The delegate methods are always called on the main thread even if the request is made asynchronously.
 
-- Passing `NO` to `[postmark sendEmailWithParamaters:<NSDictionary> asynchronously:<BOOL>]` in the asynchronously param will block the main thread.
+- `[postmark sendEmailWithParamaters:<NSDictionary> asynchronously:<BOOL>]` Will be deprecated.
 
 ***
 

@@ -19,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9430687B15503A5E00E2029A /* SSPostmark.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SSPostmark.entitlements; sourceTree = "<group>"; };
 		DF75530214D329550067EAD7 /* SSPostmark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSPostmark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF75530614D329550067EAD7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DF75530814D329550067EAD7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -82,6 +83,7 @@
 		DF75530C14D329550067EAD7 /* SSPostmark */ = {
 			isa = PBXGroup;
 			children = (
+				9430687B15503A5E00E2029A /* SSPostmark.entitlements */,
 				DF75531514D329550067EAD7 /* SSAppDelegate.h */,
 				DF75531614D329550067EAD7 /* SSAppDelegate.m */,
 				DF75531814D329550067EAD7 /* SSViewController.h */,
@@ -129,7 +131,7 @@
 		DF7552F914D329550067EAD7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0440;
 				ORGANIZATIONNAME = "Schipper Studios";
 			};
 			buildConfigurationList = DF7552FC14D329550067EAD7 /* Build configuration list for PBXProject "SSPostmark" */;
@@ -243,6 +245,7 @@
 		DF75532114D329560067EAD7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = SSPostmark/SSPostmark.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SSPostmark/SSPostmark-Prefix.pch";
 				INFOPLIST_FILE = "SSPostmark/SSPostmark-Info.plist";
@@ -254,6 +257,7 @@
 		DF75532214D329560067EAD7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = SSPostmark/SSPostmark.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SSPostmark/SSPostmark-Prefix.pch";
 				INFOPLIST_FILE = "SSPostmark/SSPostmark-Info.plist";
@@ -281,6 +285,7 @@
 				DF75532214D329560067EAD7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

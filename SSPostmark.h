@@ -86,17 +86,32 @@ static const NSString* kSSPostmarkHeaders = @"Headers";// Expects NSDictionary :
 
 // Forward Declaration of delegate
 @protocol SSPostmarkDelegate;
+@class SSPostmarkMessage;
 
-@interface SSPostmark : NSObject
+@interface SSPostmark : NSObject <NSURLConnectionDataDelegate, NSURLConnectionDelegate>
 @property (nonatomic, assign) id <SSPostmarkDelegate> delegate;
 
 
--(void)sendEmailWithParamaters:(NSDictionary*)params asynchronously:(BOOL)async;
-
+- (void)sendEmailWithParamaters:(NSDictionary *)params asynchronously:(BOOL)async __attribute__((deprecated("Use sendEmail: instead")));
+- (void)sendEmail:(SSPostmarkMessage *)message;
 
 @end
 
+
+// Errors
+    // check out http://developer.postmarkapp.com/developer-build.html for more info
 typedef enum {
+    SSPMError_APITokenError = 0,
+    SSPMError_IvalidEmailRequest = 300,
+    SSPMError_SenderSignatureNotFound = 400,
+    SSPMError_SenderSignatureNotConfirmed = 401,
+    SSPMError_InvalidJSON = 402,
+    SSPMError_IncompatiableJSON = 403,
+    SSPMError_NotAllowedToSend = 405,
+    SSPMError_InactiveRecipient = 406,
+    SSPMError_BounceNotFound = 407,
+    SSPMError_JSONRequired = 409,
+    SSPMError_TooManyBatchMessages = 410,
     SSPMError_Unknown,
     SSPMError_BadMessageDict,
 }SSPMErrorType;
@@ -105,6 +120,28 @@ typedef enum {
 
 // Option Delegate Methods
 @optional
--(void)postmark:(id)postmark returnedMessage:(NSDictionary*)message withStatusCode:(NSUInteger)code;
+-(void)postmark:(id)postmark returnedMessage:(NSDictionary *)message withStatusCode:(NSUInteger)code;
 -(void)postmark:(id)postmark encounteredError:(SSPMErrorType)type;
+
+@end
+
+
+
+@interface SSPostmarkMessage : NSObject
+// Required
+@property (nonatomic, retain) NSString *htmlBody;
+@property (nonatomic, retain) NSString *textBody;
+@property (nonatomic, retain) NSString *fromEmail;
+@property (nonatomic, retain) NSString *to;
+@property (nonatomic, retain) NSString *subject;
+@property (nonatomic, retain) NSString *tag;
+@property (nonatomic, retain) NSString *replyTo;
+
+// Optional
+@property (nonatomic, retain) NSString *cc;
+@property (nonatomic, retain) NSString *bcc;
+@property (nonatomic, retain) NSDictionary *headers;
+
+- (BOOL)isValid;
+- (NSDictionary *)asDict;
 @end

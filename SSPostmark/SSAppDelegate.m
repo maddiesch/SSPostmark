@@ -39,19 +39,19 @@
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     
-    NSMutableDictionary* mail = [NSMutableDictionary new];
-    [mail setObject:@"test.email@domain.com" forKey:kSSPostmarkTo];
-    [mail setObject:@"Testing The Mailtoobz" forKey:kSSPostmarkSubject];
-    [mail setObject:@"Test Email" forKey:kSSPostmarkTextBody];
-    [mail setObject:@"ObjectCTest" forKey:kSSPostmarkTag];
+    SSPostmarkMessage *mail = [SSPostmarkMessage new];
+    mail.to = @"test.email@domain.com";
+    mail.subject = @"Testing The Mailtoobz";
+    mail.textBody = @"Test Email";
+    mail.tag = @"ObjectCTest";
     // Sender Info
-    [mail setObject:@"test.email.sender@domain.com" forKey:kSSPostmarkFrom];
-    [mail setObject:@"test.email.sender@domain.com" forKey:kSSPostmarkReplyTo];
+    mail.fromEmail = @"test.email.sender@domain.com";
+    mail.replyTo = @"test.email.sender@domain.com";
     
     // Send
     SSPostmark* p = [[SSPostmark alloc]init];
     p.delegate = self;
-    [p sendEmailWithParamaters:mail asynchronously:YES];
+    [p sendEmail:mail];
     
     return YES;
 }
