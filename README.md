@@ -4,6 +4,8 @@
 
 This is a simple Objective-C class to send email using the Postmark API.
 
+Works on both Mac OS X 10.7 & iOS 5
+
 ***
 
 #### How To Use It
@@ -30,12 +32,20 @@ This is a simple Objective-C class to send email using the Postmark API.
 		mail.fromEmail = @"test.email.sender@domain.com";
 		mail.replyTo = @"test.email.sender@domain.com";
 	
-7. Call `sendEmail:<# Instance of SSPostmarkMessage #>`
+7. Call `sendEmail:`
 	
 8. Wait for the response from the server on delegate or notification listener.
 
 ***
 
+- Sending bulk messages.  Just call `sendBatchMessages:` on your SSPostmark instance and pass in a `NSSArray` of `SSPostmarkMessage`s
+
+	- You will get individual callbacks for each successful email sent.
+	
+	- Also see the rules on [Batch Messaging](http://developer.postmarkapp.com/developer-build.html#batching-messages)
+
+
+***
 
 - `[postmark sendEmailWithParamaters:<NSDictionary> asynchronously:<BOOL>]` Will be deprecated.
 

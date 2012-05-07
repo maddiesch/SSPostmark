@@ -9,9 +9,19 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>SSPostmark_Mac.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>945ED6F315583631007049C2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>DF75530114D329550067EAD7</key>
 		<dict>
 			<key>primary</key>

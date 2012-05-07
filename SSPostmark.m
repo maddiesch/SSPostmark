@@ -43,6 +43,7 @@
 #import "SSPostmark.h"
 
 #define pm_API_URL @"http://api.postmarkapp.com/email"
+#define pm_BATCH_API_URL @"http://api.postmarkapp.com/email/batch"
 
 
 @interface SSPostmark () {
@@ -54,8 +55,10 @@
 - (void)sendEmailWithParamaters:(NSDictionary *)params;
 - (BOOL)isValidMailDict:(NSDictionary *)message;
 
-- (NSData *)writeJSON:(NSDictionary *)dict;
-- (NSDictionary *)parseJSON:(NSData *)data;
+- (NSData *)writeJSON:(id)data;
+- (id)parseJSON:(NSData *)data;
+
+- (void)_send:(NSData *)data toURL:(NSURL *)url;
 @end
 
 @implementation SSPostmark
@@ -84,7 +87,7 @@
     if ([self isValidMailDict:params]) {
         // Create Message JSON
         NSData* message = [self writeJSON:params];
-        NSString* length = [NSString stringWithFormat:@"%d",[message length]];
+        NSString* length = [[NSNumber numberWithInteger:message.length] stringValue];
         _request.HTTPMethod = @"POST";
         _request.HTTPBody = message;
         [_request setValue:length forHTTPHeaderField:@"Content-Length"];
@@ -122,11 +125,6 @@
 
 - (void)sendEmail:(SSPostmarkMessage *)message {
     NSURL* apiURL = [NSURL URLWithString:pm_API_URL];
-    // Re-Create Request
-    _request = nil;
-    _request = [[NSMutableURLRequest alloc] initWithURL:apiURL];
-    // Setup Headers
-    [self createHeaders];
     /**
      *  Validate Message Object
      *
@@ -144,19 +142,49 @@
         }
         return;
     }
-    
     /**
      *  Setup the JSON
      * 
      */
     NSData* messageData = [self writeJSON:[message asDict]];
-    NSString* length = [NSString stringWithFormat:@"%d",messageData.length];
+    [self _send:messageData toURL:apiURL];
+}
+- (void)sendBatchMessages:(NSArray *)messages {
+    NSURL* apiURL = [NSURL URLWithString:pm_BATCH_API_URL];
+    NSMutableArray *arr = [NSMutableArray new];
+    for (NSUInteger i = 0; i < messages.count; i++) {
+        SSPostmarkMessage *m = [messages objectAtIndex:i];
+        if (![m isValid]) {
+            NSDictionary *errorDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                                       @"failed", @"status",
+                                       @"Invalid Message", @"message",
+                                       nil];
+            NSNotification *errorNot = [NSNotification notificationWithName:pm_POSTMARK_NOTIFICATION object:self userInfo:errorDict];
+            [[NSNotificationCenter defaultCenter] postNotification:errorNot];
+            if ([self delegate] && [[self delegate] respondsToSelector:@selector(postmark:encounteredError:)]) {
+                [[self delegate] postmark:self encounteredError:SSPMError_BadMessageDict];
+            }
+            return;
+        } else {
+            [arr addObject:[m asDict]];
+        }
+    }
+    NSData *data = [self writeJSON:arr];
+    [self _send:data toURL:apiURL];
+}
+
+- (void)_send:(NSData *)data toURL:(NSURL *)url {
+    _request = nil;
+    _request = [[NSMutableURLRequest alloc] initWithURL:url];
+    // Setup Headers
+    [self createHeaders];
+    NSString* length = [[NSNumber numberWithInteger:data.length] stringValue];
     _request.HTTPMethod = @"POST";
-    _request.HTTPBody = messageData;
+    _request.HTTPBody = data;
     [_request setValue:length forHTTPHeaderField:@"Content-Length"];
-    
     [NSURLConnection connectionWithRequest:_request delegate:self];
 }
+
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     NSHTTPURLResponse * resp = (NSHTTPURLResponse *)response;
@@ -167,15 +195,31 @@
     }
 }
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSDictionary *resp = [self parseJSON:_recievedData];
-    if ([[resp objectForKey:@"ErrorCode"] intValue] == 0) {
+    // Feedback
+    void (^feedback)(NSDictionary *dict) = ^(NSDictionary *dict) {
         if ([self delegate] && [[self delegate] respondsToSelector:@selector(postmark:returnedMessage:withStatusCode:)]) {
-            // Send the delegate message back to the main queue
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                [[self delegate] postmark:self returnedMessage:resp withStatusCode:[[resp objectForKey:@"ErrorCode"] integerValue]];
-            });
+            [[self delegate] postmark:self returnedMessage:dict withStatusCode:[[dict objectForKey:@"ErrorCode"] integerValue]];
         }
-        [[NSNotificationCenter defaultCenter] postNotificationName:pm_POSTMARK_NOTIFICATION object:self userInfo:resp];
+        [[NSNotificationCenter defaultCenter] postNotificationName:pm_POSTMARK_NOTIFICATION object:self userInfo:dict];
+    };
+    
+    id resp = [self parseJSON:_recievedData];
+    
+    // Single Mail
+    if ([resp isKindOfClass:[NSDictionary class]]) {
+        if ([[resp objectForKey:@"ErrorCode"] intValue] == 0) {
+            feedback(resp);
+        }
+    }
+    // MultiMail
+    if ([resp isKindOfClass:[NSArray class]]) {
+        NSArray *a = (NSArray *)resp;
+        for (NSUInteger i = 0; i < a.count; i++) {
+            NSDictionary *d = [a objectAtIndex:i];
+            if ([[d objectForKey:@"ErrorCode"] intValue] == 0) {
+                feedback(d);
+            }
+        }
     }
 }
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
@@ -186,28 +230,24 @@
 }
 
 #pragma mark - Helper methods
-- (NSData *)writeJSON:(NSDictionary *)dict{
-    #if __IPHONE_OS_VERSION_MIN_REQUIRED > __IPHONE_4_3
+- (NSData *)writeJSON:(id)data{
     if ([NSJSONSerialization class]) {
-        if (!dict) {
+        if (!data) {
             return nil;
         }
-        return [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
+        return [NSJSONSerialization dataWithJSONObject:data options:0 error:nil];
     }
-    #endif
-    [NSException raise:@"NSJSONSerialization Not Found" format:@"If you're supporting iOS < 5.0 or OSX < 10.7 Please implemnt JSON Encoder"];
+    [NSException raise:@"NSJSONSerialization Not Found" format:@"%s\nIf you're supporting iOS < 5.0 or OSX < 10.7 Please implemnt JSON Encoder",__PRETTY_FUNCTION__];
     return nil;
 }
-- (NSDictionary *)parseJSON:(NSData *)data {
-#if __IPHONE_OS_VERSION_MIN_REQUIRED > __IPHONE_4_3
+- (id)parseJSON:(NSData *)data {
     if ([NSJSONSerialization class]) {
         if (!data) {
             return nil;
         }
         return [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
     }
-#endif
-    [NSException raise:@"NSJSONSerialization Not Found" format:@"If you're supporting iOS < 5.0 or OSX < 10.7 Please implemnt JSON Encoder"];
+    [NSException raise:@"NSJSONSerialization Not Found" format:@"%s\nIf you're supporting iOS < 5.0 or OSX < 10.7 Please implemnt JSON Encoder",__PRETTY_FUNCTION__];
     return nil;
 }
 - (void)createHeaders {

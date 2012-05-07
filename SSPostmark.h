@@ -73,16 +73,27 @@
  *
  *
  */
-static const NSString* kSSPostmarkHTMLBody = @"HtmlBody"; // Expects NSString
-static const NSString* kSSPostmarkTextBody = @"TextBody"; // Expects NSString
-static const NSString* kSSPostmarkFrom = @"From"; // Expects NSString
-static const NSString* kSSPostmarkTo = @"To"; // Expects NSString
-static const NSString* kSSPostmarkCC = @"Cc"; // Expects NSString :: OPTIONAL
-static const NSString* kSSPostmarkBCC = @"Bcc"; // Expects NSString :: OPTIONAL
-static const NSString* kSSPostmarkSubject = @"Subject"; // Expects NSString
-static const NSString* kSSPostmarkTag = @"Tag"; // Expects NSString
-static const NSString* kSSPostmarkReplyTo = @"ReplyTo"; // Expects NSString
-static const NSString* kSSPostmarkHeaders = @"Headers";// Expects NSDictionary :: OPTIONAL
+static const NSString *kSSPostmarkHTMLBody = @"HtmlBody"; // Expects NSString
+static const NSString *kSSPostmarkTextBody = @"TextBody"; // Expects NSString
+static const NSString *kSSPostmarkFrom = @"From"; // Expects NSString
+static const NSString *kSSPostmarkTo = @"To"; // Expects NSString
+static const NSString *kSSPostmarkCC = @"Cc"; // Expects NSString :: OPTIONAL
+static const NSString *kSSPostmarkBCC = @"Bcc"; // Expects NSString :: OPTIONAL
+static const NSString *kSSPostmarkSubject = @"Subject"; // Expects NSString
+static const NSString *kSSPostmarkTag = @"Tag"; // Expects NSString
+static const NSString *kSSPostmarkReplyTo = @"ReplyTo"; // Expects NSString
+static const NSString *kSSPostmarkHeaders = @"Headers";// Expects NSDictionary :: OPTIONAL
+
+/**
+ *
+ *  Response Keys
+ *      The parsed JSON dictionary should contain these keys
+ */
+static const NSString *kSSPostmarkResp_ErrorCode = @"";
+static const NSString *kSSPostmarkResp_Message = @"Message";
+static const NSString *kSSPostmarkResp_MessageID = @"MessageID";
+static const NSString *kSSPostmarkResp_SubmittedAt = @"SubmittedAt";
+static const NSString *kSSPostmarkResp_To = @"To";
 
 // Forward Declaration of delegate
 @protocol SSPostmarkDelegate;
@@ -94,6 +105,7 @@ static const NSString* kSSPostmarkHeaders = @"Headers";// Expects NSDictionary :
 
 - (void)sendEmailWithParamaters:(NSDictionary *)params asynchronously:(BOOL)async __attribute__((deprecated("Use sendEmail: instead")));
 - (void)sendEmail:(SSPostmarkMessage *)message;
+- (void)sendBatchMessages:(NSArray *)messages;
 
 @end
 
