@@ -107,6 +107,7 @@ static const NSString *kSSPostmarkResp_To = @"To";
 - (void)sendEmail:(SSPostmarkMessage *)message;
 - (void)sendBatchMessages:(NSArray *)messages;
 
++ (BOOL)isValidEmail:(NSString *)email;
 @end
 
 

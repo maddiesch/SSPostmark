@@ -277,6 +277,21 @@
     return YES;
 }
 
++ (BOOL)isValidEmail:(NSString *)email {
+    if (email == nil) {
+        return NO;
+    }
+    NSError *error = nil;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+                                                                           options:NSRegularExpressionCaseInsensitive
+                                                                             error:&error];
+    NSTextCheckingResult *match = [regex firstMatchInString:email options:0 range:NSMakeRange(0, email.length)];
+    if (match){
+        return YES;
+    }
+    return NO;
+}
+
 @end
 
 

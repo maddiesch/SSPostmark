@@ -41,35 +41,35 @@
     
     
     
-    SSPostmarkMessage *mail = [SSPostmarkMessage new];
-    mail.to = @"test.email@domain.com";
-    mail.subject = @"Testing The Mailtoobz";
-    mail.textBody = @"Test Email";
-    mail.tag = @"ObjectCTest";
-    // Sender Info
-    mail.fromEmail = @"test.email.sender@domain.com";
-    mail.replyTo = @"test.email.sender@domain.com";
-    
-    NSMutableArray *arr = [NSMutableArray new];
-    [arr addObject:mail];
-    
-    mail = nil;
-    mail = [SSPostmarkMessage new];
-    mail.to = @"test.email.two@domain.com";
-    mail.subject = @"Testing The Mailtoobz";
-    mail.textBody = @"Test Email";
-    mail.tag = @"ObjectCTest";
-    // Sender Info
-    mail.fromEmail = @"test.email.sender@domain.com";
-    mail.replyTo = @"test.email.sender@domain.com";
-    
-    [arr addObject:mail];
-    
-    
-    // Send
-    SSPostmark* p = [[SSPostmark alloc] init];
-    p.delegate = self;
-    [p sendBatchMessages:arr];
+//    SSPostmarkMessage *mail = [SSPostmarkMessage new];
+//    mail.to = @"test.email@domain.com";
+//    mail.subject = @"Testing The Mailtoobz";
+//    mail.textBody = @"Test Email";
+//    mail.tag = @"ObjectCTest";
+//    // Sender Info
+//    mail.fromEmail = @"test.email.sender@domain.com";
+//    mail.replyTo = @"test.email.sender@domain.com";
+//    
+//    NSMutableArray *arr = [NSMutableArray new];
+//    [arr addObject:mail];
+//    
+//    mail = nil;
+//    mail = [SSPostmarkMessage new];
+//    mail.to = @"test.email.two@domain.com";
+//    mail.subject = @"Testing The Mailtoobz";
+//    mail.textBody = @"Test Email";
+//    mail.tag = @"ObjectCTest";
+//    // Sender Info
+//    mail.fromEmail = @"test.email.sender@domain.com";
+//    mail.replyTo = @"test.email.sender@domain.com";
+//    
+//    [arr addObject:mail];
+//    
+//    
+//    // Send
+//    SSPostmark* p = [[SSPostmark alloc] init];
+//    p.delegate = self;
+//    [p sendBatchMessages:arr];
     
     return YES;
 }

@@ -14,6 +14,7 @@
 		945ED70A15583631007049C2 /* SSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 945ED70915583631007049C2 /* SSAppDelegate.m */; };
 		945ED70D15583631007049C2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 945ED70B15583631007049C2 /* MainMenu.xib */; };
 		945ED71215583662007049C2 /* SSPostmark.m in Sources */ = {isa = PBXBuildFile; fileRef = DF75532414D329690067EAD7 /* SSPostmark.m */; };
+		9475A9E71561B9370089EBC4 /* SSPostmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9475A9E61561B9370089EBC4 /* SSPostmarkViewController.m */; };
 		DF75530714D329550067EAD7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF75530614D329550067EAD7 /* UIKit.framework */; };
 		DF75530914D329550067EAD7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF75530814D329550067EAD7 /* Foundation.framework */; };
 		DF75530B14D329550067EAD7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF75530A14D329550067EAD7 /* CoreGraphics.framework */; };
@@ -40,6 +41,8 @@
 		945ED70815583631007049C2 /* SSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSAppDelegate.h; sourceTree = "<group>"; };
 		945ED70915583631007049C2 /* SSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSAppDelegate.m; sourceTree = "<group>"; };
 		945ED70C15583631007049C2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		9475A9E51561B9370089EBC4 /* SSPostmarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPostmarkViewController.h; sourceTree = "<group>"; };
+		9475A9E61561B9370089EBC4 /* SSPostmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkViewController.m; sourceTree = "<group>"; };
 		DF75530214D329550067EAD7 /* SSPostmark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSPostmark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF75530614D329550067EAD7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DF75530814D329550067EAD7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -115,6 +118,8 @@
 		DF7552F714D329550067EAD7 = {
 			isa = PBXGroup;
 			children = (
+				9475A9E51561B9370089EBC4 /* SSPostmarkViewController.h */,
+				9475A9E61561B9370089EBC4 /* SSPostmarkViewController.m */,
 				DF75532314D329690067EAD7 /* SSPostmark.h */,
 				DF75532414D329690067EAD7 /* SSPostmark.m */,
 				DF75530C14D329550067EAD7 /* SSPostmark */,
@@ -275,6 +280,7 @@
 				DF75531714D329550067EAD7 /* SSAppDelegate.m in Sources */,
 				DF75531A14D329550067EAD7 /* SSViewController.m in Sources */,
 				DF75532514D329690067EAD7 /* SSPostmark.m in Sources */,
+				9475A9E71561B9370089EBC4 /* SSPostmarkViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +385,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -404,6 +411,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -451,6 +459,7 @@
 				945ED70F15583631007049C2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DF7552FC14D329550067EAD7 /* Build configuration list for PBXProject "SSPostmark" */ = {
 			isa = XCConfigurationList;
