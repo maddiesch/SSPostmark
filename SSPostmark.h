@@ -49,12 +49,6 @@
 
 /**
  *
- *  Set your API key
- *
- */
-#define pm_YOUR_API_KEY @"POSTMARK_API_TEST"
-/**
- *
  *  Set async queue name
  *
  */
@@ -84,6 +78,11 @@ static const NSString *kSSPostmarkTag = @"Tag"; // Expects NSString
 static const NSString *kSSPostmarkReplyTo = @"ReplyTo"; // Expects NSString
 static const NSString *kSSPostmarkHeaders = @"Headers";// Expects NSDictionary :: OPTIONAL
 
+// See http://developer.postmarkapp.com/developer-build.html#attachments
+static const NSString *kSSPostmarkAttachments = @"Attachments";// :: OPTIONAL :: Expects NSArray of NSDictionaries with the following attachment keys
+static const NSString *kSSPostmarkAttachmentName = @"Name";// Expects NSString
+static const NSString *kSSPostmarkAttachmentContent = @"Content";// Expects Base64-encoded binary content as an NSString
+static const NSString *kSSPostmarkAttachmentContentType = @"ContentType";// Expects NSString
 /**
  *
  *  Response Keys
@@ -100,8 +99,13 @@ static const NSString *kSSPostmarkResp_To = @"To";
 @class SSPostmarkMessage;
 
 @interface SSPostmark : NSObject <NSURLConnectionDataDelegate, NSURLConnectionDelegate>
+@property (nonatomic, retain) NSString *apiKey;
+@property (nonatomic, retain) NSString *queueName;
 @property (nonatomic, assign) id <SSPostmarkDelegate> delegate;
 
+
+- (id)initWithApiKey:(NSString *)apiKey;
+- (id)initWithApiKey:(NSString *)apiKey queueName:(NSString *)queueName;
 
 - (void)sendEmailWithParamaters:(NSDictionary *)params asynchronously:(BOOL)async __attribute__((deprecated("Use sendEmail: instead")));
 - (void)sendEmail:(SSPostmarkMessage *)message;
@@ -154,6 +158,7 @@ typedef enum {
 @property (nonatomic, retain) NSString *cc;
 @property (nonatomic, retain) NSString *bcc;
 @property (nonatomic, retain) NSDictionary *headers;
+@property (nonatomic, retain) NSArray *attachments;
 
 - (BOOL)isValid;
 - (NSDictionary *)asDict;
