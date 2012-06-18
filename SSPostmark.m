@@ -1,4 +1,4 @@
-/***
+ /***
  *    QuietSight Framework
  *    @author - Skylar Schipper
  *	   @copyright - (2011 - 2012) (c) Skylar Schipper
@@ -62,7 +62,19 @@
 @end
 
 @implementation SSPostmark
-@synthesize delegate;
+@synthesize apiKey = _apiKey, queueName = _queueName, delegate;
+
+- (id)initWithApiKey:(NSString *)apiKey queueName:(NSString *)queueName {
+	if ((self = [super init])) {
+		self.apiKey = apiKey;
+		self.queueName = queueName;
+	}
+	return self;
+}
+- (id)initWithApiKey:(NSString *)apiKey {
+	return [self initWithApiKey:apiKey queueName:pm_ASYNC_QUEUE_NAME];
+}
+
 
 - (void)sendEmailWithParamaters:(NSDictionary *)params asynchronously:(BOOL)async {
     if (async) {
@@ -71,7 +83,7 @@
             [self sendEmailWithParamaters:params];
         }];
         NSOperationQueue* queue = [[NSOperationQueue alloc]init];
-        queue.name = pm_ASYNC_QUEUE_NAME;
+        queue.name = self.queueName;
         [queue addOperation:opp];
     } else {
         [self sendEmailWithParamaters:params];
@@ -188,7 +200,8 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     NSHTTPURLResponse * resp = (NSHTTPURLResponse *)response;
-    if (resp.statusCode == 422) {
+	NSInteger code = resp.statusCode;
+    if (code >= 400) {
         [NSNotification notificationWithName:pm_POSTMARK_NOTIFICATION
                                       object:self
                                     userInfo:[NSDictionary dictionaryWithObject:@"failed" forKey:@"status"]];
@@ -253,7 +266,7 @@
 - (void)createHeaders {
     [_request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [_request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [_request setValue:pm_YOUR_API_KEY forHTTPHeaderField:@"X-Postmark-Server-Token"];
+    [_request setValue:self.apiKey forHTTPHeaderField:@"X-Postmark-Server-Token"];
 }
 - (BOOL)isValidMailDict:(NSDictionary *)message{
     if (![message objectForKey:kSSPostmarkFrom]) {
@@ -312,7 +325,8 @@ tag = _tag,
 replyTo = _replyTo,
 cc = _cc,
 bcc = _bcc,
-headers = _headers;
+headers = _headers,
+attachments = _attachments;
 
 
 - (BOOL)isValid {
@@ -357,6 +371,9 @@ headers = _headers;
     }
     if (self.headers != nil) {
         [d setObject:self.headers forKey:kSSPostmarkHeaders];
+    }
+	if (self.attachments != nil) {
+        [d setObject:self.attachments forKey:kSSPostmarkAttachments];
     }
     return d;
 }
