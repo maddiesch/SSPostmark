@@ -12,9 +12,7 @@ Works on both Mac OS X 10.7 & iOS 5
 
 1. Add `SSPostmark.h` and `SSPostmark.m` to your project, then `#import "SSPostmark.h"`
 
-2. In `SSPostmark.h` change `#define pm_YOUR_API_KEY @"POSTMARK_API_TEST"` to `#define pm_YOUR_API_KEY @"< Whatever your private API key is >"`
-
-3. Call `SSPostmark *postmark = [[SSPostmark alloc] init];`.  This gives you the postmark instance to work with.
+3. Call `SSPostmark *postmark = [[SSPostmark alloc] initWithApiKey:@"YOUR_API_KEY"];`.  This gives you the postmark instance to work with.
 
 4. At the very least make sure your usage class implements `- (void)postmark:(id)postmark returnedMessage:(NSDictionary *)message withStatusCode:(NSUInteger)code` or responds to `pm_POSTMARK_NOTIFICATION` with `NSNotificationCenter`
 	
@@ -32,11 +30,13 @@ Works on both Mac OS X 10.7 & iOS 5
 		mail.fromEmail = @"test.email.sender@domain.com";
 		mail.replyTo = @"test.email.sender@domain.com";
 	
-7. Call `sendEmail:`
+7. Call `[postmark sendEmail:mail]`
 	
 8. Wait for the response from the server on delegate or notification listener.
 
 ***
+
+#### Batch emails.
 
 - Sending bulk messages.  Just call `sendBatchMessages:` on your SSPostmark instance and pass in a `NSSArray` of `SSPostmarkMessage`s
 
@@ -47,9 +47,39 @@ Works on both Mac OS X 10.7 & iOS 5
 
 ***
 
-- `[postmark sendEmailWithParamaters:<NSDictionary> asynchronously:<BOOL>]` Will be deprecated.
+#### Attachments 
+
+SSPostmarkAttachment
+
+- `name` : String with the name of the file.
+- `contentType` : MIME Type of the file.
+- `content` : base64 encoded file.
+
+The best way to set the content is to call `addData:` and pass in a NSData object.  We'll handle the encoding for you. 
 
 ***
+
+### Putting it all together
+
+	// Create the message
+	SSPostmarkMessage *mail = [SSPostmarkMessage new];
+    mail.to = @"test@domain.com";
+    mail.subject = @"Testing The Mailtoobz";
+    mail.textBody = @"Test Email";
+    mail.tag = @"ObjectCTest";
+    // Sender Info
+    mail.fromEmail = @"test.sender@domain.com";
+    mail.replyTo = @"test.sender@domain.com";
+    
+    // If you're using the UIImage helper method we'll automaticaly add .png to the end of name if it's not there.
+    SSPostmarkAttachment *att = [SSPostmarkAttachment attachmentWithImage:[UIImage imageNamed:@"happy-panda.jpg"] named:@"happy-panda"];
+    // Add an attachemnt to the array.
+    [mail addAttachment:att];
+    
+    // Send
+    SSPostmark* postmark = [[SSPostmark alloc] initWithApiKey:@"POSTMARK_API_TEST"];
+    postmark.delegate = self;
+    [postmark sendEmail:mail];
 
 ***
 
