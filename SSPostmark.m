@@ -154,6 +154,9 @@
         }
         return;
     }
+    if (message.apiKey) {
+        self.apiKey = message.apiKey;
+    }
     /**
      *  Setup the JSON
      * 
@@ -326,7 +329,8 @@ replyTo = _replyTo,
 cc = _cc,
 bcc = _bcc,
 headers = _headers,
-attachments = _attachments;
+attachments = _attachments,
+apiKey = _apiKey;
 
 
 - (BOOL)isValid {
@@ -374,9 +378,30 @@ attachments = _attachments;
         [d setObject:self.headers forKey:kSSPostmarkHeaders];
     }
 	if (self.attachments != nil) {
-        [d setObject:self.attachments forKey:kSSPostmarkAttachments];
+        NSMutableArray *attachments = [NSMutableArray new];
+        for (NSUInteger i = 0; i < [self.attachments count]; i++) {
+            id attachemnt = [self.attachments objectAtIndex:i];
+            if ([attachemnt isKindOfClass:[NSDictionary class]]) {
+                [attachments addObject:attachemnt];
+            } else if ([attachemnt isKindOfClass:[SSPostmarkAttachment class]]) {
+                SSPostmarkAttachment *att = (SSPostmarkAttachment *)attachemnt;
+                [attachemnt addObject:[att dictionaryRepresentation]];
+            }
+        }
+        [d setObject:attachments forKey:kSSPostmarkAttachments];
     }
     return d;
+}
+
+- (void)addAttachment:(SSPostmarkAttachment *)attachment {
+    NSMutableArray *hold = nil;
+    if (self.attachments == nil) {
+        hold = [NSMutableArray new];
+    } else {
+        hold = [self.attachments mutableCopy];
+    }
+    [hold addObject:[attachment dictionaryRepresentation]];
+    self.attachments = [NSArray arrayWithArray:hold];
 }
 
 @end
@@ -386,7 +411,7 @@ attachments = _attachments;
 @synthesize content = _content, contentType = _contentType, name = _name;
 
 - (void)addData:(NSData *)data {
-    _contentType = [data base64String];
+    _content = [data base64String];
 }
 - (void)addImage:(UIImage *)image {
     [self addData:UIImagePNGRepresentation(image)];
@@ -420,7 +445,6 @@ attachments = _attachments;
     [att addImage:image];
     return att;
 }
-
 
 @end
 

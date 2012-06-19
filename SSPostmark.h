@@ -97,6 +97,7 @@ static const NSString *kSSPostmarkResp_To = @"To";
 // Forward Declaration of delegate
 @protocol SSPostmarkDelegate;
 @class SSPostmarkMessage;
+@class SSPostmarkAttachment;
 
 
 #pragma mark - Begin SSPostmark Def
@@ -147,6 +148,8 @@ typedef enum {
 
 #pragma mark - Begin SSPostmarkMessage Def
 @interface SSPostmarkMessage : NSObject
+// Set the Postmark API Key per message.  This doesn't work for batch messages, but for individual messages it sets the Postmark API key befor sending the request.
+@property (nonatomic, retain) NSString *apiKey;
 // Required
 @property (nonatomic, retain) NSString *htmlBody;
 @property (nonatomic, retain) NSString *textBody;
@@ -161,6 +164,8 @@ typedef enum {
 @property (nonatomic, retain) NSString *bcc;
 @property (nonatomic, retain) NSDictionary *headers;
 @property (nonatomic, retain) NSArray *attachments;
+
+- (void)addAttachment:(SSPostmarkAttachment *)attachment;
 
 - (BOOL)isValid;
 - (NSDictionary *)asDict;

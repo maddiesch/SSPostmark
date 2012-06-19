@@ -41,35 +41,25 @@
     
     
     
-//    SSPostmarkMessage *mail = [SSPostmarkMessage new];
-//    mail.to = @"test.email@domain.com";
-//    mail.subject = @"Testing The Mailtoobz";
-//    mail.textBody = @"Test Email";
-//    mail.tag = @"ObjectCTest";
-//    // Sender Info
-//    mail.fromEmail = @"test.email.sender@domain.com";
-//    mail.replyTo = @"test.email.sender@domain.com";
-//    
-//    NSMutableArray *arr = [NSMutableArray new];
-//    [arr addObject:mail];
-//    
-//    mail = nil;
-//    mail = [SSPostmarkMessage new];
-//    mail.to = @"test.email.two@domain.com";
-//    mail.subject = @"Testing The Mailtoobz";
-//    mail.textBody = @"Test Email";
-//    mail.tag = @"ObjectCTest";
-//    // Sender Info
-//    mail.fromEmail = @"test.email.sender@domain.com";
-//    mail.replyTo = @"test.email.sender@domain.com";
-//    
-//    [arr addObject:mail];
-//    
-//    
-//    // Send
-//    SSPostmark* p = [[SSPostmark alloc] init];
-//    p.delegate = self;
-//    [p sendBatchMessages:arr];
+    SSPostmarkMessage *mail = [SSPostmarkMessage new];
+    mail.to = @"test@domain.com";
+    mail.subject = @"Testing The Mailtoobz";
+    mail.textBody = @"Test Email";
+    mail.tag = @"ObjectCTest";
+    // Sender Info
+    mail.fromEmail = @"test.sender@domain.com";
+    mail.replyTo = @"test.sender@domain.com";
+//    mail.apiKey = @"POSTMARK_API_TEST"; // API Can be set in either the SSPostmarkMessage or SSPostmark Instance
+    
+    // If you're using the UIImage helper method we'll automaticaly add .png to the end of name if it's not there.
+    SSPostmarkAttachment *att = [SSPostmarkAttachment attachmentWithImage:[UIImage imageNamed:@"happy-panda.jpg"] named:@"happy-panda"];
+    // Add an attachemnt to the array.
+    [mail addAttachment:att];
+    
+    // Send
+    SSPostmark* p = [[SSPostmark alloc] initWithApiKey:@"POSTMARK_API_TEST"];
+    p.delegate = self;
+    [p sendEmail:mail];
     
     return YES;
 }
