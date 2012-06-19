@@ -1,5 +1,5 @@
  /***
- *    QuietSight Framework
+ *    SSPostmark
  *    @author - Skylar Schipper
  *	   @copyright - (2011 - 2012) (c) Skylar Schipper
  *			(All rights reserved)
@@ -153,6 +153,9 @@
             [[self delegate] postmark:self encounteredError:SSPMError_BadMessageDict];
         }
         return;
+    }
+    if (message.apiKey) {
+        self.apiKey = message.apiKey;
     }
     /**
      *  Setup the JSON
@@ -326,7 +329,8 @@ replyTo = _replyTo,
 cc = _cc,
 bcc = _bcc,
 headers = _headers,
-attachments = _attachments;
+attachments = _attachments,
+apiKey = _apiKey;
 
 
 - (BOOL)isValid {
@@ -374,9 +378,116 @@ attachments = _attachments;
         [d setObject:self.headers forKey:kSSPostmarkHeaders];
     }
 	if (self.attachments != nil) {
-        [d setObject:self.attachments forKey:kSSPostmarkAttachments];
+        NSMutableArray *attachments = [NSMutableArray new];
+        for (NSUInteger i = 0; i < [self.attachments count]; i++) {
+            id attachemnt = [self.attachments objectAtIndex:i];
+            if ([attachemnt isKindOfClass:[NSDictionary class]]) {
+                [attachments addObject:attachemnt];
+            } else if ([attachemnt isKindOfClass:[SSPostmarkAttachment class]]) {
+                SSPostmarkAttachment *att = (SSPostmarkAttachment *)attachemnt;
+                [attachemnt addObject:[att dictionaryRepresentation]];
+            }
+        }
+        [d setObject:attachments forKey:kSSPostmarkAttachments];
     }
     return d;
+}
+
+- (void)addAttachment:(SSPostmarkAttachment *)attachment {
+    NSMutableArray *hold = nil;
+    if (self.attachments == nil) {
+        hold = [NSMutableArray new];
+    } else {
+        hold = [self.attachments mutableCopy];
+    }
+    [hold addObject:[attachment dictionaryRepresentation]];
+    self.attachments = [NSArray arrayWithArray:hold];
+}
+
+@end
+
+
+@implementation SSPostmarkAttachment
+@synthesize content = _content, contentType = _contentType, name = _name;
+
+- (void)addData:(NSData *)data {
+    _content = [data base64String];
+}
+- (void)addImage:(UIImage *)image {
+    [self addData:UIImagePNGRepresentation(image)];
+    if (self.name != nil) {
+        if (![self.name hasSuffix:@".png"]) {
+            self.name = [NSString stringWithFormat:@"%@.png",self.name];
+        }
+    } else {
+        self.name = @"image.png";
+    }
+}
+
+- (NSDictionary *)dictionaryRepresentation {
+    NSMutableDictionary *d = [NSMutableDictionary new];
+    [d setObject:self.content forKey:kSSPostmarkAttachmentContent];
+    [d setObject:self.contentType forKey:kSSPostmarkAttachmentContentType];
+    [d setObject:self.name forKey:kSSPostmarkAttachmentName];
+    return [NSDictionary dictionaryWithDictionary:d];
+}
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        _contentType = @"application/octet-stream"; // Default as per http://developer.postmarkapp.com/developer-build.html#attachments
+    }
+    return self;
+}
++ (SSPostmarkAttachment *)attachmentWithImage:(UIImage *)image named:(NSString *)name {
+    SSPostmarkAttachment *att = [[self alloc] init];
+    att.name = name;
+    [att addImage:image];
+    return att;
+}
+
+@end
+
+
+@implementation NSData (Base64)
+
+- (NSString *)base64String {
+    const unsigned char * rawData = [self bytes];
+    char * objPointer;
+    char * strResult;
+    
+    NSUInteger intLength = self.length;
+    if (intLength == 0) return nil;
+    
+    strResult = (char *)calloc(((intLength + 2) / 3) * 4, sizeof(char));
+    objPointer = strResult;
+    
+    while (intLength > 2) {
+        *objPointer++ = _base64EncodingTable[rawData[0] >> 2];
+        *objPointer++ = _base64EncodingTable[((rawData[0] & 0x03) << 4) + (rawData[1] >> 4)];
+        *objPointer++ = _base64EncodingTable[((rawData[1] & 0x0f) << 2) + (rawData[2] >> 6)];
+        *objPointer++ = _base64EncodingTable[rawData[2] & 0x3f];
+        rawData += 3;
+        intLength -= 3; 
+    }
+    
+    if (intLength != 0) {
+        *objPointer++ = _base64EncodingTable[rawData[0] >> 2];
+        if (intLength > 1) {
+            *objPointer++ = _base64EncodingTable[((rawData[0] & 0x03) << 4) + (rawData[1] >> 4)];
+            *objPointer++ = _base64EncodingTable[(rawData[1] & 0x0f) << 2];
+            *objPointer++ = '=';
+        } else {
+            *objPointer++ = _base64EncodingTable[(rawData[0] & 0x03) << 4];
+            *objPointer++ = '=';
+            *objPointer++ = '=';
+        }
+    }
+    *objPointer = '\0';
+    
+    NSString *retVal = [[NSString alloc] initWithCString:strResult encoding:NSASCIIStringEncoding];
+    free(strResult);
+    return retVal;
 }
 
 @end

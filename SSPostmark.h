@@ -1,6 +1,6 @@
 //
 /***
- *    QuietSight Framework
+ *    SSPostmark
  *    @author - Skylar Schipper
  *	   @copyright - (2011 - 2012) (c) Skylar Schipper
  *			(All rights reserved)
@@ -97,7 +97,10 @@ static const NSString *kSSPostmarkResp_To = @"To";
 // Forward Declaration of delegate
 @protocol SSPostmarkDelegate;
 @class SSPostmarkMessage;
+@class SSPostmarkAttachment;
 
+
+#pragma mark - Begin SSPostmark Def
 @interface SSPostmark : NSObject <NSURLConnectionDataDelegate, NSURLConnectionDelegate>
 @property (nonatomic, retain) NSString *apiKey;
 @property (nonatomic, retain) NSString *queueName;
@@ -143,8 +146,10 @@ typedef enum {
 @end
 
 
-
+#pragma mark - Begin SSPostmarkMessage Def
 @interface SSPostmarkMessage : NSObject
+// Set the Postmark API Key per message.  This doesn't work for batch messages, but for individual messages it sets the Postmark API key befor sending the request.
+@property (nonatomic, retain) NSString *apiKey;
 // Required
 @property (nonatomic, retain) NSString *htmlBody;
 @property (nonatomic, retain) NSString *textBody;
@@ -160,6 +165,61 @@ typedef enum {
 @property (nonatomic, retain) NSDictionary *headers;
 @property (nonatomic, retain) NSArray *attachments;
 
+- (void)addAttachment:(SSPostmarkAttachment *)attachment;
+
 - (BOOL)isValid;
 - (NSDictionary *)asDict;
+@end
+
+
+@interface SSPostmarkAttachment : NSObject
+// Set the name of the file being attached
+@property (nonatomic, strong) NSString *name;
+// Content is base64 encoded NSData.  Easiest to set this via the addData: method
+@property (nonatomic, strong) NSString *content;
+// Set the content type Defaults to application/octet-stream
+@property (nonatomic, strong) NSString *contentType;
+
+// Helper methods
+- (void)addData:(NSData *)data;
+- (NSDictionary *)dictionaryRepresentation;
+
+// This keeps support for Mac OS X
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
++ (SSPostmarkAttachment *)attachmentWithImage:(UIImage *)image named:(NSString *)name;
+// Add a .png file
+- (void)addImage:(UIImage *)image;
+#endif
+@end
+
+
+#pragma mark - Begin Helper Classes
+/**
+ *  Base64 encoding
+ *
+ */
+static const char _base64EncodingTable[64] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+static const short _base64DecodingTable[256] = {
+    -2, -2, -2, -2, -2, -2, -2, -2, -2, -1, -1, -2, -1, -1, -2, -2,
+    -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2,
+    -1, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, 62, -2, -2, -2, 63,
+    52, 53, 54, 55, 56, 57, 58, 59, 60, 61, -2, -2, -2, -2, -2, -2,
+    -2,  0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14,
+    15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, -2, -2, -2, -2, -2,
+    -2, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
+    41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, -2, -2, -2, -2, -2,
+    -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2,
+    -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2,
+    -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2,
+    -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2,
+    -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2,
+    -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2,
+    -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2,
+    -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2
+};
+
+@interface NSData (Base64)
+
+- (NSString *)base64String;
+
 @end
