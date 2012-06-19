@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		94498E9C15900D0B0089BFBA /* happy-panda.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 94498E9B15900D0B0089BFBA /* happy-panda.jpg */; };
 		945ED6F715583631007049C2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 945ED6F615583631007049C2 /* Cocoa.framework */; };
 		945ED70115583631007049C2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 945ED6FF15583631007049C2 /* InfoPlist.strings */; };
 		945ED70315583631007049C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 945ED70215583631007049C2 /* main.m */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		9430687B15503A5E00E2029A /* SSPostmark.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SSPostmark.entitlements; sourceTree = "<group>"; };
+		94498E9B15900D0B0089BFBA /* happy-panda.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "happy-panda.jpg"; path = "../../../../../Desktop/happy-panda.jpg"; sourceTree = "<group>"; };
 		945ED6F415583631007049C2 /* SSPostmark_Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSPostmark_Mac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		945ED6F615583631007049C2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		945ED6F915583631007049C2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -153,6 +155,7 @@
 		DF75530C14D329550067EAD7 /* SSPostmark */ = {
 			isa = PBXGroup;
 			children = (
+				94498E9B15900D0B0089BFBA /* happy-panda.jpg */,
 				9430687B15503A5E00E2029A /* SSPostmark.entitlements */,
 				DF75531514D329550067EAD7 /* SSAppDelegate.h */,
 				DF75531614D329550067EAD7 /* SSAppDelegate.m */,
@@ -256,6 +259,7 @@
 			files = (
 				DF75531114D329550067EAD7 /* InfoPlist.strings in Resources */,
 				DF75531D14D329560067EAD7 /* SSViewController.xib in Resources */,
+				94498E9C15900D0B0089BFBA /* happy-panda.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
