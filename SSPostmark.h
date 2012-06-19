@@ -110,7 +110,6 @@ static const NSString *kSSPostmarkResp_To = @"To";
 - (id)initWithApiKey:(NSString *)apiKey;
 - (id)initWithApiKey:(NSString *)apiKey queueName:(NSString *)queueName;
 
-- (void)sendEmailWithParamaters:(NSDictionary *)params asynchronously:(BOOL)async __attribute__((deprecated("Use sendEmail: instead")));
 - (void)sendEmail:(SSPostmarkMessage *)message;
 - (void)sendBatchMessages:(NSArray *)messages;
 

@@ -77,62 +77,10 @@
 
 
 - (void)sendEmailWithParamaters:(NSDictionary *)params asynchronously:(BOOL)async {
-    if (async) {
-        NSBlockOperation* opp = [[NSBlockOperation alloc]init];
-        [opp addExecutionBlock:^{
-            [self sendEmailWithParamaters:params];
-        }];
-        NSOperationQueue* queue = [[NSOperationQueue alloc]init];
-        queue.name = self.queueName;
-        [queue addOperation:opp];
-    } else {
-        [self sendEmailWithParamaters:params];
-    }
+    [NSException raise:@"Calling a deprecated method." format:@"%s has been deprecated. Please use sendEmail: instead.", __PRETTY_FUNCTION__];
 }
 - (void)sendEmailWithParamaters:(NSDictionary *)params {
-    NSURL* apiURL = [NSURL URLWithString:pm_API_URL];
-    // Re-Create Request
-    _request = nil;
-    _request = [[NSMutableURLRequest alloc] initWithURL:apiURL];
-    // Setup Headers
-    [self createHeaders];
-    if ([self isValidMailDict:params]) {
-        // Create Message JSON
-        NSData* message = [self writeJSON:params];
-        NSString* length = [[NSNumber numberWithInteger:message.length] stringValue];
-        _request.HTTPMethod = @"POST";
-        _request.HTTPBody = message;
-        [_request setValue:length forHTTPHeaderField:@"Content-Length"];
-    } else {
-        if ([self delegate] && [[self delegate]respondsToSelector:@selector(postmark:encounteredError:)]) {
-            // Send the delegate message back to the main queue
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                [[self delegate] postmark:self encounteredError:SSPMError_BadMessageDict];
-            });
-        }
-        return;
-    }
-    // Send the request
-    NSURLResponse* theResponse;
-    NSError* theError;
-    NSData* ret = [NSURLConnection sendSynchronousRequest:_request returningResponse:&theResponse error:&theError]; 
-    if (!ret) {
-        if ([self delegate] && [[self delegate]respondsToSelector:@selector(postmark:encounteredError:)]) {
-            // Send the delegate message back to the main queue
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                [[self delegate] postmark:self encounteredError:SSPMError_Unknown];
-            });
-        }
-        return;
-    }
-    NSDictionary* resp = [self parseJSON:ret];
-    if ([self delegate] && [[self delegate]respondsToSelector:@selector(postmark:returnedMessage:withStatusCode:)]) {
-        // Send the delegate message back to the main queue
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            [[self delegate] postmark:self returnedMessage:resp withStatusCode:[[resp objectForKey:@"ErrorCode"] integerValue]];
-        });
-    }
-    [[NSNotificationCenter defaultCenter] postNotificationName:pm_POSTMARK_NOTIFICATION object:self userInfo:resp];
+    [NSException raise:@"Calling a deprecated method." format:@"%s has been deprecated. Please use sendEmail: instead.", __PRETTY_FUNCTION__];
 }
 
 - (void)sendEmail:(SSPostmarkMessage *)message {
