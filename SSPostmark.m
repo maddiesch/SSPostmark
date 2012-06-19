@@ -350,6 +350,7 @@ attachments = _attachments;
     }
     return YES;
 }
+
 - (NSDictionary *)asDict {
     NSMutableDictionary *d = [NSMutableDictionary new];
     if (self.htmlBody != nil) {

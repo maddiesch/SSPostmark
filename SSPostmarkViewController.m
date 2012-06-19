@@ -25,13 +25,7 @@
 @end
 
 @implementation SSPostmarkViewController
-@synthesize barTitle = _barTitle, to = _to;
-
-- (void)postmark:(id)postmark returnedMessage:(NSDictionary *)message withStatusCode:(NSUInteger)code {
-    if (code == 0) {
-        [self dismissModalViewControllerAnimated:YES];
-    }
-}
+@synthesize barTitle = _barTitle, to = _to, delegate = _delegate, apiKey = _apiKey;
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == actionSheet.cancelButtonIndex) {
@@ -45,8 +39,10 @@
 
 - (void)okayToSend {
     if (_postmark == nil) {
-        _postmark = [[SSPostmark alloc] init];
-        _postmark.delegate = self;
+        _postmark = [[SSPostmark alloc] initWithApiKey:self.apiKey];
+        if (self.delegate != nil) {
+            _postmark.delegate = self.delegate;
+        }
     }
     SSPostmarkMessage *message = [SSPostmarkMessage new];
     message.to = self.to;
@@ -185,7 +181,6 @@
 }
 
 - (void)keyboardNotification:(NSNotification *)notification {
-    NSLog(@"%@",notification);
     CGFloat keyDuration = [[[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue] - .01;
     CGRect frame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
     if ([notification.name isEqualToString:UIKeyboardWillShowNotification]) {
@@ -209,7 +204,6 @@
 }
 
 - (void)dismissKeys:(id)sender {
-    NSLog(@"%s",__PRETTY_FUNCTION__);
     if (sender == _sendButton) {
         [_messageBodyView resignFirstResponder];
         return;
@@ -234,5 +228,11 @@
     }
     _barTitleLabel.text = barTitle;
     [self.view bringSubviewToFront:_barTitleLabel];
+}
+- (void)setDelegate:(id<SSPostmarkViewDelegate>)delegate {
+    _delegate = delegate;
+    if (_postmark != nil) {
+        _postmark.delegate = delegate;
+    }
 }
 @end

@@ -10,10 +10,20 @@
 
 @implementation SSViewController
 
+- (void)postmark:(id)postmark returnedMessage:(NSDictionary *)message withStatusCode:(NSUInteger)code {
+    NSLog(@"%s\n%@",__PRETTY_FUNCTION__, message);
+    [self dismissModalViewControllerAnimated:YES];
+}
+- (void)postmark:(id)postmark encounteredError:(SSPMErrorType)type {
+    NSLog(@"%s :: %i",__PRETTY_FUNCTION__,type);
+}
+
 - (void)sendMail:(id)sender {
     SSPostmarkViewController *pm = [[SSPostmarkViewController alloc] init];
+    pm.delegate = self;
     pm.barTitle = @"SSPostmark";
     pm.to = @"test@test.com";
+    pm.apiKey = @"POSTMARK_API_TEST";
     pm.modalPresentationStyle = UIModalPresentationFullScreen;
     pm.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     [self presentModalViewController:pm animated:YES];
