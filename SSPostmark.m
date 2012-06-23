@@ -186,6 +186,7 @@
 }
 
 - (void)_send:(NSData *)data toURL:(NSURL *)url {
+	_recievedData = nil;
     _request = nil;
     _request = [[NSMutableURLRequest alloc] initWithURL:url];
     // Setup Headers
@@ -202,11 +203,27 @@
     NSHTTPURLResponse * resp = (NSHTTPURLResponse *)response;
 	NSInteger code = resp.statusCode;
     if (code >= 400) {
-        [NSNotification notificationWithName:pm_POSTMARK_NOTIFICATION
-                                      object:self
-                                    userInfo:[NSDictionary dictionaryWithObject:@"failed" forKey:@"status"]];
+		NSLog(@"Postmark url returned error %d %@", resp.statusCode, [NSHTTPURLResponse localizedStringForStatusCode:[resp statusCode]]);
+        NSNotification *errorNot = [NSNotification notificationWithName:pm_POSTMARK_NOTIFICATION
+																 object:self
+															   userInfo:[NSDictionary dictionaryWithObject:@"failed" forKey:@"status"]];
+		[[NSNotificationCenter defaultCenter] postNotification:errorNot];
+        if ([self delegate] && [[self delegate] respondsToSelector:@selector(postmark:encounteredError:)]) {
+            [[self delegate] postmark:self encounteredError:SSPMError_Unknown];
+        }
     }
 }
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+	NSNotification *errorNot = [NSNotification notificationWithName:pm_POSTMARK_NOTIFICATION
+															 object:self
+														   userInfo:[NSDictionary dictionaryWithObject:@"failed" forKey:@"status"]];
+	[[NSNotificationCenter defaultCenter] postNotification:errorNot];
+	if ([self delegate] && [[self delegate] respondsToSelector:@selector(postmark:encounteredError:)]) {
+		[[self delegate] postmark:self encounteredError:SSPMError_Unknown];
+	}
+}
+
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     // Feedback
     void (^feedback)(NSDictionary *dict) = ^(NSDictionary *dict) {
