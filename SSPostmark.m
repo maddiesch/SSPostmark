@@ -46,13 +46,7 @@
 #define pm_BATCH_API_URL @"http://api.postmarkapp.com/email/batch"
 
 
-@interface SSPostmark () {
-    @private
-    NSMutableURLRequest* _request;
-    NSMutableData *_recievedData;
-}
-- (void)createHeaders;
-- (void)sendEmailWithParamaters:(NSDictionary *)params;
+@interface SSPostmark ()
 - (BOOL)isValidMailDict:(NSDictionary *)message;
 
 - (NSData *)writeJSON:(id)data;
@@ -62,204 +56,116 @@
 @end
 
 @implementation SSPostmark
-@synthesize apiKey = _apiKey, queueName = _queueName, delegate;
+@synthesize apiKey = _apiKey, delegate;
 
-- (id)initWithApiKey:(NSString *)apiKey queueName:(NSString *)queueName {
+- (id)initWithApiKey:(NSString *)apiKey {
 	if ((self = [super init])) {
 		self.apiKey = apiKey;
-		self.queueName = queueName;
 	}
 	return self;
 }
-- (id)initWithApiKey:(NSString *)apiKey {
-	return [self initWithApiKey:apiKey queueName:pm_ASYNC_QUEUE_NAME];
+
+- (void)reportError:(SSPMErrorType)errorType message:(NSString *)message {
+	// Send errors to delegate and & Notification Center
+	NSDictionary *errorDict = [NSDictionary dictionaryWithObjectsAndKeys: @"failed", @"status", message, @"message", nil];
+	NSNotification *errorNot = [NSNotification notificationWithName:pm_POSTMARK_NOTIFICATION object:self userInfo:errorDict];
+	[[NSNotificationCenter defaultCenter] postNotification:errorNot];
+	if ([self delegate] && [[self delegate] respondsToSelector:@selector(postmark:encounteredError:message:)]) {
+		[[self delegate] postmark:self encounteredError:errorType message:message];
+	}
 }
 
+- (void)reportErrorWithResponseDictionary:(NSDictionary *)dictionary {
+	[self reportError:[[dictionary objectForKey:@"ErrorCode"] integerValue] message:[dictionary objectForKey:@"Message"]];
+}
 
-- (void)sendEmailWithParamaters:(NSDictionary *)params asynchronously:(BOOL)async {
-    if (async) {
-        NSBlockOperation* opp = [[NSBlockOperation alloc]init];
-        [opp addExecutionBlock:^{
-            [self sendEmailWithParamaters:params];
-        }];
-        NSOperationQueue* queue = [[NSOperationQueue alloc]init];
-        queue.name = self.queueName;
-        [queue addOperation:opp];
-    } else {
-        [self sendEmailWithParamaters:params];
-    }
+- (void)reportFeedbackWithResponseDictionary:(NSDictionary *)dictionary {
+	if ([self delegate] && [[self delegate] respondsToSelector:@selector(postmark:returnedMessage:withStatusCode:)]) {
+		[[self delegate] postmark:self
+				  returnedMessage:dictionary
+				   withStatusCode:[[dictionary objectForKey:@"ErrorCode"] integerValue]];
+	}
+	[[NSNotificationCenter defaultCenter] postNotificationName:pm_POSTMARK_NOTIFICATION object:self userInfo:dictionary];
 }
-- (void)sendEmailWithParamaters:(NSDictionary *)params {
-    NSURL* apiURL = [NSURL URLWithString:pm_API_URL];
-    // Re-Create Request
-    _request = nil;
-    _request = [[NSMutableURLRequest alloc] initWithURL:apiURL];
-    // Setup Headers
-    [self createHeaders];
-    if ([self isValidMailDict:params]) {
-        // Create Message JSON
-        NSData* message = [self writeJSON:params];
-        NSString* length = [[NSNumber numberWithInteger:message.length] stringValue];
-        _request.HTTPMethod = @"POST";
-        _request.HTTPBody = message;
-        [_request setValue:length forHTTPHeaderField:@"Content-Length"];
-    } else {
-        if ([self delegate] && [[self delegate]respondsToSelector:@selector(postmark:encounteredError:)]) {
-            // Send the delegate message back to the main queue
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                [[self delegate] postmark:self encounteredError:SSPMError_BadMessageDict];
-            });
-        }
-        return;
-    }
-    // Send the request
-    NSURLResponse* theResponse;
-    NSError* theError;
-    NSData* ret = [NSURLConnection sendSynchronousRequest:_request returningResponse:&theResponse error:&theError]; 
-    if (!ret) {
-        if ([self delegate] && [[self delegate]respondsToSelector:@selector(postmark:encounteredError:)]) {
-            // Send the delegate message back to the main queue
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                [[self delegate] postmark:self encounteredError:SSPMError_Unknown];
-            });
-        }
-        return;
-    }
-    NSDictionary* resp = [self parseJSON:ret];
-    if ([self delegate] && [[self delegate]respondsToSelector:@selector(postmark:returnedMessage:withStatusCode:)]) {
-        // Send the delegate message back to the main queue
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            [[self delegate] postmark:self returnedMessage:resp withStatusCode:[[resp objectForKey:@"ErrorCode"] integerValue]];
-        });
-    }
-    [[NSNotificationCenter defaultCenter] postNotificationName:pm_POSTMARK_NOTIFICATION object:self userInfo:resp];
-}
+
 
 - (void)sendEmail:(SSPostmarkMessage *)message {
     NSURL* apiURL = [NSURL URLWithString:pm_API_URL];
-    /**
-     *  Validate Message Object
-     *
-     */
+	
     if (![message isValid]) {
-        // Send erros to delegate and & Notification Center
-        NSDictionary *errorDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   @"failed", @"status",
-                                   @"Invalid Message", @"message",
-                                   nil];
-        NSNotification *errorNot = [NSNotification notificationWithName:pm_POSTMARK_NOTIFICATION object:self userInfo:errorDict];
-        [[NSNotificationCenter defaultCenter] postNotification:errorNot];
-        if ([self delegate] && [[self delegate] respondsToSelector:@selector(postmark:encounteredError:)]) {
-            [[self delegate] postmark:self encounteredError:SSPMError_BadMessageDict];
-        }
-        return;
+		[self reportError:SSPMError_BadMessageDict message:@"Invalid Message"];
+		return;
     }
-    /**
-     *  Setup the JSON
-     * 
-     */
+
     NSData* messageData = [self writeJSON:[message asDict]];
     [self _send:messageData toURL:apiURL];
 }
+
+
 - (void)sendBatchMessages:(NSArray *)messages {
     NSURL* apiURL = [NSURL URLWithString:pm_BATCH_API_URL];
     NSMutableArray *arr = [NSMutableArray new];
+	
     for (NSUInteger i = 0; i < messages.count; i++) {
         SSPostmarkMessage *m = [messages objectAtIndex:i];
         if (![m isValid]) {
-            NSDictionary *errorDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                       @"failed", @"status",
-                                       @"Invalid Message", @"message",
-                                       nil];
-            NSNotification *errorNot = [NSNotification notificationWithName:pm_POSTMARK_NOTIFICATION object:self userInfo:errorDict];
-            [[NSNotificationCenter defaultCenter] postNotification:errorNot];
-            if ([self delegate] && [[self delegate] respondsToSelector:@selector(postmark:encounteredError:)]) {
-                [[self delegate] postmark:self encounteredError:SSPMError_BadMessageDict];
-            }
+			[self reportError:SSPMError_BadMessageDict message:@"Invalid Message"];
             return;
         } else {
             [arr addObject:[m asDict]];
         }
     }
+	
     NSData *data = [self writeJSON:arr];
     [self _send:data toURL:apiURL];
 }
 
+
 - (void)_send:(NSData *)data toURL:(NSURL *)url {
-	_recievedData = nil;
-    _request = nil;
-    _request = [[NSMutableURLRequest alloc] initWithURL:url];
-    // Setup Headers
-    [self createHeaders];
+	
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+    [self createHeadersWithRequest:request];
+
     NSString* length = [[NSNumber numberWithInteger:data.length] stringValue];
-    _request.HTTPMethod = @"POST";
-    _request.HTTPBody = data;
-    [_request setValue:length forHTTPHeaderField:@"Content-Length"];
-    [NSURLConnection connectionWithRequest:_request delegate:self];
-}
-
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    NSHTTPURLResponse * resp = (NSHTTPURLResponse *)response;
-	NSInteger code = resp.statusCode;
-    if (code >= 400) {
-		NSLog(@"Postmark url returned error %d %@", resp.statusCode, [NSHTTPURLResponse localizedStringForStatusCode:[resp statusCode]]);
-        NSNotification *errorNot = [NSNotification notificationWithName:pm_POSTMARK_NOTIFICATION
-																 object:self
-															   userInfo:[NSDictionary dictionaryWithObject:@"failed" forKey:@"status"]];
-		[[NSNotificationCenter defaultCenter] postNotification:errorNot];
-        if ([self delegate] && [[self delegate] respondsToSelector:@selector(postmark:encounteredError:)]) {
-            [[self delegate] postmark:self encounteredError:SSPMError_Unknown];
-        }
-    }
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-	NSNotification *errorNot = [NSNotification notificationWithName:pm_POSTMARK_NOTIFICATION
-															 object:self
-														   userInfo:[NSDictionary dictionaryWithObject:@"failed" forKey:@"status"]];
-	[[NSNotificationCenter defaultCenter] postNotification:errorNot];
-	if ([self delegate] && [[self delegate] respondsToSelector:@selector(postmark:encounteredError:)]) {
-		[[self delegate] postmark:self encounteredError:SSPMError_Unknown];
-	}
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    // Feedback
-    void (^feedback)(NSDictionary *dict) = ^(NSDictionary *dict) {
-        if ([self delegate] && [[self delegate] respondsToSelector:@selector(postmark:returnedMessage:withStatusCode:)]) {
-            [[self delegate] postmark:self returnedMessage:dict withStatusCode:[[dict objectForKey:@"ErrorCode"] integerValue]];
-        }
-        [[NSNotificationCenter defaultCenter] postNotificationName:pm_POSTMARK_NOTIFICATION object:self userInfo:dict];
-    };
+    request.HTTPMethod = @"POST";
+    request.HTTPBody = data;
+    [request setValue:length forHTTPHeaderField:@"Content-Length"];
     
-    id resp = [self parseJSON:_recievedData];
-    
-    // Single Mail
-    if ([resp isKindOfClass:[NSDictionary class]]) {
-        if ([[resp objectForKey:@"ErrorCode"] intValue] == 0) {
-            feedback(resp);
-        }
-    }
-    // MultiMail
-    if ([resp isKindOfClass:[NSArray class]]) {
-        NSArray *a = (NSArray *)resp;
-        for (NSUInteger i = 0; i < a.count; i++) {
-            NSDictionary *d = [a objectAtIndex:i];
-            if ([[d objectForKey:@"ErrorCode"] intValue] == 0) {
-                feedback(d);
-            }
-        }
-    }
-}
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    if (_recievedData == nil) {
-        _recievedData = [NSMutableData new];
-    }
-    [_recievedData appendData:data];
+	[NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *responseData, NSError *error) {
+		
+		if (error) {
+			[self reportError:SSPMError_Unknown message:[error localizedDescription]];
+			return;
+		}
+				
+		NSMutableArray *parsedResponses = [NSMutableArray array];
+		id parsedResponse = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:nil];
+		if ([parsedResponse isKindOfClass:[NSDictionary class]])
+			[parsedResponses addObject:parsedResponse]; // Single Email
+		else if ([parsedResponse isKindOfClass:[NSArray class]])
+			parsedResponses = parsedResponse; // Bulk emails
+		
+		NSInteger httpResponseCode = [(NSHTTPURLResponse *)response statusCode];
+		if (httpResponseCode >= 400) {
+			for (NSDictionary *responseJSON in parsedResponses) {	
+				[self reportErrorWithResponseDictionary:responseJSON];
+			}
+			
+		} else {
+			for (NSDictionary *responseJSON in parsedResponses) {
+				NSInteger postmarkStatus = [[responseJSON objectForKey:@"ErrorCode"] integerValue];
+				if (postmarkStatus == SSPMError_NoError) {
+					[self reportFeedbackWithResponseDictionary:responseJSON];
+				} else {
+					[self reportErrorWithResponseDictionary:responseJSON];
+				}
+			}
+		}
+	}];
 }
 
 #pragma mark - Helper methods
+
 - (NSData *)writeJSON:(id)data{
     if ([NSJSONSerialization class]) {
         if (!data) {
@@ -280,31 +186,20 @@
     [NSException raise:@"NSJSONSerialization Not Found" format:@"%s\nIf you're supporting iOS < 5.0 or OSX < 10.7 Please implemnt JSON Encoder",__PRETTY_FUNCTION__];
     return nil;
 }
-- (void)createHeaders {
-    [_request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [_request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [_request setValue:self.apiKey forHTTPHeaderField:@"X-Postmark-Server-Token"];
+- (void)createHeadersWithRequest:(NSMutableURLRequest *)request {
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:self.apiKey forHTTPHeaderField:@"X-Postmark-Server-Token"];
 }
-- (BOOL)isValidMailDict:(NSDictionary *)message{
-    if (![message objectForKey:kSSPostmarkFrom]) {
-        return NO;
-    }
-    if (![message objectForKey:kSSPostmarkTo]) {
-        return NO;
-    }
-    if (![message objectForKey:kSSPostmarkSubject]) {
-        return NO;
-    }
-    if (![message objectForKey:kSSPostmarkTag]) {
-        return NO;
-    }
-    if (![message objectForKey:kSSPostmarkReplyTo]) {
-        return NO;
-    }
-    if (![message objectForKey:kSSPostmarkHTMLBody] && ![message objectForKey:kSSPostmarkTextBody]) {
-        return NO;
-    }
-    return YES;
+								   
+- (BOOL)isValidMailDict:(NSDictionary *)message {
+    return ([message objectForKey:kSSPostmarkFrom] &&
+			[message objectForKey:kSSPostmarkTo] &&
+			[message objectForKey:kSSPostmarkSubject] &&
+			[message objectForKey:kSSPostmarkTag] &&
+			[message objectForKey:kSSPostmarkReplyTo] &&
+			([message objectForKey:kSSPostmarkHTMLBody] || [message objectForKey:kSSPostmarkTextBody])
+			);
 }
 
 + (BOOL)isValidEmail:(NSString *)email {
@@ -316,10 +211,7 @@
                                                                            options:NSRegularExpressionCaseInsensitive
                                                                              error:&error];
     NSTextCheckingResult *match = [regex firstMatchInString:email options:0 range:NSMakeRange(0, email.length)];
-    if (match){
-        return YES;
-    }
-    return NO;
+    return match != nil;
 }
 
 @end
@@ -332,66 +224,45 @@
  *
  */
 @implementation SSPostmarkMessage
-@synthesize
-htmlBody = _htmlBody,
-textBody = _textBody,
-fromEmail = _fromEmail,
-to = _to,
-subject = _subject,
-tag = _tag,
-replyTo = _replyTo,
-cc = _cc,
-bcc = _bcc,
-headers = _headers,
-attachments = _attachments;
+@synthesize htmlBody = _htmlBody;
+@synthesize textBody = _textBody;
+@synthesize fromEmail = _fromEmail;
+@synthesize to = _to;
+@synthesize subject = _subject;
+@synthesize tag = _tag;
+@synthesize replyTo = _replyTo;
+@synthesize cc = _cc;
+@synthesize bcc = _bcc;
+@synthesize headers = _headers;
+@synthesize attachments = _attachments;
 
 
 - (BOOL)isValid {
-    if (self.htmlBody == nil && self.textBody == nil) {
-        return NO;
-    }
-    if (self.fromEmail == nil) {
-        return NO;
-    }
-    if (self.to == nil) {
-        return NO;
-    }
-    if (self.subject == nil) {
-        return NO;
-    }
-    if (self.tag == nil) {
-        return NO;
-    }
-    if (self.replyTo == nil) {
-        return NO;
-    }
-    return YES;
+	return (self.htmlBody || self.textBody) && self.fromEmail && self.to && self.subject && self.tag && self.replyTo;
 }
+
 - (NSDictionary *)asDict {
-    NSMutableDictionary *d = [NSMutableDictionary new];
-    if (self.htmlBody != nil) {
-        [d setObject:self.htmlBody forKey:kSSPostmarkHTMLBody];
-    }
-    if (self.textBody != nil) {
-        [d setObject:self.textBody forKey:kSSPostmarkTextBody];
-    }
-    [d setObject:self.fromEmail forKey:kSSPostmarkFrom];
-    [d setObject:self.to forKey:kSSPostmarkTo];
-    [d setObject:self.subject forKey:kSSPostmarkSubject];
-    [d setObject:self.tag forKey:kSSPostmarkTag];
-    [d setObject:self.replyTo forKey:kSSPostmarkReplyTo];
-    if (self.cc != nil) {
-        [d setObject:self.cc forKey:kSSPostmarkCC];
-    }
-    if (self.bcc != nil) {
-        [d setObject:self.bcc forKey:kSSPostmarkBCC];
-    }
-    if (self.headers != nil) {
-        [d setObject:self.headers forKey:kSSPostmarkHeaders];
-    }
-	if (self.attachments != nil) {
-        [d setObject:self.attachments forKey:kSSPostmarkAttachments];
-    }
+    NSMutableDictionary *d = [[NSMutableDictionary alloc] init];
+    
+	if (self.htmlBody != nil)
+        [d setObject:self.htmlBody		forKey:kSSPostmarkHTMLBody];
+    if (self.textBody != nil)
+        [d setObject:self.textBody		forKey:kSSPostmarkTextBody];
+	
+    [d setObject:self.fromEmail			forKey:kSSPostmarkFrom];
+    [d setObject:self.to				forKey:kSSPostmarkTo];
+    [d setObject:self.subject			forKey:kSSPostmarkSubject];
+    [d setObject:self.tag				forKey:kSSPostmarkTag];
+    [d setObject:self.replyTo			forKey:kSSPostmarkReplyTo];
+    if (self.cc != nil)
+        [d setObject:self.cc			forKey:kSSPostmarkCC];
+    if (self.bcc != nil)
+        [d setObject:self.bcc			forKey:kSSPostmarkBCC];
+    if (self.headers != nil)
+        [d setObject:self.headers		forKey:kSSPostmarkHeaders];
+	if (self.attachments != nil)
+        [d setObject:self.attachments	forKey:kSSPostmarkAttachments];
+	
     return d;
 }
 
