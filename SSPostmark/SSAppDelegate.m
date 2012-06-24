@@ -58,8 +58,6 @@
     
     // Send
     SSPostmark* p = [[SSPostmark alloc] initWithApiKey:@"POSTMARK_API_TEST"];
-    [p sendEmail:mail];
-    
     p.delegate = self;
     [p sendEmail:mail];
     
