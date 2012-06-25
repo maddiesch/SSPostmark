@@ -234,7 +234,7 @@
     return match != nil;
 }
 
-+ (void)sendMessage:(SSPostmarkMessage *)message withCompletion:(SSPostmarkCompletionHandler)completion apiKey:(NSString *)apiKey {
++ (void)sendMessage:(SSPostmarkMessage *)message apiKey:(NSString *)apiKey completion:(SSPostmarkCompletionHandler)completion {
     SSPostmark *pm = [[self alloc] initWithApiKey:apiKey];
 	[pm sendMessage:message withCompletion:completion];
 }
