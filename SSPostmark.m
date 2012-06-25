@@ -67,14 +67,11 @@
 }
 
 
-- (void)sendEmailWithParamaters:(NSDictionary *)params asynchronously:(BOOL)async {
-    [NSException raise:@"Calling a deprecated method." format:@"%s has been deprecated. Please use sendEmail: instead.", __PRETTY_FUNCTION__];
-}
-- (void)sendEmailWithParamaters:(NSDictionary *)params {
-    [NSException raise:@"Calling a deprecated method." format:@"%s has been deprecated. Please use sendEmail: instead.", __PRETTY_FUNCTION__];
-}
+- (void)sendEmailWithParamaters:(NSDictionary *)params asynchronously:(BOOL)async __deprecated__  { /* no-op */ }
+- (void)sendEmailWithParamaters:(NSDictionary *)params __deprecated__ { /* no-op */ }
 
-- (void)sendEmail:(SSPostmarkMessage *)message {
+
+- (void)sendMessage:(SSPostmarkMessage *)message {
     NSURL* apiURL = [NSURL URLWithString:pm_API_URL];
     
     if (![message isValid]) {
@@ -82,13 +79,15 @@
         return;
     }
     
-    if (message.apiKey) {
-        self.apiKey = message.apiKey;
-    }
-    
     NSData* messageData = [self writeJSON:[message asDict]];
     [self _send:messageData toURL:apiURL];
 }
+
+- (void)sendMessage:(SSPostmarkMessage *)message withCompletion:(SSPostmarkCompletionHandler)completion {
+	self.completion = completion;
+    [self sendMessage:message];
+}
+
 - (void)sendBatchMessages:(NSArray *)messages {
     NSURL* apiURL = [NSURL URLWithString:pm_BATCH_API_URL];
     NSMutableArray *arr = [NSMutableArray new];
@@ -105,6 +104,11 @@
     
     NSData *data = [self writeJSON:arr];
     [self _send:data toURL:apiURL];
+}
+
+- (void)sendBatchMessages:(NSArray *)messages withCompletion:(SSPostmarkCompletionHandler)completion {
+	self.completion = completion;
+    [self sendBatchMessages:messages];
 }
 
 - (void)_send:(NSData *)data toURL:(NSURL *)url {
@@ -139,15 +143,15 @@
 		} else {
 			for (NSDictionary *responseJSON in parsedResponses) {
 				NSInteger postmarkStatus = [[responseJSON objectForKey:@"ErrorCode"] integerValue];
-				if (postmarkStatus == SSPMError_NoError) {
+				if (postmarkStatus == SSPMError_NoError)
 					[self reportFeedbackWithResponseDictionary:responseJSON];
-				} else {
+				else
 					[self reportErrorWithResponseDictionary:responseJSON];
-				}
 			}
 		}
 	}];
 }
+
 
 - (void)createHeadersWithRequest:(NSMutableURLRequest *)request {
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -194,7 +198,7 @@
         }
         return [NSJSONSerialization dataWithJSONObject:data options:0 error:nil];
     }
-    [NSException raise:@"NSJSONSerialization Not Found" format:@"%s\nIf you're supporting iOS < 5.0 or OSX < 10.7 Please implemnt JSON Encoder",__PRETTY_FUNCTION__];
+
     return nil;
 }
 - (id)parseJSON:(NSData *)data {
@@ -204,7 +208,7 @@
         }
         return [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
     }
-    [NSException raise:@"NSJSONSerialization Not Found" format:@"%s\nIf you're supporting iOS < 5.0 or OSX < 10.7 Please implemnt JSON Encoder",__PRETTY_FUNCTION__];
+
     return nil;
 }
 - (BOOL)isValidMailDict:(NSDictionary *)message {
@@ -230,10 +234,9 @@
     return match != nil;
 }
 
-+ (void)sendMessage:(SSPostmarkMessage *)message withCompletion:(SSPostmarkCompletionHandler)completion {
-    SSPostmark *pm = [[self alloc] init];
-    pm.completion = completion;
-    [pm sendEmail:message];
++ (void)sendMessage:(SSPostmarkMessage *)message withCompletion:(SSPostmarkCompletionHandler)completion apiKey:(NSString *)apiKey {
+    SSPostmark *pm = [[self alloc] initWithApiKey:apiKey];
+	[pm sendMessage:message withCompletion:completion];
 }
 
 @end
@@ -247,65 +250,46 @@
  */
 #pragma mark - SSPostmarkMessage
 @implementation SSPostmarkMessage
-@synthesize
-htmlBody = _htmlBody,
-textBody = _textBody,
-fromEmail = _fromEmail,
-to = _to,
-subject = _subject,
-tag = _tag,
-replyTo = _replyTo,
-cc = _cc,
-bcc = _bcc,
-headers = _headers,
-attachments = _attachments,
-apiKey = _apiKey;
+@synthesize htmlBody = _htmlBody;
+@synthesize textBody = _textBody;
+@synthesize fromEmail = _fromEmail;
+@synthesize to = _to;
+@synthesize subject = _subject;
+@synthesize tag = _tag;
+@synthesize replyTo = _replyTo;
+@synthesize cc = _cc;
+@synthesize bcc = _bcc;
+@synthesize headers = _headers;
+@synthesize attachments = _attachments;
+@synthesize apiKey = _apiKey;
 
 
 - (BOOL)isValid {
-    if (self.htmlBody == nil && self.textBody == nil) {
-        return NO;
-    }
-    if (self.fromEmail == nil) {
-        return NO;
-    }
-    if (self.to == nil) {
-        return NO;
-    }
-    if (self.subject == nil) {
-        return NO;
-    }
-    if (self.tag == nil) {
-        return NO;
-    }
-    if (self.replyTo == nil) {
-        return NO;
-    }
-    return YES;
+    return (self.htmlBody || self.textBody) && self.fromEmail && self.to && self.subject && self.tag && self.replyTo;
 }
 
 - (NSDictionary *)asDict {
     NSMutableDictionary *d = [NSMutableDictionary new];
-    if (self.htmlBody != nil) {
-        [d setObject:self.htmlBody forKey:kSSPostmarkHTMLBody];
-    }
-    if (self.textBody != nil) {
-        [d setObject:self.textBody forKey:kSSPostmarkTextBody];
-    }
-    [d setObject:self.fromEmail forKey:kSSPostmarkFrom];
-    [d setObject:self.to forKey:kSSPostmarkTo];
-    [d setObject:self.subject forKey:kSSPostmarkSubject];
-    [d setObject:self.tag forKey:kSSPostmarkTag];
-    [d setObject:self.replyTo forKey:kSSPostmarkReplyTo];
-    if (self.cc != nil) {
-        [d setObject:self.cc forKey:kSSPostmarkCC];
-    }
-    if (self.bcc != nil) {
-        [d setObject:self.bcc forKey:kSSPostmarkBCC];
-    }
-    if (self.headers != nil) {
-        [d setObject:self.headers forKey:kSSPostmarkHeaders];
-    }
+    if (self.htmlBody)
+        [d setObject:self.htmlBody	forKey:kSSPostmarkHTMLBody];
+    
+    if (self.textBody)
+        [d setObject:self.textBody	forKey:kSSPostmarkTextBody];
+    
+    [d setObject:self.fromEmail		forKey:kSSPostmarkFrom];
+    [d setObject:self.to			forKey:kSSPostmarkTo];
+    [d setObject:self.subject		forKey:kSSPostmarkSubject];
+    [d setObject:self.tag			forKey:kSSPostmarkTag];
+    [d setObject:self.replyTo		forKey:kSSPostmarkReplyTo];
+
+    if (self.cc)
+        [d setObject:self.cc		forKey:kSSPostmarkCC];
+    if (self.bcc)
+        [d setObject:self.bcc		forKey:kSSPostmarkBCC];
+    if (self.headers)
+        [d setObject:self.headers	forKey:kSSPostmarkHeaders];
+	
+	
 	if (self.attachments != nil) {
         NSMutableArray *attachments = [NSMutableArray new];
         for (NSUInteger i = 0; i < [self.attachments count]; i++) {
@@ -344,7 +328,7 @@ apiKey = _apiKey;
 @synthesize content = _content, contentType = _contentType, name = _name;
 
 - (void)addData:(NSData *)data {
-    _content = [data base64String];
+    _content = [data ss_base64String];
 }
 #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 - (void)addImage:(UIImage *)image {
@@ -366,21 +350,21 @@ apiKey = _apiKey;
     [img unlockFocus];
     [self addData:[bitmapRep representationUsingType:NSPNGFileType properties:nil]];
 #endif
-    if (self.name != nil) {
+    if ([self.name length]) {
         if (![self.name hasSuffix:@".png"]) {
             self.name = [NSString stringWithFormat:@"%@.png",self.name];
         }
     } else {
-        self.name = @"image.png";
+        self.name = NSLocalizedString(@"image.png", @"default image name");
     }
 }
 
 - (NSDictionary *)dictionaryRepresentation {
-    NSMutableDictionary *d = [NSMutableDictionary new];
-    [d setObject:self.content forKey:kSSPostmarkAttachmentContent];
-    [d setObject:self.contentType forKey:kSSPostmarkAttachmentContentType];
-    [d setObject:self.name forKey:kSSPostmarkAttachmentName];
-    return [NSDictionary dictionaryWithDictionary:d];
+	return [NSDictionary dictionaryWithObjectsAndKeys:
+			self.content, kSSPostmarkAttachmentContent,
+			self.contentType, kSSPostmarkAttachmentContentType, 
+			self.name, kSSPostmarkAttachmentName,
+			nil];
 }
 
 - (id)init {
@@ -390,8 +374,17 @@ apiKey = _apiKey;
     }
     return self;
 }
+
++ (SSPostmarkAttachment *)attachmentWithData:(NSData *)content contentType:(NSString *)contentType name:(NSString *)name {
+    SSPostmarkAttachment *att = [[self alloc] init];
+    att.name = name;
+	att.contentType = contentType;
+	[att addData:content];
+    return att;
+}
+
 #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
-+ (SSPostmarkAttachment *)attachmentWithImage:(UIImage *)image named:(NSString *)name {
++ (SSPostmarkAttachment *)attachmentWithImage:(UIImage *)image name:(NSString *)name {
     SSPostmarkAttachment *att = [[self alloc] init];
     att.name = name;
     [att addImage:image];
@@ -409,9 +402,9 @@ apiKey = _apiKey;
 @end
 
 
-@implementation NSData (Base64)
+@implementation NSData (SSBase64)
 
-- (NSString *)base64String {
+- (NSString *)ss_base64String {
     const unsigned char * rawData = [self bytes];
     char * objPointer;
     char * strResult;

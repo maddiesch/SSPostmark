@@ -47,6 +47,8 @@
     #warning "This project uses NSJSONSerialization.  Only available in iOS >= 5.0"
 #endif
 
+#define __deprecated__ __attribute__((deprecated))
+
 /**
  *
  *  Notification Center Callbacks
@@ -124,12 +126,17 @@ typedef void (^SSPostmarkCompletionHandler)(NSDictionary *postmarkResponse, SSPM
 
 - (id)initWithApiKey:(NSString *)apiKey;
 
-- (void)sendEmail:(SSPostmarkMessage *)message;
+- (void)sendEmailWithParamaters:(NSDictionary *)params asynchronously:(BOOL)async __deprecated__;
+- (void)sendEmailWithParamaters:(NSDictionary *)params __deprecated__;
+
+- (void)sendMessage:(SSPostmarkMessage *)message;
+- (void)sendMessage:(SSPostmarkMessage *)message withCompletion:(SSPostmarkCompletionHandler)completion;
 - (void)sendBatchMessages:(NSArray *)messages;
+- (void)sendBatchMessages:(NSArray *)messages withCompletion:(SSPostmarkCompletionHandler)completion;
 
 + (BOOL)isValidEmail:(NSString *)email;
 
-+ (void)sendMessage:(SSPostmarkMessage *)message withCompletion:(SSPostmarkCompletionHandler)completion;
++ (void)sendMessage:(SSPostmarkMessage *)message withCompletion:(SSPostmarkCompletionHandler)completion apiKey:(NSString *)apiKey;
 
 @end
 
@@ -184,17 +191,17 @@ typedef void (^SSPostmarkCompletionHandler)(NSDictionary *postmarkResponse, SSPM
 - (void)addData:(NSData *)data;
 - (NSDictionary *)dictionaryRepresentation;
 
++ (SSPostmarkAttachment *)attachmentWithData:(NSData *)content contentType:(NSString *)contentType name:(NSString *)name;
 // This keeps support for Mac OS X
 #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
-+ (SSPostmarkAttachment *)attachmentWithImage:(UIImage *)image named:(NSString *)name;
++ (SSPostmarkAttachment *)attachmentWithImage:(UIImage *)image name:(NSString *)name;
 // Add a .png file
 - (void)addImage:(UIImage *)image;
 #elif TARGET_OS_MAC
-+ (SSPostmarkAttachment *)attachmentWithImage:(NSImage *)image named:(NSString *)name;
++ (SSPostmarkAttachment *)attachmentWithImage:(NSImage *)image name:(NSString *)name;
 - (void)addImage:(NSImage *)image;
 #endif
 @end
-
 
 #pragma mark - Begin Helper Classes
 /**
@@ -221,8 +228,8 @@ static const short _base64DecodingTable[256] = {
     -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2
 };
 
-@interface NSData (Base64)
+@interface NSData (SSBase64)
 
-- (NSString *)base64String;
+- (NSString *)ss_base64String;
 
 @end
