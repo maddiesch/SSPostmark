@@ -21,32 +21,26 @@
     SSPostmarkMessage *mail = [SSPostmarkMessage new];
     mail.to = @"test.email@domain.com";
     mail.subject = @"Testing The Mailtoobz";
-    mail.textBody = @"Test Email";
-    mail.tag = @"ObjectCTest";
+    mail.textBody = @"Test Email - Mac";
+    mail.tag = @"ObjectCTest - Mac";
     // Sender Info
     mail.fromEmail = @"test.email.sender@domain.com";
     mail.replyTo = @"test.email.sender@domain.com";
+    mail.apiKey = @"POSTMARK_API_TEST";
     
-    NSMutableArray *arr = [NSMutableArray new];
-    [arr addObject:mail];
-    
-    mail = nil;
-    mail = [SSPostmarkMessage new];
-    mail.to = @"test.email.two@domain.com";
-    mail.subject = @"Testing The Mailtoobz";
-    mail.textBody = @"Test Email";
-    mail.tag = @"ObjectCTest";
-    // Sender Info
-    mail.fromEmail = @"test.email.sender@domain.com";
-    mail.replyTo = @"test.email.sender@domain.com";
-    
-    [arr addObject:mail];
-    
+    // If you're using the NSImage helper method we'll automaticaly add .png to the end of name if it's not there.
+    SSPostmarkAttachment *att = [SSPostmarkAttachment attachmentWithImage:[NSImage imageNamed:@"Downtown_LA.png"] named:@"Downtown"];
+    // Add an attachemnt to the array.
+    [mail addAttachment:att];
     
     // Send
-    SSPostmark* p = [[SSPostmark alloc] init];
-    p.delegate = self;
-    [p sendEmail:mail];
+//    SSPostmark* p = [[SSPostmark alloc] init];
+//    p.delegate = self;
+//    [p sendEmail:mail];
+    
+    [SSPostmark sendMessage:mail withCompletion:^(NSDictionary *postmarkResponse, SSPMErrorType errorType) {
+        NSLog(@"%s:\n%@",__PRETTY_FUNCTION__,postmarkResponse);
+    }];
 }
 
 @end

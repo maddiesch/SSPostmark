@@ -49,17 +49,23 @@
     // Sender Info
     mail.fromEmail = @"test.sender@domain.com";
     mail.replyTo = @"test.sender@domain.com";
-//    mail.apiKey = @"POSTMARK_API_TEST"; // API Can be set in either the SSPostmarkMessage or SSPostmark Instance
+    mail.apiKey = @"POSTMARK_API_TEST"; // API Can be set in either the SSPostmarkMessage or SSPostmark Instance
     
     // If you're using the UIImage helper method we'll automaticaly add .png to the end of name if it's not there.
-    SSPostmarkAttachment *att = [SSPostmarkAttachment attachmentWithImage:[UIImage imageNamed:@"happy-panda.jpg"] named:@"happy-panda"];
+    SSPostmarkAttachment *att = [SSPostmarkAttachment attachmentWithImage:[UIImage imageNamed:@"Downtown_LA.png"] named:@"Downtown"];
     // Add an attachemnt to the array.
     [mail addAttachment:att];
     
     // Send
-    SSPostmark* p = [[SSPostmark alloc] initWithApiKey:@"POSTMARK_API_TEST"];
-    p.delegate = self;
-    [p sendEmail:mail];
+//    SSPostmark* p = [[SSPostmark alloc] initWithApiKey:@"POSTMARK_API_TEST"];
+//    p.delegate = self;
+//    [p sendEmail:mail];
+    
+    // We don't need to set an API key because it will use the one in the message.
+    [SSPostmark sendMessage:mail withCompletion:^(NSDictionary *postmarkResponse, SSPMErrorType errorType) {
+        NSLog(@"%s",__PRETTY_FUNCTION__);
+        NSLog(@"%@",postmarkResponse);
+    }];
     
     return YES;
 }
@@ -82,7 +88,7 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(testNotifications:) name:pm_POSTMARK_NOTIFICATION object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(testNotifications:) name:pm_POSTMARK_NOTIFICATION object:nil];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

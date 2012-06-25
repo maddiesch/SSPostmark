@@ -54,15 +54,14 @@
 - (void)createHeaders;
 - (void)sendEmailWithParamaters:(NSDictionary *)params;
 - (BOOL)isValidMailDict:(NSDictionary *)message;
-
 - (NSData *)writeJSON:(id)data;
 - (id)parseJSON:(NSData *)data;
-
 - (void)_send:(NSData *)data toURL:(NSURL *)url;
+
 @end
 
 @implementation SSPostmark
-@synthesize apiKey = _apiKey, queueName = _queueName, delegate;
+@synthesize apiKey = _apiKey, queueName = _queueName, completion = _completion, delegate;
 
 - (id)initWithApiKey:(NSString *)apiKey queueName:(NSString *)queueName {
 	if ((self = [super init])) {
@@ -146,6 +145,8 @@
     _request.HTTPBody = data;
     [_request setValue:length forHTTPHeaderField:@"Content-Length"];
     [NSURLConnection connectionWithRequest:_request delegate:self];
+//    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+//    queue.name = self.queueName;
 }
 
 
@@ -163,6 +164,10 @@
     void (^feedback)(NSDictionary *dict) = ^(NSDictionary *dict) {
         if ([self delegate] && [[self delegate] respondsToSelector:@selector(postmark:returnedMessage:withStatusCode:)]) {
             [[self delegate] postmark:self returnedMessage:dict withStatusCode:[[dict objectForKey:@"ErrorCode"] integerValue]];
+        }
+        if (_completion != nil) {
+            NSUInteger error = [[dict objectForKey:@"ErrorCode"] integerValue];
+            _completion(dict, error);
         }
         [[NSNotificationCenter defaultCenter] postNotificationName:pm_POSTMARK_NOTIFICATION object:self userInfo:dict];
     };
@@ -241,6 +246,8 @@
     return YES;
 }
 
+
+#pragma mark - Class Methods
 + (BOOL)isValidEmail:(NSString *)email {
     if (email == nil) {
         return NO;
@@ -256,6 +263,12 @@
     return NO;
 }
 
++ (void)sendMessage:(SSPostmarkMessage *)message withCompletion:(SSPostmarkCompletionHandler)completion {
+    SSPostmark *pm = [[self alloc] init];
+    pm.completion = completion;
+    [pm sendEmail:message];
+}
+
 @end
 
 
@@ -265,6 +278,7 @@
  *
  *
  */
+#pragma mark - SSPostmarkMessage
 @implementation SSPostmarkMessage
 @synthesize
 htmlBody = _htmlBody,
@@ -354,6 +368,10 @@ apiKey = _apiKey;
 
 @end
 
+#pragma mark - SSPostmarkAttachment
+@interface SSPostmarkAttachment ()
+- (void)_addImage:(id)image;
+@end
 
 @implementation SSPostmarkAttachment
 @synthesize content = _content, contentType = _contentType, name = _name;
@@ -361,8 +379,26 @@ apiKey = _apiKey;
 - (void)addData:(NSData *)data {
     _content = [data base64String];
 }
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 - (void)addImage:(UIImage *)image {
-    [self addData:UIImagePNGRepresentation(image)];
+    [self _addImage:image];
+}
+#elif TARGET_OS_MAC
+- (void)addImage:(NSImage *)image {
+    [self _addImage:image];
+}
+#endif
+
+- (void)_addImage:(id)image {
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+    [self addData:UIImagePNGRepresentation((UIImage *)image)];
+#elif TARGET_OS_MAC
+    NSImage *img = (NSImage *)image;
+    [img lockFocus];
+    NSBitmapImageRep *bitmapRep = [[NSBitmapImageRep alloc] initWithFocusedViewRect:NSMakeRect(0, 0, img.size.width, img.size.height)];
+    [img unlockFocus];
+    [self addData:[bitmapRep representationUsingType:NSPNGFileType properties:nil]];
+#endif
     if (self.name != nil) {
         if (![self.name hasSuffix:@".png"]) {
             self.name = [NSString stringWithFormat:@"%@.png",self.name];
@@ -387,12 +423,21 @@ apiKey = _apiKey;
     }
     return self;
 }
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 + (SSPostmarkAttachment *)attachmentWithImage:(UIImage *)image named:(NSString *)name {
     SSPostmarkAttachment *att = [[self alloc] init];
     att.name = name;
     [att addImage:image];
     return att;
 }
+#elif TARGET_OS_MAC
++ (SSPostmarkAttachment *)attachmentWithImage:(NSImage *)image named:(NSString *)name {
+    SSPostmarkAttachment *att = [[self alloc] init];
+    att.name = name;
+    [att addImage:image];
+    return att;
+}
+#endif
 
 @end
 

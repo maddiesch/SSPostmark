@@ -15,6 +15,8 @@
 		945ED70D15583631007049C2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 945ED70B15583631007049C2 /* MainMenu.xib */; };
 		945ED71215583662007049C2 /* SSPostmark.m in Sources */ = {isa = PBXBuildFile; fileRef = DF75532414D329690067EAD7 /* SSPostmark.m */; };
 		9475A9E71561B9370089EBC4 /* SSPostmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9475A9E61561B9370089EBC4 /* SSPostmarkViewController.m */; };
+		94B5D4841597E10000AF04BC /* Downtown_LA.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B5D4831597E10000AF04BC /* Downtown_LA.png */; };
+		94B5D4851597E10000AF04BC /* Downtown_LA.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B5D4831597E10000AF04BC /* Downtown_LA.png */; };
 		DF75530714D329550067EAD7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF75530614D329550067EAD7 /* UIKit.framework */; };
 		DF75530914D329550067EAD7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF75530814D329550067EAD7 /* Foundation.framework */; };
 		DF75530B14D329550067EAD7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF75530A14D329550067EAD7 /* CoreGraphics.framework */; };
@@ -43,6 +45,7 @@
 		945ED70C15583631007049C2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		9475A9E51561B9370089EBC4 /* SSPostmarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPostmarkViewController.h; sourceTree = "<group>"; };
 		9475A9E61561B9370089EBC4 /* SSPostmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkViewController.m; sourceTree = "<group>"; };
+		94B5D4831597E10000AF04BC /* Downtown_LA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Downtown_LA.png; sourceTree = "<group>"; };
 		DF75530214D329550067EAD7 /* SSPostmark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSPostmark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF75530614D329550067EAD7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DF75530814D329550067EAD7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -122,6 +125,7 @@
 				9475A9E61561B9370089EBC4 /* SSPostmarkViewController.m */,
 				DF75532314D329690067EAD7 /* SSPostmark.h */,
 				DF75532414D329690067EAD7 /* SSPostmark.m */,
+				94B5D4831597E10000AF04BC /* Downtown_LA.png */,
 				DF75530C14D329550067EAD7 /* SSPostmark */,
 				945ED6FC15583631007049C2 /* SSPostmark_Mac */,
 				DF75530514D329550067EAD7 /* Frameworks */,
@@ -247,6 +251,7 @@
 				945ED70115583631007049C2 /* InfoPlist.strings in Resources */,
 				945ED70715583631007049C2 /* Credits.rtf in Resources */,
 				945ED70D15583631007049C2 /* MainMenu.xib in Resources */,
+				94B5D4851597E10000AF04BC /* Downtown_LA.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +261,7 @@
 			files = (
 				DF75531114D329550067EAD7 /* InfoPlist.strings in Resources */,
 				DF75531D14D329560067EAD7 /* SSViewController.xib in Resources */,
+				94B5D4841597E10000AF04BC /* Downtown_LA.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
