@@ -49,13 +49,6 @@
 
 /**
  *
- *  Set async queue name
- *
- */
-#define pm_ASYNC_QUEUE_NAME @"com.sspostmark.queue"
-
-/**
- *
  *  Notification Center Callbacks
  *
  */
@@ -99,28 +92,10 @@ static const NSString *kSSPostmarkResp_To = @"To";
 @class SSPostmarkMessage;
 @class SSPostmarkAttachment;
 
-
-#pragma mark - Begin SSPostmark Def
-@interface SSPostmark : NSObject <NSURLConnectionDataDelegate, NSURLConnectionDelegate>
-@property (nonatomic, retain) NSString *apiKey;
-@property (nonatomic, retain) NSString *queueName;
-@property (nonatomic, assign) id <SSPostmarkDelegate> delegate;
-
-
-- (id)initWithApiKey:(NSString *)apiKey;
-- (id)initWithApiKey:(NSString *)apiKey queueName:(NSString *)queueName;
-
-- (void)sendEmail:(SSPostmarkMessage *)message;
-- (void)sendBatchMessages:(NSArray *)messages;
-
-+ (BOOL)isValidEmail:(NSString *)email;
-@end
-
-
 // Errors
-    // check out http://developer.postmarkapp.com/developer-build.html for more info
+// check out http://developer.postmarkapp.com/developer-build.html for more info
 typedef enum {
-    SSPMError_APITokenError = 0,
+    SSPMError_NoError = 0,
     SSPMError_IvalidEmailRequest = 300,
     SSPMError_SenderSignatureNotFound = 400,
     SSPMError_SenderSignatureNotConfirmed = 401,
@@ -133,14 +108,42 @@ typedef enum {
     SSPMError_TooManyBatchMessages = 410,
     SSPMError_Unknown,
     SSPMError_BadMessageDict,
-}SSPMErrorType;
+    SSPMErrorNotFound = NSNotFound,
+} SSPMErrorType;
+
+typedef void (^SSPostmarkCompletionHandler)(NSDictionary *postmarkResponse, SSPMErrorType errorType);
+
+
+#pragma mark - Begin SSPostmark Def
+@interface SSPostmark : NSObject <NSURLConnectionDataDelegate, NSURLConnectionDelegate>
+
+@property (nonatomic, retain) NSString *apiKey;
+//@property (nonatomic, retain) NSString *queueName;
+@property (nonatomic, assign) id <SSPostmarkDelegate> delegate;
+@property (nonatomic, copy) SSPostmarkCompletionHandler completion;
+
+
+- (id)initWithApiKey:(NSString *)apiKey;
+//- (id)initWithApiKey:(NSString *)apiKey queueName:(NSString *)queueName;
+
+- (void)sendEmail:(SSPostmarkMessage *)message;
+- (void)sendBatchMessages:(NSArray *)messages;
+
++ (BOOL)isValidEmail:(NSString *)email;
+
++ (void)sendMessage:(SSPostmarkMessage *)message withCompletion:(SSPostmarkCompletionHandler)completion;
+
+@end
+
+
 
 @protocol SSPostmarkDelegate <NSObject>
 
-// Option Delegate Methods
+// Option Delegate Methods.
+    // You should probably use blocks.
 @optional
 -(void)postmark:(id)postmark returnedMessage:(NSDictionary *)message withStatusCode:(NSUInteger)code;
--(void)postmark:(id)postmark encounteredError:(SSPMErrorType)type;
+-(void)postmark:(id)postmark encounteredError:(SSPMErrorType)type message:(NSString *)message;
 
 @end
 
@@ -188,6 +191,9 @@ typedef enum {
 + (SSPostmarkAttachment *)attachmentWithImage:(UIImage *)image named:(NSString *)name;
 // Add a .png file
 - (void)addImage:(UIImage *)image;
+#elif TARGET_OS_MAC
++ (SSPostmarkAttachment *)attachmentWithImage:(NSImage *)image named:(NSString *)name;
+- (void)addImage:(NSImage *)image;
 #endif
 @end
 
