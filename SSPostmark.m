@@ -90,27 +90,6 @@
     [self _send:messageData toURL:apiURL];
 }
 - (void)sendBatchMessages:(NSArray *)messages {
-//    NSURL* apiURL = [NSURL URLWithString:pm_BATCH_API_URL];
-//    NSMutableArray *arr = [NSMutableArray new];
-//    for (NSUInteger i = 0; i < messages.count; i++) {
-//        SSPostmarkMessage *m = [messages objectAtIndex:i];
-//        if (![m isValid]) {
-//            NSDictionary *errorDict = [NSDictionary dictionaryWithObjectsAndKeys:
-//                                       @"failed", @"status",
-//                                       @"Invalid Message", @"message",
-//                                       nil];
-//            NSNotification *errorNot = [NSNotification notificationWithName:pm_POSTMARK_NOTIFICATION object:self userInfo:errorDict];
-//            [[NSNotificationCenter defaultCenter] postNotification:errorNot];
-//            if ([self delegate] && [[self delegate] respondsToSelector:@selector(postmark:encounteredError:)]) {
-//                [[self delegate] postmark:self encounteredError:SSPMError_BadMessageDict];
-//            }
-//            return;
-//        } else {
-//            [arr addObject:[m asDict]];
-//        }
-//    }
-//    NSData *data = [self writeJSON:arr];
-//    [self _send:data toURL:apiURL];
     NSURL* apiURL = [NSURL URLWithString:pm_BATCH_API_URL];
     NSMutableArray *arr = [NSMutableArray new];
     

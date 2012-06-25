@@ -118,13 +118,11 @@ typedef void (^SSPostmarkCompletionHandler)(NSDictionary *postmarkResponse, SSPM
 @interface SSPostmark : NSObject <NSURLConnectionDataDelegate, NSURLConnectionDelegate>
 
 @property (nonatomic, retain) NSString *apiKey;
-//@property (nonatomic, retain) NSString *queueName;
 @property (nonatomic, assign) id <SSPostmarkDelegate> delegate;
 @property (nonatomic, copy) SSPostmarkCompletionHandler completion;
 
 
 - (id)initWithApiKey:(NSString *)apiKey;
-//- (id)initWithApiKey:(NSString *)apiKey queueName:(NSString *)queueName;
 
 - (void)sendEmail:(SSPostmarkMessage *)message;
 - (void)sendBatchMessages:(NSArray *)messages;
