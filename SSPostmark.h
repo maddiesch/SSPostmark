@@ -136,8 +136,7 @@ typedef void (^SSPostmarkCompletionHandler)(NSDictionary *postmarkResponse, SSPM
 
 + (BOOL)isValidEmail:(NSString *)email;
 
-+ (void)sendMessage:(SSPostmarkMessage *)message withCompletion:(SSPostmarkCompletionHandler)completion apiKey:(NSString *)apiKey;
-
++ (void)sendMessage:(SSPostmarkMessage *)message apiKey:(NSString *)apiKey completion:(SSPostmarkCompletionHandler)completion;
 @end
 
 
