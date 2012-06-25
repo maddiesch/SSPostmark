@@ -49,13 +49,6 @@
 
 /**
  *
- *  Set async queue name
- *
- */
-#define pm_ASYNC_QUEUE_NAME @"com.sspostmark.queue"
-
-/**
- *
  *  Notification Center Callbacks
  *
  */
@@ -102,7 +95,7 @@ static const NSString *kSSPostmarkResp_To = @"To";
 // Errors
 // check out http://developer.postmarkapp.com/developer-build.html for more info
 typedef enum {
-    SSPMError_APITokenError = 0,
+    SSPMError_NoError = 0,
     SSPMError_IvalidEmailRequest = 300,
     SSPMError_SenderSignatureNotFound = 400,
     SSPMError_SenderSignatureNotConfirmed = 401,
@@ -125,13 +118,13 @@ typedef void (^SSPostmarkCompletionHandler)(NSDictionary *postmarkResponse, SSPM
 @interface SSPostmark : NSObject <NSURLConnectionDataDelegate, NSURLConnectionDelegate>
 
 @property (nonatomic, retain) NSString *apiKey;
-@property (nonatomic, retain) NSString *queueName;
+//@property (nonatomic, retain) NSString *queueName;
 @property (nonatomic, assign) id <SSPostmarkDelegate> delegate;
 @property (nonatomic, copy) SSPostmarkCompletionHandler completion;
 
 
 - (id)initWithApiKey:(NSString *)apiKey;
-- (id)initWithApiKey:(NSString *)apiKey queueName:(NSString *)queueName;
+//- (id)initWithApiKey:(NSString *)apiKey queueName:(NSString *)queueName;
 
 - (void)sendEmail:(SSPostmarkMessage *)message;
 - (void)sendBatchMessages:(NSArray *)messages;
@@ -150,7 +143,7 @@ typedef void (^SSPostmarkCompletionHandler)(NSDictionary *postmarkResponse, SSPM
     // You should probably use blocks.
 @optional
 -(void)postmark:(id)postmark returnedMessage:(NSDictionary *)message withStatusCode:(NSUInteger)code;
--(void)postmark:(id)postmark encounteredError:(SSPMErrorType)type;
+-(void)postmark:(id)postmark encounteredError:(SSPMErrorType)type message:(NSString *)message;
 
 @end
 
