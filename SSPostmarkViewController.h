@@ -11,12 +11,14 @@
 
 
 #define SSPM_FIELD_PADDING 20
+@class SSPostmarkViewController;
 
-@protocol SSPostmarkViewDelegate;
 
-@interface SSPostmarkViewController : UIViewController <SSPostmarkDelegate, UITextFieldDelegate, UITextViewDelegate, UIActionSheetDelegate>
+typedef void (^SSPostmarkViewControllerCompletionHandler)(SSPostmarkViewController *viewController, NSDictionary *postmarkResponse, SSPMErrorType errorType);
 
-@property (nonatomic, assign) id<SSPostmarkViewDelegate> delegate;
+@interface SSPostmarkViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate, UIActionSheetDelegate>
+
+@property (nonatomic, copy) SSPostmarkViewControllerCompletionHandler completionHandler;
 
 @property (nonatomic, retain) NSString *barTitle;
 @property (nonatomic, retain) NSString *to;
@@ -28,13 +30,5 @@
 - (void)dismissView:(id)sender;
 
 - (void)keyboardNotification:(NSNotification *)notification;
-
-@end
-
-
-@protocol SSPostmarkViewDelegate <SSPostmarkDelegate>
-
-@required
-
 
 @end

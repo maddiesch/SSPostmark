@@ -34,7 +34,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
     self.viewController = [[SSViewController alloc] initWithNibName:@"SSViewController" bundle:nil];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
@@ -49,20 +48,13 @@
     // Sender Info
     mail.fromEmail = @"test.sender@domain.com";
     mail.replyTo = @"test.sender@domain.com";
-    mail.apiKey = @"POSTMARK_API_TEST"; // API Can be set in either the SSPostmarkMessage or SSPostmark Instance
     
     // If you're using the UIImage helper method we'll automaticaly add .png to the end of name if it's not there.
-    SSPostmarkAttachment *att = [SSPostmarkAttachment attachmentWithImage:[UIImage imageNamed:@"Downtown_LA.png"] named:@"Downtown"];
+    SSPostmarkAttachment *att = [SSPostmarkAttachment attachmentWithImage:[UIImage imageNamed:@"Downtown_LA.png"] name:@"Downtown"];
     // Add an attachemnt to the array.
     [mail addAttachment:att];
     
-    // Send
-//    SSPostmark* p = [[SSPostmark alloc] initWithApiKey:@"POSTMARK_API_TEST"];
-//    p.delegate = self;
-//    [p sendEmail:mail];
-    
-    // We don't need to set an API key because it will use the one in the message.
-    [SSPostmark sendMessage:mail withCompletion:^(NSDictionary *postmarkResponse, SSPMErrorType errorType) {
+    [SSPostmark sendMessage:mail apiKey:@"POSTMARK_API_TEST" completion:^(NSDictionary *postmarkResponse, SSPMErrorType errorType) {
         NSLog(@"%s",__PRETTY_FUNCTION__);
         NSLog(@"%@",postmarkResponse);
     }];

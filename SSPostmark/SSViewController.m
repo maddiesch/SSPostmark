@@ -10,54 +10,17 @@
 
 @implementation SSViewController
 
-- (void)postmark:(id)postmark returnedMessage:(NSDictionary *)message withStatusCode:(NSUInteger)code {
-    NSLog(@"%s\n%@",__PRETTY_FUNCTION__, message);
-    [self dismissModalViewControllerAnimated:YES];
-}
-- (void)postmark:(id)postmark encounteredError:(SSPMErrorType)type {
-    NSLog(@"%s :: %i",__PRETTY_FUNCTION__,type);
-}
-
 - (void)sendMail:(id)sender {
-    SSPostmarkViewController *pm = [[SSPostmarkViewController alloc] init];
-    pm.delegate = self;
-    pm.barTitle = @"SSPostmark";
-    pm.to = @"test@test.com";
-    pm.apiKey = @"POSTMARK_API_TEST";
-    pm.modalPresentationStyle = UIModalPresentationFullScreen;
-    pm.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    [self presentModalViewController:pm animated:YES];
-}
-
-#pragma mark - View lifecycle
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    SSPostmarkViewController *postmark = [[SSPostmarkViewController alloc] init];
+    postmark.barTitle = @"SSPostmark";
+    postmark.to = @"test@test.com";
+    postmark.apiKey = @"POSTMARK_API_TEST";
+    postmark.completionHandler = ^(SSPostmarkViewController *viewController, NSDictionary *postmarkResponse, SSPMErrorType errorType) {
+        [self dismissModalViewControllerAnimated:YES];
+    };
+    postmark.modalPresentationStyle = UIModalPresentationFullScreen;
+    postmark.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    [self presentModalViewController:postmark animated:YES];
 }
 
 @end

@@ -15,8 +15,6 @@
     UIToolbar *_toolBar;
     UIBarButtonItem *_sendButton;
     
-    SSPostmark *_postmark;
-    
     UILabel *_barTitleLabel;
 }
 
@@ -25,7 +23,10 @@
 @end
 
 @implementation SSPostmarkViewController
-@synthesize barTitle = _barTitle, to = _to, delegate = _delegate, apiKey = _apiKey;
+@synthesize barTitle = _barTitle;
+@synthesize to = _to;
+@synthesize apiKey = _apiKey;
+@synthesize completionHandler = _completionHandler;
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == actionSheet.cancelButtonIndex) {
@@ -38,12 +39,6 @@
 }
 
 - (void)okayToSend {
-    if (_postmark == nil) {
-        _postmark = [[SSPostmark alloc] initWithApiKey:self.apiKey];
-        if (self.delegate != nil) {
-            _postmark.delegate = self.delegate;
-        }
-    }
     SSPostmarkMessage *message = [SSPostmarkMessage new];
     message.to = self.to;
     message.replyTo = _replyToField.text;
@@ -52,7 +47,11 @@
     message.textBody = _messageBodyView.text;
     message.tag = @"SSPostmark View";
     
-    [_postmark sendEmail:message];
+    [SSPostmark sendMessage:message apiKey:_apiKey completion:^(NSDictionary *postmarkResponse, SSPMErrorType errorType) {
+        if (_completionHandler != nil) {
+            _completionHandler(self, postmarkResponse, errorType);
+        }
+    }];
 }
 
 - (void)viewDidLoad {
@@ -146,7 +145,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return (interfaceOrientation == UIInterfaceOrientationPortrait || interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown);
 }
 
 - (void)sendMail:(id)sender {
@@ -229,10 +228,5 @@
     _barTitleLabel.text = barTitle;
     [self.view bringSubviewToFront:_barTitleLabel];
 }
-- (void)setDelegate:(id<SSPostmarkViewDelegate>)delegate {
-    _delegate = delegate;
-    if (_postmark != nil) {
-        _postmark.delegate = delegate;
-    }
-}
+
 @end

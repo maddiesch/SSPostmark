@@ -50,7 +50,7 @@
 
 - (NSData *)writeJSON:(id)data;
 - (id)parseJSON:(NSData *)data;
-- (void)_send:(NSData *)data toURL:(NSURL *)url;
+- (void)ss_send:(NSData *)data toURL:(NSURL *)url;
 
 @end
 
@@ -80,7 +80,7 @@
     }
     
     NSData* messageData = [self writeJSON:[message asDict]];
-    [self _send:messageData toURL:apiURL];
+    [self ss_send:messageData toURL:apiURL];
 }
 
 - (void)sendMessage:(SSPostmarkMessage *)message withCompletion:(SSPostmarkCompletionHandler)completion {
@@ -103,7 +103,7 @@
     }
     
     NSData *data = [self writeJSON:arr];
-    [self _send:data toURL:apiURL];
+    [self ss_send:data toURL:apiURL];
 }
 
 - (void)sendBatchMessages:(NSArray *)messages withCompletion:(SSPostmarkCompletionHandler)completion {
@@ -111,7 +111,7 @@
     [self sendBatchMessages:messages];
 }
 
-- (void)_send:(NSData *)data toURL:(NSURL *)url {
+- (void)ss_send:(NSData *)data toURL:(NSURL *)url {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     [self createHeadersWithRequest:request];
     
@@ -321,7 +321,7 @@
 
 #pragma mark - SSPostmarkAttachment
 @interface SSPostmarkAttachment ()
-- (void)_addImage:(id)image;
+- (void)ss_addImage:(id)image;
 @end
 
 @implementation SSPostmarkAttachment
@@ -332,15 +332,15 @@
 }
 #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 - (void)addImage:(UIImage *)image {
-    [self _addImage:image];
+    [self ss_addImage:image];
 }
 #elif TARGET_OS_MAC
 - (void)addImage:(NSImage *)image {
-    [self _addImage:image];
+    [self ss_addImage:image];
 }
 #endif
 
-- (void)_addImage:(id)image {
+- (void)ss_addImage:(id)image {
 #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
     [self addData:UIImagePNGRepresentation((UIImage *)image)];
 #elif TARGET_OS_MAC
@@ -391,7 +391,7 @@
     return att;
 }
 #elif TARGET_OS_MAC
-+ (SSPostmarkAttachment *)attachmentWithImage:(NSImage *)image named:(NSString *)name {
++ (SSPostmarkAttachment *)attachmentWithImage:(NSImage *)image name:(NSString *)name {
     SSPostmarkAttachment *att = [[self alloc] init];
     att.name = name;
     [att addImage:image];

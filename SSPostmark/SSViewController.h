@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SSPostmarkViewController.h"
 
-@interface SSViewController : UIViewController <SSPostmarkViewDelegate>
+@interface SSViewController : UIViewController
 
 - (IBAction)sendMail:(id)sender;
 
