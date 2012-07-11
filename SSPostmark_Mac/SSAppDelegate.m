@@ -26,7 +26,6 @@
     // Sender Info
     mail.fromEmail = @"test.email.sender@domain.com";
     mail.replyTo = @"test.email.sender@domain.com";
-    mail.apiKey = @"POSTMARK_API_TEST";
     
     // If you're using the NSImage helper method we'll automaticaly add .png to the end of name if it's not there.
     SSPostmarkAttachment *att = [SSPostmarkAttachment attachmentWithImage:[NSImage imageNamed:@"Downtown_LA.png"] name:@"Downtown"];
@@ -34,7 +33,7 @@
     [mail addAttachment:att];
     
     // Send
-    [SSPostmark sendMessage:mail withCompletion:^(NSDictionary *postmarkResponse, SSPMErrorType errorType) {
+    [SSPostmark sendMessage:mail apiKey:@"POSTMARK_API_TEST" completion:^(NSDictionary *postmarkResponse, SSPMErrorType errorType) {
         NSLog(@"%s:\n%@",__PRETTY_FUNCTION__,postmarkResponse);
     }];
 }

@@ -1,3 +1,4 @@
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 //
 //  SSPostmarkViewController.h
 //  SSPostmark
@@ -32,3 +33,4 @@ typedef void (^SSPostmarkViewControllerCompletionHandler)(SSPostmarkViewControll
 - (void)keyboardNotification:(NSNotification *)notification;
 
 @end
+#endif

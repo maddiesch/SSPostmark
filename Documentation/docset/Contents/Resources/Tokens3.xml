@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/SSPostmarkMessage.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/SSPostmarkMessage</TokenIdentifier>
+			<Abstract type="html">SSPostmarkMessage contains all the information that Postmark needs to send an email.</Abstract>
+			<DeclaredIn>SSPostmarkMessage.h</DeclaredIn>
+			
+			<NodeRef refid="3"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/SSPostmarkMessage/setHtmlBody:</TokenIdentifier>
+			<Abstract type="html">The HTML formatted body of the email</Abstract>
+			<DeclaredIn>SSPostmarkMessage.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) NSString *htmlBody</Declaration>
+			
+			
+			<Anchor>//api/name/htmlBody</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/SSPostmarkMessage/htmlBody</TokenIdentifier>
+			<Abstract type="html">The HTML formatted body of the email</Abstract>
+			<DeclaredIn>SSPostmarkMessage.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) NSString *htmlBody</Declaration>
+			
+			
+			<Anchor>//api/name/htmlBody</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/SSPostmarkMessage/setTextBody:</TokenIdentifier>
+			<Abstract type="html">The plain text to send in the email</Abstract>
+			<DeclaredIn>SSPostmarkMessage.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) NSString *textBody</Declaration>
+			
+			
+			<Anchor>//api/name/textBody</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/SSPostmarkMessage/textBody</TokenIdentifier>
+			<Abstract type="html">The plain text to send in the email</Abstract>
+			<DeclaredIn>SSPostmarkMessage.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) NSString *textBody</Declaration>
+			
+			
+			<Anchor>//api/name/textBody</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/SSPostmarkMessage/setFromEmail:</TokenIdentifier>
+			<Abstract type="html">The email address that the email will be sent from.</Abstract>
+			<DeclaredIn>SSPostmarkMessage.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) NSString *fromEmail</Declaration>
+			
+			
+			<Anchor>//api/name/fromEmail</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/SSPostmarkMessage/fromEmail</TokenIdentifier>
+			<Abstract type="html">The email address that the email will be sent from.</Abstract>
+			<DeclaredIn>SSPostmarkMessage.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) NSString *fromEmail</Declaration>
+			
+			
+			<Anchor>//api/name/fromEmail</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/SSPostmarkMessage/setTo:</TokenIdentifier>
+			<Abstract type="html">Who you want to recive the email</Abstract>
+			<DeclaredIn>SSPostmarkMessage.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) NSString *to</Declaration>
+			
+			
+			<Anchor>//api/name/to</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/SSPostmarkMessage/to</TokenIdentifier>
+			<Abstract type="html">Who you want to recive the email</Abstract>
+			<DeclaredIn>SSPostmarkMessage.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) NSString *to</Declaration>
+			
+			
+			<Anchor>//api/name/to</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/SSPostmarkMessage/setSubject:</TokenIdentifier>
+			<Abstract type="html">Email Subject</Abstract>
+			<DeclaredIn>SSPostmarkMessage.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) NSString *subject</Declaration>
+			
+			
+			<Anchor>//api/name/subject</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/SSPostmarkMessage/subject</TokenIdentifier>
+			<Abstract type="html">Email Subject</Abstract>
+			<DeclaredIn>SSPostmarkMessage.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) NSString *subject</Declaration>
+			
+			
+			<Anchor>//api/name/subject</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/SSPostmarkMessage/setTag:</TokenIdentifier>
+			<Abstract type="html">The tag for Postmark Statistics</Abstract>
+			<DeclaredIn>SSPostmarkMessage.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) NSString *tag</Declaration>
+			
+			
+			<Anchor>//api/name/tag</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/SSPostmarkMessage/tag</TokenIdentifier>
+			<Abstract type="html">The tag for Postmark Statistics</Abstract>
+			<DeclaredIn>SSPostmarkMessage.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) NSString *tag</Declaration>
+			
+			
+			<Anchor>//api/name/tag</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/SSPostmarkMessage/setReplyTo:</TokenIdentifier>
+			<Abstract type="html">Email to reply to.</Abstract>
+			<DeclaredIn>SSPostmarkMessage.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) NSString *replyTo</Declaration>
+			
+			
+			<Anchor>//api/name/replyTo</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/SSPostmarkMessage/replyTo</TokenIdentifier>
+			<Abstract type="html">Email to reply to.</Abstract>
+			<DeclaredIn>SSPostmarkMessage.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) NSString *replyTo</Declaration>
+			
+			
+			<Anchor>//api/name/replyTo</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/SSPostmarkMessage/setCc:</TokenIdentifier>
+			<Abstract type="html">Email Addresses for the CC: field.</Abstract>
+			<DeclaredIn>SSPostmarkMessage.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) NSString *cc</Declaration>
+			
+			
+			<Anchor>//api/name/cc</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/SSPostmarkMessage/cc</TokenIdentifier>
+			<Abstract type="html">Email Addresses for the CC: field.</Abstract>
+			<DeclaredIn>SSPostmarkMessage.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) NSString *cc</Declaration>
+			
+			
+			<Anchor>//api/name/cc</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/SSPostmarkMessage/setBcc:</TokenIdentifier>
+			<Abstract type="html">Email Addresses for the BCC: field.</Abstract>
+			<DeclaredIn>SSPostmarkMessage.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) NSString *bcc</Declaration>
+			
+			
+			<Anchor>//api/name/bcc</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/SSPostmarkMessage/bcc</TokenIdentifier>
+			<Abstract type="html">Email Addresses for the BCC: field.</Abstract>
+			<DeclaredIn>SSPostmarkMessage.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) NSString *bcc</Declaration>
+			
+			
+			<Anchor>//api/name/bcc</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/SSPostmarkMessage/setHeaders:</TokenIdentifier>
+			<Abstract type="html">Custom Headers for email.</Abstract>
+			<DeclaredIn>SSPostmarkMessage.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) NSDictionary *headers</Declaration>
+			
+			
+			<Anchor>//api/name/headers</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/SSPostmarkMessage/headers</TokenIdentifier>
+			<Abstract type="html">Custom Headers for email.</Abstract>
+			<DeclaredIn>SSPostmarkMessage.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) NSDictionary *headers</Declaration>
+			
+			
+			<Anchor>//api/name/headers</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/SSPostmarkMessage/setAttachments:</TokenIdentifier>
+			<Abstract type="html">An NSArray of SSPostmarkAttachment</Abstract>
+			<DeclaredIn>SSPostmarkMessage.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) NSArray *attachments</Declaration>
+			
+			
+			<Anchor>//api/name/attachments</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/SSPostmarkMessage/attachments</TokenIdentifier>
+			<Abstract type="html">An NSArray of SSPostmarkAttachment</Abstract>
+			<DeclaredIn>SSPostmarkMessage.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) NSArray *attachments</Declaration>
+			
+			
+			<Anchor>//api/name/attachments</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/SSPostmarkMessage/addAttachment:</TokenIdentifier>
+			<Abstract type="html">Add SSPostmarkAttachment to the message</Abstract>
+			<DeclaredIn>SSPostmarkMessage.h</DeclaredIn>			
+			
+			<Declaration>- (void)addAttachment:(SSPostmarkAttachment *)attachment</Declaration>
+			
+			
+			<Anchor>//api/name/addAttachment:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/SSPostmarkMessage/isValid</TokenIdentifier>
+			<Abstract type="html">Validates the SSPostmarkMessage</Abstract>
+			<DeclaredIn>SSPostmarkMessage.h</DeclaredIn>			
+			
+			<Declaration>- (BOOL)isValid</Declaration>
+			
+			<ReturnValue><Abstract type="html">Valid Boolean</Abstract></ReturnValue>
+			<Anchor>//api/name/isValid</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/SSPostmarkMessage/asDict</TokenIdentifier>
+			<Abstract type="html">The SSPostmarkMessage as a NSDictionary object.</Abstract>
+			<DeclaredIn>SSPostmarkMessage.h</DeclaredIn>			
+			
+			<Declaration>- (NSDictionary *)asDict</Declaration>
+			
+			<ReturnValue><Abstract type="html">An NSDictionary representation of the SSPostmarkMessage</Abstract></ReturnValue>
+			<Anchor>//api/name/asDict</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>
