@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'SSPostmark-Lib' target in the 'SSPostmark-Lib' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif

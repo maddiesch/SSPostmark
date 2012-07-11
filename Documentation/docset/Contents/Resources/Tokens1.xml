@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/SSPostmark.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/SSPostmark</TokenIdentifier>
+			<Abstract type="html">&gt; Postmark removes the headaches of delivering and parsing transactional email for webapps with minimal setup time and zero maintenance. We have years of experience getting email to the inbox, so you can work and rest easier.</Abstract>
+			<DeclaredIn>SSPostmark.h</DeclaredIn>
+			
+			<NodeRef refid="1"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/SSPostmark/setApiKey:</TokenIdentifier>
+			<Abstract type="html">Your API key.</Abstract>
+			<DeclaredIn>SSPostmark.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) NSString *apiKey</Declaration>
+			
+			
+			<Anchor>//api/name/apiKey</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/SSPostmark/apiKey</TokenIdentifier>
+			<Abstract type="html">Your API key.</Abstract>
+			<DeclaredIn>SSPostmark.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) NSString *apiKey</Declaration>
+			
+			
+			<Anchor>//api/name/apiKey</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/SSPostmark/setDelegate:</TokenIdentifier>
+			<Abstract type="html">Where to call delegate methods.</Abstract>
+			<DeclaredIn>SSPostmark.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, assign) id&lt;&gt; delegate</Declaration>
+			
+			
+			<Anchor>//api/name/delegate</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/SSPostmark/delegate</TokenIdentifier>
+			<Abstract type="html">Where to call delegate methods.</Abstract>
+			<DeclaredIn>SSPostmark.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, assign) id&lt;&gt; delegate</Declaration>
+			
+			
+			<Anchor>//api/name/delegate</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/SSPostmark/setCompletion:</TokenIdentifier>
+			<Abstract type="html">Called when Postmark returns a response.</Abstract>
+			<DeclaredIn>SSPostmark.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) SSPostmarkCompletionHandler completion</Declaration>
+			
+			
+			<Anchor>//api/name/completion</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/SSPostmark/completion</TokenIdentifier>
+			<Abstract type="html">Called when Postmark returns a response.</Abstract>
+			<DeclaredIn>SSPostmark.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) SSPostmarkCompletionHandler completion</Declaration>
+			
+			
+			<Anchor>//api/name/completion</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/SSPostmark/initWithApiKey:</TokenIdentifier>
+			<Abstract type="html">Returns a SSPostmark initalized with the passed API Key</Abstract>
+			<DeclaredIn>SSPostmark.h</DeclaredIn>			
+			
+			<Declaration>- (id)initWithApiKey:(NSString *)apiKey</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>apiKey</Name>
+					<Abstract type="html">The Postmark API key for authenticating with Postmark&apos;s servers</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">SSPostmark instance</Abstract></ReturnValue>
+			<Anchor>//api/name/initWithApiKey:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/SSPostmark/sendMessage:</TokenIdentifier>
+			<Abstract type="html">Send an SSPostmarkMessage to the server</Abstract>
+			<DeclaredIn>SSPostmark.h</DeclaredIn>			
+			
+			<Declaration>- (void)sendMessage:(SSPostmarkMessage *)message</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>message</Name>
+					<Abstract type="html">A vaild SSPostmarkMessage</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/sendMessage:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/SSPostmark/sendMessage:withCompletion:</TokenIdentifier>
+			<Abstract type="html">Send an SSPostmarkMessag to the server</Abstract>
+			<DeclaredIn>SSPostmark.h</DeclaredIn>			
+			
+			<Declaration>- (void)sendMessage:(SSPostmarkMessage *)message withCompletion:(SSPostmarkCompletionHandler)completion</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>message</Name>
+					<Abstract type="html">A vaild SSPostmarkMessage</Abstract>
+				</Parameter><Parameter>
+					<Name>completion</Name>
+					<Abstract type="html">Set the SSPostmarkCompletionHandler for the request</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/sendMessage:withCompletion:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/SSPostmark/sendBatchMessages:</TokenIdentifier>
+			<Abstract type="html">Send batch messages to Postmark</Abstract>
+			<DeclaredIn>SSPostmark.h</DeclaredIn>			
+			
+			<Declaration>- (void)sendBatchMessages:(NSArray *)messages</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>messages</Name>
+					<Abstract type="html">An NSArray of SSPostmarkMessage</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/sendBatchMessages:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/SSPostmark/sendBatchMessages:withCompletion:</TokenIdentifier>
+			<Abstract type="html">Send batch messages to Postmark</Abstract>
+			<DeclaredIn>SSPostmark.h</DeclaredIn>			
+			
+			<Declaration>- (void)sendBatchMessages:(NSArray *)messages withCompletion:(SSPostmarkCompletionHandler)completion</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>messages</Name>
+					<Abstract type="html">An NSArray of SSPostmarkMessage</Abstract>
+				</Parameter><Parameter>
+					<Name>completion</Name>
+					<Abstract type="html">Set the SSPostmarkCompletionHandler for the request</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/sendBatchMessages:withCompletion:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/SSPostmark/isValidEmail:</TokenIdentifier>
+			<Abstract type="html">Checks if a email address is in a vaild format.</Abstract>
+			<DeclaredIn>SSPostmark.h</DeclaredIn>			
+			
+			<Declaration>+ (BOOL)isValidEmail:(NSString *)email</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>email</Name>
+					<Abstract type="html">The string to vaildate as an email address</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">email vaildation BOOL</Abstract></ReturnValue>
+			<Anchor>//api/name/isValidEmail:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/SSPostmark/sendMessage:apiKey:completion:</TokenIdentifier>
+			<Abstract type="html">Send a message</Abstract>
+			<DeclaredIn>SSPostmark.h</DeclaredIn>			
+			
+			<Declaration>+ (void)sendMessage:(SSPostmarkMessage *)message apiKey:(NSString *)apiKey completion:(SSPostmarkCompletionHandler)completion</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>message</Name>
+					<Abstract type="html">A vaild SSPostmark instance</Abstract>
+				</Parameter><Parameter>
+					<Name>apiKey</Name>
+					<Abstract type="html">Your Postmark API key</Abstract>
+				</Parameter><Parameter>
+					<Name>completion</Name>
+					<Abstract type="html">Set the SSPostmarkCompletionHandler for the request</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/sendMessage:apiKey:completion:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>
