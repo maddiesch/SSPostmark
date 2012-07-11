@@ -1,0 +1,940 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>SSPostmark Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">SSPostmark </a></h1>
+				<a id="developerHome" href="../index.html">QuietSight Inc</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">SSPostmark Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/apiKey">&nbsp;&nbsp;&nbsp;&nbsp;apiKey</option>
+	
+	<option value="//api/name/completion">&nbsp;&nbsp;&nbsp;&nbsp;completion</option>
+	
+	<option value="//api/name/delegate">&nbsp;&nbsp;&nbsp;&nbsp;delegate</option>
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/isValidEmail:">&nbsp;&nbsp;&nbsp;&nbsp;+ isValidEmail:</option>
+	
+	<option value="//api/name/sendMessage:apiKey:completion:">&nbsp;&nbsp;&nbsp;&nbsp;+ sendMessage:apiKey:completion:</option>
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/initWithApiKey:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithApiKey:</option>
+	
+	<option value="//api/name/sendBatchMessages:">&nbsp;&nbsp;&nbsp;&nbsp;- sendBatchMessages:</option>
+	
+	<option value="//api/name/sendBatchMessages:withCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;- sendBatchMessages:withCompletion:</option>
+	
+	<option value="//api/name/sendMessage:">&nbsp;&nbsp;&nbsp;&nbsp;- sendMessage:</option>
+	
+	<option value="//api/name/sendMessage:withCompletion:">&nbsp;&nbsp;&nbsp;&nbsp;- sendMessage:withCompletion:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/apiKey">apiKey</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/completion">completion</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/delegate">delegate</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isValidEmail:">isValidEmail:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sendMessage:apiKey:completion:">sendMessage:apiKey:completion:</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithApiKey:">initWithApiKey:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sendBatchMessages:">sendBatchMessages:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sendBatchMessages:withCompletion:">sendBatchMessages:withCompletion:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sendMessage:">sendMessage:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sendMessage:withCompletion:">sendMessage:withCompletion:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="SSPostmark Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">SSPostmark Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">NSURLConnectionDataDelegate<br />NSURLConnectionDelegate</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">SSPostmark.h<br />SSPostmark.m</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<blockquote><p><a href="http://postmarkapp.com/">Postmark</a> removes the headaches of delivering and parsing transactional email for webapps with minimal setup time and zero maintenance. We have years of experience getting email to the inbox, so you can work and rest easier.</p></blockquote>
+
+<p>This is a simple Objective-C class to send email using the Postmark API.</p>
+
+<p>Works on both Mac OS X 10.7 &amp; iOS 5</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/apiKey">&nbsp;&nbsp;apiKey</a></code>
+		<span class="tooltip"><p>Your API key.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/delegate">&nbsp;&nbsp;delegate</a></code>
+		<span class="tooltip"><p>Where to call delegate methods.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/completion">&nbsp;&nbsp;completion</a></code>
+		<span class="tooltip"><p>Called when Postmark returns a response.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithApiKey:">&ndash;&nbsp;initWithApiKey:</a></code>
+		<span class="tooltip"><p>Returns a SSPostmark initalized with the passed API Key</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sendMessage:">&ndash;&nbsp;sendMessage:</a></code>
+		<span class="tooltip"><p>Send an <a href="../Classes/SSPostmarkMessage.html">SSPostmarkMessage</a> to the server</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sendMessage:withCompletion:">&ndash;&nbsp;sendMessage:withCompletion:</a></code>
+		<span class="tooltip"><p>Send an SSPostmarkMessag to the server</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sendBatchMessages:">&ndash;&nbsp;sendBatchMessages:</a></code>
+		<span class="tooltip"><p>Send batch messages to Postmark</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sendBatchMessages:withCompletion:">&ndash;&nbsp;sendBatchMessages:withCompletion:</a></code>
+		<span class="tooltip"><p>Send batch messages to Postmark</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isValidEmail:">+&nbsp;isValidEmail:</a></code>
+		<span class="tooltip"><p>Checks if a email address is in a vaild format.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sendMessage:apiKey:completion:">+&nbsp;sendMessage:apiKey:completion:</a></code>
+		<span class="tooltip"><p>Send a message</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/apiKey" title="apiKey"></a>
+	<h3 class="subsubtitle method-title">apiKey</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Your API key.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) NSString *apiKey</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Your API key.</p>
+
+<p>This is required to talk to the Postmark API.  If you don&rsquo;t know your api key it can be found by going to <a href="https://postmarkapp.com/servers">https://postmarkapp.com/servers</a>.  Select the server who you want to send through and then select <strong>Credentials</strong>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SSPostmark.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/completion" title="completion"></a>
+	<h3 class="subsubtitle method-title">completion</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Called when Postmark returns a response.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) SSPostmarkCompletionHandler completion</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Called when Postmark returns a response.</p>
+
+<p>This block is declared as <code>typedef void (^SSPostmarkCompletionHandler)(NSDictionary *postmarkResponse, SSPMErrorType errorType);</code></p>
+
+<p>The <code>postmarkResponse</code> should contain keys</p>
+
+<ul>
+<li><p><code>ErrorCode</code></p></li>
+<li><p><code>Message</code></p></li>
+<li><p><code>MessageID</code></p></li>
+<li><p><code>SubmittedAt</code></p></li>
+<li><p><code>To</code></p></li>
+</ul>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SSPostmark.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/delegate" title="delegate"></a>
+	<h3 class="subsubtitle method-title">delegate</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Where to call delegate methods.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) id&lt;&gt; delegate</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Where to call delegate methods.</p>
+
+<p>In for the most part you should be using the block based API.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SSPostmark.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/isValidEmail:" title="isValidEmail:"></a>
+	<h3 class="subsubtitle method-title">isValidEmail:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Checks if a email address is in a vaild format.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (BOOL)isValidEmail:(NSString *)<em>email</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>email</em></dt>
+			<dd><p>The string to vaildate as an email address</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>email vaildation BOOL</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Checks if a email address is in a vaild format.</p>
+
+<p>This pregmatches the passed email address</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SSPostmark.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/sendMessage:apiKey:completion:" title="sendMessage:apiKey:completion:"></a>
+	<h3 class="subsubtitle method-title">sendMessage:apiKey:completion:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Send a message</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)sendMessage:(SSPostmarkMessage *)<em>message</em> apiKey:(NSString *)<em>apiKey</em> completion:(SSPostmarkCompletionHandler)<em>completion</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>message</em></dt>
+			<dd><p>A vaild SSPostmark instance</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>apiKey</em></dt>
+			<dd><p>Your Postmark API key</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completion</em></dt>
+			<dd><p>Set the <code>SSPostmarkCompletionHandler</code> for the request</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Send a message</p>
+
+<p>Class method for quickley sending a <a href="../Classes/SSPostmarkMessage.html">SSPostmarkMessage</a></p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SSPostmark.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithApiKey:" title="initWithApiKey:"></a>
+	<h3 class="subsubtitle method-title">initWithApiKey:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns a SSPostmark initalized with the passed API Key</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (id)initWithApiKey:(NSString *)<em>apiKey</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>apiKey</em></dt>
+			<dd><p>The Postmark API key for authenticating with Postmark&rsquo;s servers</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>SSPostmark instance</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Returns a SSPostmark initalized with the passed API Key</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SSPostmark.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/sendBatchMessages:" title="sendBatchMessages:"></a>
+	<h3 class="subsubtitle method-title">sendBatchMessages:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Send batch messages to Postmark</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)sendBatchMessages:(NSArray *)<em>messages</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>messages</em></dt>
+			<dd><p>An NSArray of <a href="../Classes/SSPostmarkMessage.html">SSPostmarkMessage</a></p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Send batch messages to Postmark</p>
+
+<p>Each <a href="../Classes/SSPostmarkMessage.html">SSPostmarkMessage</a> will be validated then added to the Postmark request. Once all messages are encoeded it will send the request asynchronously to the Postmark Servers.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SSPostmark.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/sendBatchMessages:withCompletion:" title="sendBatchMessages:withCompletion:"></a>
+	<h3 class="subsubtitle method-title">sendBatchMessages:withCompletion:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Send batch messages to Postmark</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)sendBatchMessages:(NSArray *)<em>messages</em> withCompletion:(SSPostmarkCompletionHandler)<em>completion</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>messages</em></dt>
+			<dd><p>An NSArray of <a href="../Classes/SSPostmarkMessage.html">SSPostmarkMessage</a></p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completion</em></dt>
+			<dd><p>Set the <code>SSPostmarkCompletionHandler</code> for the request</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Send batch messages to Postmark</p>
+
+<p>Each <a href="../Classes/SSPostmarkMessage.html">SSPostmarkMessage</a> will be validated then added to the Postmark request. Once all messages are encoeded it will send the request asynchronously to the Postmark Servers.  When Postmark returns it will call the <a href="#//api/name/completion"><code>completion</code></a> block.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SSPostmark.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/sendMessage:" title="sendMessage:"></a>
+	<h3 class="subsubtitle method-title">sendMessage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Send an <a href="../Classes/SSPostmarkMessage.html">SSPostmarkMessage</a> to the server</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)sendMessage:(SSPostmarkMessage *)<em>message</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>message</em></dt>
+			<dd><p>A vaild <a href="../Classes/SSPostmarkMessage.html">SSPostmarkMessage</a></p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Send an <a href="../Classes/SSPostmarkMessage.html">SSPostmarkMessage</a> to the server</p>
+
+<p>This will ensure the message is valid, then send it to Postmark asynchronously.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SSPostmark.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/sendMessage:withCompletion:" title="sendMessage:withCompletion:"></a>
+	<h3 class="subsubtitle method-title">sendMessage:withCompletion:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Send an SSPostmarkMessag to the server</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)sendMessage:(SSPostmarkMessage *)<em>message</em> withCompletion:(SSPostmarkCompletionHandler)<em>completion</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>message</em></dt>
+			<dd><p>A vaild <a href="../Classes/SSPostmarkMessage.html">SSPostmarkMessage</a></p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completion</em></dt>
+			<dd><p>Set the <code>SSPostmarkCompletionHandler</code> for the request</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Send an SSPostmarkMessag to the server</p>
+
+<p>This will ensure the message is valid, then send it to Postmark asynchronously. When Postmark returns it will call the <a href="#//api/name/completion"><code>completion</code></a> block.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SSPostmark.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 QuietSight Inc. All rights reserved. (Last updated: 2012-07-10)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>

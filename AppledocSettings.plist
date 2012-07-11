@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>--project-name</key>
+	<string>SSPostmark</string>
+	<key>--output</key>
+	<string>./_docs</string>
+	<key>--company-id</key>
+	<string>com.quietsight</string>
+	<key>--project-company</key>
+	<string>QuietSight Inc</string>
+	<key>--input</key>
+	<array>
+		<string>./SSPostmark.h</string>
+	</array>
+</dict>
+</plist>

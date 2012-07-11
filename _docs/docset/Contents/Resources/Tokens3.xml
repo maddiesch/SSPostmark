@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/SSPostmarkAttachment.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/SSPostmarkAttachment</TokenIdentifier>
+			<Abstract type="html">SSPostmarkAttachment takes an properly formats data to add as an attachment to an SSPostmarkMessage</Abstract>
+			<DeclaredIn>SSPostmark.h</DeclaredIn>
+			
+			<NodeRef refid="3"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/SSPostmarkAttachment/setName:</TokenIdentifier>
+			<Abstract type="html">The name of the file being added.</Abstract>
+			<DeclaredIn>SSPostmark.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong) NSString *name</Declaration>
+			
+			
+			<Anchor>//api/name/name</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/SSPostmarkAttachment/name</TokenIdentifier>
+			<Abstract type="html">The name of the file being added.</Abstract>
+			<DeclaredIn>SSPostmark.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong) NSString *name</Declaration>
+			
+			
+			<Anchor>//api/name/name</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/SSPostmarkAttachment/setContent:</TokenIdentifier>
+			<Abstract type="html">Base64 encoded data.</Abstract>
+			<DeclaredIn>SSPostmark.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong) NSString *content</Declaration>
+			
+			
+			<Anchor>//api/name/content</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/SSPostmarkAttachment/content</TokenIdentifier>
+			<Abstract type="html">Base64 encoded data.</Abstract>
+			<DeclaredIn>SSPostmark.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong) NSString *content</Declaration>
+			
+			
+			<Anchor>//api/name/content</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/SSPostmarkAttachment/setContentType:</TokenIdentifier>
+			<Abstract type="html">The MIME type for the data.</Abstract>
+			<DeclaredIn>SSPostmark.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong) NSString *contentType</Declaration>
+			
+			
+			<Anchor>//api/name/contentType</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/SSPostmarkAttachment/contentType</TokenIdentifier>
+			<Abstract type="html">The MIME type for the data.</Abstract>
+			<DeclaredIn>SSPostmark.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, strong) NSString *contentType</Declaration>
+			
+			
+			<Anchor>//api/name/contentType</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/SSPostmarkAttachment/addData:</TokenIdentifier>
+			<Abstract type="html">Add NSData object for the attachment</Abstract>
+			<DeclaredIn>SSPostmark.h</DeclaredIn>			
+			
+			<Declaration>- (void)addData:(NSData *)data</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>data</Name>
+					<Abstract type="html">The data for the attachment.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/addData:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/SSPostmarkAttachment/dictionaryRepresentation</TokenIdentifier>
+			<Abstract type="html">Get the attachment as an NSDictionary</Abstract>
+			<DeclaredIn>SSPostmark.h</DeclaredIn>			
+			
+			<Declaration>- (NSDictionary *)dictionaryRepresentation</Declaration>
+			
+			<ReturnValue><Abstract type="html">A dictionary representation for the attachment.</Abstract></ReturnValue>
+			<Anchor>//api/name/dictionaryRepresentation</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/SSPostmarkAttachment/attachmentWithData:contentType:name:</TokenIdentifier>
+			<Abstract type="html">Convenience method</Abstract>
+			<DeclaredIn>SSPostmark.h</DeclaredIn>			
+			
+			<Declaration>+ (SSPostmarkAttachment *)attachmentWithData:(NSData *)content contentType:(NSString *)contentType name:(NSString *)name</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>content</Name>
+					<Abstract type="html">NSData of the attachment data</Abstract>
+				</Parameter><Parameter>
+					<Name>contentType</Name>
+					<Abstract type="html">NSString or nil.</Abstract>
+				</Parameter><Parameter>
+					<Name>name</Name>
+					<Abstract type="html">The name of the image.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">An initiated SSPostmarkAttachment object</Abstract></ReturnValue>
+			<Anchor>//api/name/attachmentWithData:contentType:name:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/SSPostmarkAttachment/attachmentWithImage:name:</TokenIdentifier>
+			<Abstract type="html">Convenience method</Abstract>
+			<DeclaredIn>SSPostmark.h</DeclaredIn>			
+			
+			<Declaration>+ (SSPostmarkAttachment *)attachmentWithImage:(UIImage *)image name:(NSString *)name</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>image</Name>
+					<Abstract type="html">UIImage to add to the attachment</Abstract>
+				</Parameter><Parameter>
+					<Name>name</Name>
+					<Abstract type="html">The name of the image.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">An initiated SSPostmarkAttachment object</Abstract></ReturnValue>
+			<Anchor>//api/name/attachmentWithImage:name:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/SSPostmarkAttachment/addImage:</TokenIdentifier>
+			<Abstract type="html">Add UIImage</Abstract>
+			<DeclaredIn>SSPostmark.h</DeclaredIn>			
+			
+			<Declaration>- (void)addImage:(UIImage *)image</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>image</Name>
+					<Abstract type="html">The UIImage to add to the attachment</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/addImage:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

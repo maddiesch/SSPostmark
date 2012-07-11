@@ -15,22 +15,6 @@
 @synthesize window = _window;
 @synthesize viewController = _viewController;
 
-// Do something with response
-- (void)postmark:(id)postmark returnedMessage:(NSDictionary *)message withStatusCode:(NSUInteger)code {
-    NSLog(@"%s",__PRETTY_FUNCTION__);
-    NSLog(@"%@",message);
-}
-// Error Ocuured
-- (void)postmark:(id)postmark encounteredError:(SSPMErrorType)type {
-    NSLog(@"%s",__PRETTY_FUNCTION__);
-}
-
-
-- (void)testNotifications:(NSNotification *)notification {
-    NSLog(@"%s",__PRETTY_FUNCTION__);
-    NSLog(@"Nofification UserInfo: %@",[notification userInfo]);
-}
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -70,7 +54,7 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -80,7 +64,7 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(testNotifications:) name:pm_POSTMARK_NOTIFICATION object:nil];
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

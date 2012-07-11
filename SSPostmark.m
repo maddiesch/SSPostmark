@@ -1,4 +1,4 @@
- /***
+/***
  *    SSPostmark
  *    @author - Skylar Schipper
  *	   @copyright - (2011 - 2012) (c) Skylar Schipper
@@ -398,6 +398,14 @@
     return att;
 }
 #endif
+
+- (void)setContentType:(NSString *)contentType {
+    if (contentType == nil) {
+        _contentType = @"application/octet-stream";
+        return;
+    }
+    _contentType = contentType;
+}
 
 @end
 

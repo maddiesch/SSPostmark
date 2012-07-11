@@ -45,6 +45,7 @@
 		945ED70C15583631007049C2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		9475A9E51561B9370089EBC4 /* SSPostmarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPostmarkViewController.h; sourceTree = "<group>"; };
 		9475A9E61561B9370089EBC4 /* SSPostmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkViewController.m; sourceTree = "<group>"; };
+		949C0BA715AD060600055B86 /* AppledocSettings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AppledocSettings.plist; sourceTree = "<group>"; };
 		94B5D4831597E10000AF04BC /* Downtown_LA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Downtown_LA.png; sourceTree = "<group>"; };
 		DF75530214D329550067EAD7 /* SSPostmark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSPostmark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF75530614D329550067EAD7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -121,6 +122,7 @@
 		DF7552F714D329550067EAD7 = {
 			isa = PBXGroup;
 			children = (
+				949C0BA715AD060600055B86 /* AppledocSettings.plist */,
 				9475A9E51561B9370089EBC4 /* SSPostmarkViewController.h */,
 				9475A9E61561B9370089EBC4 /* SSPostmarkViewController.m */,
 				DF75532314D329690067EAD7 /* SSPostmark.h */,
