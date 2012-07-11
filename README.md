@@ -9,3 +9,5 @@ Works on both Mac OS X 10.7 & iOS 5
 ***
 
 #### [Documentation](http://sspostmark.schipp.co)
+
+#### [Download Library](https://s3.amazonaws.com/sspostmark/SSPostmark_iOS.zip)
