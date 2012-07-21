@@ -9,44 +9,32 @@
 #import "SSPostmarkMessage.h"
 
 @implementation SSPostmarkMessage
-@synthesize htmlBody = _htmlBody;
-@synthesize textBody = _textBody;
-@synthesize fromEmail = _fromEmail;
-@synthesize to = _to;
-@synthesize subject = _subject;
-@synthesize tag = _tag;
-@synthesize replyTo = _replyTo;
-@synthesize cc = _cc;
-@synthesize bcc = _bcc;
-@synthesize headers = _headers;
-@synthesize attachments = _attachments;
-@synthesize apiKey = _apiKey;
 
 
 - (BOOL)isValid {
     return (self.htmlBody || self.textBody) && self.fromEmail && self.to && self.subject && self.tag && self.replyTo;
 }
 
-- (NSDictionary *)asDict {
+- (NSDictionary *)dictionaryRepresentation {
     NSMutableDictionary *d = [NSMutableDictionary new];
     if (self.htmlBody)
-        [d setObject:self.htmlBody	forKey:kSSPostmarkHTMLBody];
+        [d setObject:self.htmlBody forKey:kSSPostmarkHTMLBody];
     
     if (self.textBody)
-        [d setObject:self.textBody	forKey:kSSPostmarkTextBody];
+        [d setObject:self.textBody forKey:kSSPostmarkTextBody];
     
-    [d setObject:self.fromEmail		forKey:kSSPostmarkFrom];
-    [d setObject:self.to			forKey:kSSPostmarkTo];
-    [d setObject:self.subject		forKey:kSSPostmarkSubject];
-    [d setObject:self.tag			forKey:kSSPostmarkTag];
-    [d setObject:self.replyTo		forKey:kSSPostmarkReplyTo];
+    [d setObject:self.fromEmail forKey:kSSPostmarkFrom];
+    [d setObject:self.to forKey:kSSPostmarkTo];
+    [d setObject:self.subject forKey:kSSPostmarkSubject];
+    [d setObject:self.tag forKey:kSSPostmarkTag];
+    [d setObject:self.replyTo forKey:kSSPostmarkReplyTo];
     
     if (self.cc)
-        [d setObject:self.cc		forKey:kSSPostmarkCC];
+        [d setObject:self.cc forKey:kSSPostmarkCC];
     if (self.bcc)
-        [d setObject:self.bcc		forKey:kSSPostmarkBCC];
+        [d setObject:self.bcc forKey:kSSPostmarkBCC];
     if (self.headers)
-        [d setObject:self.headers	forKey:kSSPostmarkHeaders];
+        [d setObject:self.headers forKey:kSSPostmarkHeaders];
 	
 	
 	if (self.attachments != nil) {

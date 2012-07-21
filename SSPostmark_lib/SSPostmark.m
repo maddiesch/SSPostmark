@@ -55,8 +55,6 @@
 @end
 
 @implementation SSPostmark
-@synthesize apiKey = _apiKey, completion = _completion, delegate;
-
 
 - (id)initWithApiKey:(NSString *)apiKey {
 	self = [super init];
@@ -79,7 +77,7 @@
         return;
     }
     
-    NSData* messageData = [self writeJSON:[message asDict]];
+    NSData* messageData = [self writeJSON:[message dictionaryRepresentation]];
     [self ss_send:messageData toURL:apiURL];
 }
 
@@ -98,7 +96,7 @@
 			[self reportError:SSPMError_BadMessageDict message:@"Invalid Message"];
             return;
         } else {
-            [arr addObject:[m asDict]];
+            [arr addObject:[m dictionaryRepresentation]];
         }
     }
     

@@ -24,10 +24,6 @@
 @end
 
 @implementation SSPostmarkViewController
-@synthesize barTitle = _barTitle;
-@synthesize to = _to;
-@synthesize apiKey = _apiKey;
-@synthesize completionHandler = _completionHandler;
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == actionSheet.cancelButtonIndex) {

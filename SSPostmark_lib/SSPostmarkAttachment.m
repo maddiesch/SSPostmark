@@ -10,11 +10,12 @@
 
 
 @interface SSPostmarkAttachment ()
+
 - (void)ss_addImage:(id)image;
+
 @end
 
 @implementation SSPostmarkAttachment
-@synthesize content = _content, contentType = _contentType, name = _name;
 
 - (void)addData:(NSData *)data {
     _content = [data ss_base64String];

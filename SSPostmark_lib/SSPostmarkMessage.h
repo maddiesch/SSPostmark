@@ -133,7 +133,7 @@
  @return An `NSDictionary` representation of the SSPostmarkMessage
  
  */
-- (NSDictionary *)asDict;
+- (NSDictionary *)dictionaryRepresentation;
 
 
 @end
