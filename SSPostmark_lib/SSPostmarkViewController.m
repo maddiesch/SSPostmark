@@ -58,7 +58,7 @@
     UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismissView:)];
     UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     _sendButton = [[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStyleDone target:self action:@selector(sendMail:)];
-    _toolBar.items = [NSArray arrayWithObjects:cancel, flex, _sendButton, nil];
+    _toolBar.items = @[cancel, flex, _sendButton];
     [self.view addSubview:_toolBar];
     
     /**

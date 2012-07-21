@@ -51,11 +51,9 @@
 }
 
 - (NSDictionary *)dictionaryRepresentation {
-	return [NSDictionary dictionaryWithObjectsAndKeys:
-			self.content, kSSPostmarkAttachmentContent,
-			self.contentType, kSSPostmarkAttachmentContentType,
-			self.name, kSSPostmarkAttachmentName,
-			nil];
+	return @{kSSPostmarkAttachmentContent: self.content,
+			kSSPostmarkAttachmentContentType: self.contentType,
+			kSSPostmarkAttachmentName: self.name};
 }
 
 - (id)init {

@@ -17,12 +17,6 @@
 
 - (NSDictionary *)dictionaryRepresentation {
     NSMutableDictionary *d = [NSMutableDictionary new];
-    if (self.htmlBody)
-        [d setObject:self.htmlBody forKey:kSSPostmarkHTMLBody];
-    
-    if (self.textBody)
-        [d setObject:self.textBody forKey:kSSPostmarkTextBody];
-    
     [d setObject:self.fromEmail forKey:kSSPostmarkFrom];
     [d setObject:self.to forKey:kSSPostmarkTo];
     [d setObject:self.subject forKey:kSSPostmarkSubject];
@@ -35,6 +29,10 @@
         [d setObject:self.bcc forKey:kSSPostmarkBCC];
     if (self.headers)
         [d setObject:self.headers forKey:kSSPostmarkHeaders];
+    if (self.htmlBody)
+        [d setObject:self.htmlBody forKey:kSSPostmarkHTMLBody];
+    if (self.textBody)
+        [d setObject:self.textBody forKey:kSSPostmarkTextBody];
 	
 	
 	if (self.attachments != nil) {
@@ -50,6 +48,7 @@
         }
         [d setObject:attachments forKey:kSSPostmarkAttachments];
     }
+    
     return d;
 }
 

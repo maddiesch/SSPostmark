@@ -65,10 +65,6 @@
 }
 
 
-- (void)sendEmailWithParamaters:(NSDictionary *)params asynchronously:(BOOL)async __deprecated__  { /* no-op */ }
-- (void)sendEmailWithParamaters:(NSDictionary *)params __deprecated__ { /* no-op */ }
-
-
 - (void)sendMessage:(SSPostmarkMessage *)message {
     NSURL* apiURL = [NSURL URLWithString:pm_API_URL];
     
@@ -113,7 +109,7 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     [self createHeadersWithRequest:request];
     
-    NSString* length = [[NSNumber numberWithInteger:data.length] stringValue];
+    NSString* length = (NSString *)[[NSNumber numberWithInteger:data.length] stringValue];
     request.HTTPMethod = @"POST";
     request.HTTPBody = data;
     [request setValue:length forHTTPHeaderField:@"Content-Length"];
@@ -161,7 +157,7 @@
 #pragma mark - Error handeling
 - (void)reportError:(SSPMErrorType)errorType message:(NSString *)message {
 	// Send errors to delegate and & Notification Center
-	NSDictionary *errorDict = [NSDictionary dictionaryWithObjectsAndKeys: @"failed", @"status", message, @"message", nil];
+	NSDictionary *errorDict = @{@"status": @"failed", @"message": message};
 	NSNotification *errorNot = [NSNotification notificationWithName:pm_POSTMARK_NOTIFICATION object:self userInfo:errorDict];
 	[[NSNotificationCenter defaultCenter] postNotification:errorNot];
 	if ([self delegate] && [[self delegate] respondsToSelector:@selector(postmark:encounteredError:message:)]) {
