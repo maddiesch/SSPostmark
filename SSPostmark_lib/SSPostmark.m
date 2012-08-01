@@ -48,15 +48,13 @@
 
 @interface SSPostmark ()
 
-- (NSData *)writeJSON:(id)data;
-- (id)parseJSON:(NSData *)data;
+- (NSData *)ss_writeJSON:(id)data;
+- (id)ss_parseJSON:(NSData *)data;
 - (void)ss_send:(NSData *)data toURL:(NSURL *)url;
 
 @end
 
 @implementation SSPostmark
-@synthesize apiKey = _apiKey, completion = _completion, delegate;
-
 
 - (id)initWithApiKey:(NSString *)apiKey {
 	self = [super init];
@@ -67,10 +65,6 @@
 }
 
 
-- (void)sendEmailWithParamaters:(NSDictionary *)params asynchronously:(BOOL)async __deprecated__  { /* no-op */ }
-- (void)sendEmailWithParamaters:(NSDictionary *)params __deprecated__ { /* no-op */ }
-
-
 - (void)sendMessage:(SSPostmarkMessage *)message {
     NSURL* apiURL = [NSURL URLWithString:pm_API_URL];
     
@@ -79,7 +73,7 @@
         return;
     }
     
-    NSData* messageData = [self writeJSON:[message asDict]];
+    NSData* messageData = [self ss_writeJSON:[message dictionaryRepresentation]];
     [self ss_send:messageData toURL:apiURL];
 }
 
@@ -98,11 +92,11 @@
 			[self reportError:SSPMError_BadMessageDict message:@"Invalid Message"];
             return;
         } else {
-            [arr addObject:[m asDict]];
+            [arr addObject:[m dictionaryRepresentation]];
         }
     }
     
-    NSData *data = [self writeJSON:arr];
+    NSData *data = [self ss_writeJSON:arr];
     [self ss_send:data toURL:apiURL];
 }
 
@@ -115,7 +109,7 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     [self createHeadersWithRequest:request];
     
-    NSString* length = [[NSNumber numberWithInteger:data.length] stringValue];
+    NSString* length = (NSString *)[[NSNumber numberWithInteger:data.length] stringValue];
     request.HTTPMethod = @"POST";
     request.HTTPBody = data;
     [request setValue:length forHTTPHeaderField:@"Content-Length"];
@@ -163,7 +157,7 @@
 #pragma mark - Error handeling
 - (void)reportError:(SSPMErrorType)errorType message:(NSString *)message {
 	// Send errors to delegate and & Notification Center
-	NSDictionary *errorDict = [NSDictionary dictionaryWithObjectsAndKeys: @"failed", @"status", message, @"message", nil];
+	NSDictionary *errorDict = @{@"status": @"failed", @"message": message};
 	NSNotification *errorNot = [NSNotification notificationWithName:pm_POSTMARK_NOTIFICATION object:self userInfo:errorDict];
 	[[NSNotificationCenter defaultCenter] postNotification:errorNot];
 	if ([self delegate] && [[self delegate] respondsToSelector:@selector(postmark:encounteredError:message:)]) {
@@ -191,7 +185,7 @@
 }
 
 #pragma mark - Helper methods
-- (NSData *)writeJSON:(id)data{
+- (NSData *)ss_writeJSON:(id)data{
     if ([NSJSONSerialization class]) {
         if (!data) {
             return nil;
@@ -201,7 +195,7 @@
 
     return nil;
 }
-- (id)parseJSON:(NSData *)data {
+- (id)ss_parseJSON:(NSData *)data {
     if ([NSJSONSerialization class]) {
         if (!data) {
             return nil;

@@ -46,7 +46,9 @@
 #warning "This project uses NSJSONSerialization.  Only available in iOS >= 5.0"
 #endif
 
-#define __deprecated__ __attribute__((deprecated))
+#ifndef __deprecated__
+    #define __deprecated__ __attribute__((deprecated))
+#endif
 
 /**
  *
@@ -63,49 +65,52 @@
  */
 static const NSString *kSSPostmarkHTMLBody = @"HtmlBody"; // Expects NSString
 static const NSString *kSSPostmarkTextBody = @"TextBody"; // Expects NSString
-static const NSString *kSSPostmarkFrom = @"From"; // Expects NSString
-static const NSString *kSSPostmarkTo = @"To"; // Expects NSString
-static const NSString *kSSPostmarkCC = @"Cc"; // Expects NSString :: OPTIONAL
-static const NSString *kSSPostmarkBCC = @"Bcc"; // Expects NSString :: OPTIONAL
-static const NSString *kSSPostmarkSubject = @"Subject"; // Expects NSString
-static const NSString *kSSPostmarkTag = @"Tag"; // Expects NSString
-static const NSString *kSSPostmarkReplyTo = @"ReplyTo"; // Expects NSString
-static const NSString *kSSPostmarkHeaders = @"Headers";// Expects NSDictionary :: OPTIONAL
+static const NSString *kSSPostmarkFrom     = @"From"; // Expects NSString
+static const NSString *kSSPostmarkTo       = @"To"; // Expects NSString
+static const NSString *kSSPostmarkCC       = @"Cc"; // Expects NSString :: OPTIONAL
+static const NSString *kSSPostmarkBCC      = @"Bcc"; // Expects NSString :: OPTIONAL
+static const NSString *kSSPostmarkSubject  = @"Subject"; // Expects NSString
+static const NSString *kSSPostmarkTag      = @"Tag"; // Expects NSString
+static const NSString *kSSPostmarkReplyTo  = @"ReplyTo"; // Expects NSString
+static const NSString *kSSPostmarkHeaders  = @"Headers";// Expects NSDictionary :: OPTIONAL
 
 // See http://developer.postmarkapp.com/developer-build.html#attachments
-static const NSString *kSSPostmarkAttachments = @"Attachments";// :: OPTIONAL :: Expects NSArray of NSDictionaries with the following attachment keys
-static const NSString *kSSPostmarkAttachmentName = @"Name";// Expects NSString
-static const NSString *kSSPostmarkAttachmentContent = @"Content";// Expects Base64-encoded binary content as an NSString
+static const NSString *kSSPostmarkAttachments           = @"Attachments";// :: OPTIONAL :: Expects NSArray of NSDictionaries with the following attachment keys
+static const NSString *kSSPostmarkAttachmentName        = @"Name";// Expects NSString
+static const NSString *kSSPostmarkAttachmentContent     = @"Content";// Expects Base64-encoded binary content as an NSString
 static const NSString *kSSPostmarkAttachmentContentType = @"ContentType";// Expects NSString
 /**
  *
  *  Response Keys
  *      The parsed JSON dictionary should contain these keys
  */
-static const NSString *kSSPostmarkResp_ErrorCode = @"";
-static const NSString *kSSPostmarkResp_Message = @"Message";
-static const NSString *kSSPostmarkResp_MessageID = @"MessageID";
+static const NSString *kSSPostmarkResp_ErrorCode   = @"";
+static const NSString *kSSPostmarkResp_Message     = @"Message";
+static const NSString *kSSPostmarkResp_MessageID   = @"MessageID";
 static const NSString *kSSPostmarkResp_SubmittedAt = @"SubmittedAt";
-static const NSString *kSSPostmarkResp_To = @"To";
+static const NSString *kSSPostmarkResp_To          = @"To";
 
 // check out http://developer.postmarkapp.com/developer-build.html for more info
 typedef enum {
-    SSPMError_NoError = 0,
-    SSPMError_IvalidEmailRequest = 300,
-    SSPMError_SenderSignatureNotFound = 400,
+    SSPMError_NoError                     = 0,
+    SSPMError_IvalidEmailRequest          = 300,
+    SSPMError_SenderSignatureNotFound     = 400,
     SSPMError_SenderSignatureNotConfirmed = 401,
-    SSPMError_InvalidJSON = 402,
-    SSPMError_IncompatiableJSON = 403,
-    SSPMError_NotAllowedToSend = 405,
-    SSPMError_InactiveRecipient = 406,
-    SSPMError_BounceNotFound = 407,
-    SSPMError_JSONRequired = 409,
-    SSPMError_TooManyBatchMessages = 410,
-    SSPMError_Unknown,
-    SSPMError_BadMessageDict,
-    SSPMErrorNotFound = NSNotFound,
+    SSPMError_InvalidJSON                 = 402,
+    SSPMError_IncompatiableJSON           = 403,
+    SSPMError_NotAllowedToSend            = 405,
+    SSPMError_InactiveRecipient           = 406,
+    SSPMError_BounceNotFound              = 407,
+    SSPMError_JSONRequired                = 409,
+    SSPMError_TooManyBatchMessages        = 410,
+    SSPMError_Unknown                     = 999,
+    SSPMError_BadMessageDict              = 998,
+    SSPMErrorNotFound                     = NSNotFound,
 } SSPMErrorType;
 
 typedef void (^SSPostmarkCompletionHandler)(NSDictionary *postmarkResponse, SSPMErrorType errorType);
+
+// Default as per http://developer.postmarkapp.com/developer-build.html#attachments
+static NSString *_kSSPostmarkDefaultDataType = @"application/octet-stream";
 
 #endif
