@@ -48,8 +48,8 @@
 
 @interface SSPostmark ()
 
-- (NSData *)writeJSON:(id)data;
-- (id)parseJSON:(NSData *)data;
+- (NSData *)ss_writeJSON:(id)data;
+- (id)ss_parseJSON:(NSData *)data;
 - (void)ss_send:(NSData *)data toURL:(NSURL *)url;
 
 @end
@@ -73,7 +73,7 @@
         return;
     }
     
-    NSData* messageData = [self writeJSON:[message dictionaryRepresentation]];
+    NSData* messageData = [self ss_writeJSON:[message dictionaryRepresentation]];
     [self ss_send:messageData toURL:apiURL];
 }
 
@@ -96,7 +96,7 @@
         }
     }
     
-    NSData *data = [self writeJSON:arr];
+    NSData *data = [self ss_writeJSON:arr];
     [self ss_send:data toURL:apiURL];
 }
 
@@ -185,7 +185,7 @@
 }
 
 #pragma mark - Helper methods
-- (NSData *)writeJSON:(id)data{
+- (NSData *)ss_writeJSON:(id)data{
     if ([NSJSONSerialization class]) {
         if (!data) {
             return nil;
@@ -195,7 +195,7 @@
 
     return nil;
 }
-- (id)parseJSON:(NSData *)data {
+- (id)ss_parseJSON:(NSData *)data {
     if ([NSJSONSerialization class]) {
         if (!data) {
             return nil;
