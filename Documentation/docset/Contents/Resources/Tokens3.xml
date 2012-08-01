@@ -276,14 +276,14 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/SSPostmarkMessage/asDict</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/SSPostmarkMessage/dictionaryRepresentation</TokenIdentifier>
 			<Abstract type="html">The SSPostmarkMessage as a NSDictionary object.</Abstract>
 			<DeclaredIn>SSPostmarkMessage.h</DeclaredIn>			
 			
-			<Declaration>- (NSDictionary *)asDict</Declaration>
+			<Declaration>- (NSDictionary *)dictionaryRepresentation</Declaration>
 			
 			<ReturnValue><Abstract type="html">An NSDictionary representation of the SSPostmarkMessage</Abstract></ReturnValue>
-			<Anchor>//api/name/asDict</Anchor>
+			<Anchor>//api/name/dictionaryRepresentation</Anchor>
 		</Token>
 		
 	</File>

@@ -102,8 +102,6 @@
  */
 - (id)initWithApiKey:(NSString *)apiKey;
 
-- (void)sendEmailWithParamaters:(NSDictionary *)params asynchronously:(BOOL)async __deprecated__;
-- (void)sendEmailWithParamaters:(NSDictionary *)params __deprecated__;
 
 /** Send an SSPostmarkMessage to the server
  
