@@ -1,1 +1,3 @@
 *.xcuserstate
+.DS_Store
+./Documentation
