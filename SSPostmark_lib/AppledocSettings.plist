@@ -8,11 +8,14 @@
 	<string>../Documentation</string>
 	<key>--company-id</key>
 	<string>co.schipp</string>
+	<key>--ignore</key>
+	<array>
+		<string>.m</string>
+		<string>Vendor</string>
+	</array>
 	<key>--project-company</key>
 	<string>Skylar Schipper</string>
-	<key>--docset-feed-url</key>
-	<string>http://sspostmark.schipp.co/%DOCSETATOMFILENAME</string>
-	<key>--docset-package-url</key>
-	<string>http://sspostmark.schipp.co/%DOCSETPACKAGEFILENAME</string>
+	<key>--no-create-docset</key>
+	<true/>
 </dict>
 </plist>
