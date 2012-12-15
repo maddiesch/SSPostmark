@@ -27,16 +27,20 @@
 
 #import <Foundation/Foundation.h>
 
-NSString static const *kSSPostmarkHTMLBody = @"HtmlBody";
-NSString static const *kSSPostmarkTextBody = @"TextBody";
-NSString static const *kSSPostmarkFrom     = @"From";
-NSString static const *kSSPostmarkTo       = @"To";
-NSString static const *kSSPostmarkCC       = @"Cc";
-NSString static const *kSSPostmarkBCC      = @"Bcc";
-NSString static const *kSSPostmarkSubject  = @"Subject";
-NSString static const *kSSPostmarkTag      = @"Tag";
-NSString static const *kSSPostmarkReplyTo  = @"ReplyTo";
-NSString static const *kSSPostmarkHeaders  = @"Headers";
+NSString static const *kSSPostmarkHTMLBody    = @"HtmlBody";
+NSString static const *kSSPostmarkTextBody    = @"TextBody";
+NSString static const *kSSPostmarkFrom        = @"From";
+NSString static const *kSSPostmarkTo          = @"To";
+NSString static const *kSSPostmarkCC          = @"Cc";
+NSString static const *kSSPostmarkBCC         = @"Bcc";
+NSString static const *kSSPostmarkSubject     = @"Subject";
+NSString static const *kSSPostmarkTag         = @"Tag";
+NSString static const *kSSPostmarkReplyTo     = @"ReplyTo";
+NSString static const *kSSPostmarkHeaders     = @"Headers";
+NSString static const *kSSPostmarkAttachments = @"Attachments";
+
+
+@class SSPostmarkAttachment;
 
 /** <#Description#>
  
@@ -115,12 +119,43 @@ NSString static const *kSSPostmarkHeaders  = @"Headers";
  */
 @property (nonatomic, retain) NSDictionary *headers;
 
+
+#pragma mark - Attachments
 /** <#Description#>
  
  <#Discussion#>
  
  */
-//@property (nonatomic, retain) NSArray *attachments;
+@property (nonatomic, retain) NSMutableSet *attachments;
+
+/** <#Description#>
+ 
+ <#Discussion#>
+ 
+ */
+- (void)addAttachments:(NSSet *)objects;
+
+/** <#Description#>
+ 
+ <#Discussion#>
+ 
+ */
+- (void)addAttachmentsObject:(SSPostmarkAttachment *)object;
+
+/** <#Description#>
+ 
+ <#Discussion#>
+ 
+ */
+- (void)removeAttachments:(NSSet *)objects;
+
+/** <#Description#>
+ 
+ <#Discussion#>
+ 
+ */
+- (void)removeAttachmentsObject:(SSPostmarkAttachment *)object;
+
 
 #pragma mark - Setup the request
 /** <#Description#>

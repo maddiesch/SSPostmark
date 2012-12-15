@@ -26,6 +26,8 @@
 // POSSIBILITY OF SUCH DAMAGE.
 
 #import "SSPostmarkMessage.h"
+#import "SSPostmarkAttachment.h"
+
 
 @implementation SSPostmarkMessage
 
@@ -60,7 +62,38 @@
     if (self.textBody)
         [d setObject:self.textBody forKey:kSSPostmarkTextBody];
     
+    if (self.attachments != nil && [self.attachments count] > 0) {
+        NSMutableArray *attachments = [NSMutableArray new];
+        for (SSPostmarkAttachment *att in [self.attachments allObjects]) {
+            [attachments addObject:[att dictionary]];
+        }
+        [d setObject:attachments forKey:kSSPostmarkAttachments];
+    }
+    
     return d;
+}
+
+#pragma mark -
+#pragma mark - Attachments
+- (void)addAttachmentsObject:(SSPostmarkAttachment *)object {
+    [self addAttachments:[NSSet setWithObject:object]];
+}
+- (void)addAttachments:(NSSet *)objects {
+    if (self.attachments == nil) {
+        self.attachments = [NSMutableSet set];
+    }
+    [self.attachments addObjectsFromArray:[objects allObjects]];
+}
+- (void)removeAttachmentsObject:(SSPostmarkAttachment *)object {
+    [self removeAttachments:[NSSet setWithObject:object]];
+}
+- (void)removeAttachments:(NSSet *)objects {
+    if (self.attachments == nil) {
+        return;
+    }
+    for (id obj in [objects allObjects]) {
+        [self.attachments removeObject:obj];
+    }
 }
 
 @end

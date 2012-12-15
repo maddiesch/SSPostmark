@@ -8,6 +8,7 @@
 
 #import "SSTAAppDelegate.h"
 #import "SSPostmark.h"
+#import "SSPostmarkAttachment.h"
 
 @implementation SSTAAppDelegate
 
@@ -29,7 +30,14 @@
     message.subject = @"Just a test";
     message.tag = @"sspm-test";
     
-    [[SSPostmark postmaster] setApiKey:SSPOSTMARK_TEST_API_KEY];
+    SSPostmarkAttachment *att = [[SSPostmarkAttachment alloc] init];
+    att.content = UIImagePNGRepresentation([UIImage imageNamed:@"sunset.jpg"]);
+    att.name = @"image.png";
+    
+    [message addAttachmentsObject:att];
+    
+    
+    [[SSPostmark postmaster] setApiKey:@"b73973a3-1b2f-4134-b30e-d0c635b0c0be"];
     [[SSPostmark postmaster] sendMessage:message];
     
     

@@ -18,6 +18,8 @@
 		9408340C167BC42A0034BE0E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9408340B167BC42A0034BE0E /* Default@2x.png */; };
 		9408340E167BC42A0034BE0E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9408340D167BC42A0034BE0E /* Default-568h@2x.png */; };
 		94083415167BC4380034BE0E /* libSSPostmark.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 940833DE167BC3E80034BE0E /* libSSPostmark.a */; };
+		948C4C29167D32F100986B57 /* SSPostmarkAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 948C4C28167D32F100986B57 /* SSPostmarkAttachment.m */; };
+		948C4C2C167D398C00986B57 /* sunset.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 948C4C2B167D398C00986B57 /* sunset.jpg */; };
 		94DEB660167C4AC200823F00 /* SSPostmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DEB65F167C4AC200823F00 /* SSPostmark.m */; };
 		94DEB663167C4C6B00823F00 /* SSPostmarkMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DEB662167C4C6B00823F00 /* SSPostmarkMessage.m */; };
 /* End PBXBuildFile section */
@@ -60,6 +62,9 @@
 		94083409167BC42A0034BE0E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		9408340B167BC42A0034BE0E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		9408340D167BC42A0034BE0E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		948C4C27167D32F100986B57 /* SSPostmarkAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPostmarkAttachment.h; sourceTree = "<group>"; };
+		948C4C28167D32F100986B57 /* SSPostmarkAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkAttachment.m; sourceTree = "<group>"; };
+		948C4C2B167D398C00986B57 /* sunset.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sunset.jpg; sourceTree = "<group>"; };
 		94DEB65E167C4AC200823F00 /* SSPostmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPostmark.h; sourceTree = "<group>"; };
 		94DEB65F167C4AC200823F00 /* SSPostmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmark.m; sourceTree = "<group>"; };
 		94DEB661167C4C6B00823F00 /* SSPostmarkMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPostmarkMessage.h; sourceTree = "<group>"; };
@@ -125,6 +130,8 @@
 				94DEB65F167C4AC200823F00 /* SSPostmark.m */,
 				94DEB661167C4C6B00823F00 /* SSPostmarkMessage.h */,
 				94DEB662167C4C6B00823F00 /* SSPostmarkMessage.m */,
+				948C4C27167D32F100986B57 /* SSPostmarkAttachment.h */,
+				948C4C28167D32F100986B57 /* SSPostmarkAttachment.m */,
 				940833E4167BC3E80034BE0E /* Supporting Files */,
 			);
 			path = SSPostmark;
@@ -141,6 +148,7 @@
 		940833FD167BC42A0034BE0E /* SSPostmarkTestApp */ = {
 			isa = PBXGroup;
 			children = (
+				948C4C2B167D398C00986B57 /* sunset.jpg */,
 				94083406167BC42A0034BE0E /* SSTAAppDelegate.h */,
 				94083407167BC42A0034BE0E /* SSTAAppDelegate.m */,
 				940833FE167BC42A0034BE0E /* Supporting Files */,
@@ -236,6 +244,7 @@
 				9408340A167BC42A0034BE0E /* Default.png in Resources */,
 				9408340C167BC42A0034BE0E /* Default@2x.png in Resources */,
 				9408340E167BC42A0034BE0E /* Default-568h@2x.png in Resources */,
+				948C4C2C167D398C00986B57 /* sunset.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +257,7 @@
 			files = (
 				94DEB660167C4AC200823F00 /* SSPostmark.m in Sources */,
 				94DEB663167C4C6B00823F00 /* SSPostmarkMessage.m in Sources */,
+				948C4C29167D32F100986B57 /* SSPostmarkAttachment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
