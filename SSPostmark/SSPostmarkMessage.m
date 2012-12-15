@@ -1,4 +1,4 @@
-// SSPostmark.h
+// SSPostmarkMessage.m
 // 
 // Copyright (c) 2012 Skylar Schipper
 //
@@ -25,60 +25,42 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
 // POSSIBILITY OF SUCH DAMAGE.
 
-#import <Foundation/Foundation.h>
 #import "SSPostmarkMessage.h"
 
-#define SSPOSTMARK_TEST_API_KEY @"POSTMARK_API_TEST"
+@implementation SSPostmarkMessage
 
+- (BOOL)isValid {
+    return (self.htmlBody || self.textBody) && self.fromEmail && self.to && self.subject && self.tag && self.replyTo;
+}
 
-/** <#Description#>
- 
- <#Discussion#>
- 
- */
-@interface SSPostmark : NSObject
+#pragma mark -
+#pragma mark -
+- (NSData *)body {
+    return [NSJSONSerialization dataWithJSONObject:[self dictionaryRepresentation] options:0 error:nil];
+}
 
-/** <#Description#>
- 
- <#Discussion#>
- 
- */
-@property (nonatomic, strong) NSString *apiKey;
+#pragma mark -
+#pragma mark -
+- (NSDictionary *)dictionaryRepresentation {
+    NSMutableDictionary *d = [NSMutableDictionary new];
+    [d setObject:self.fromEmail forKey:kSSPostmarkFrom];
+    [d setObject:self.to forKey:kSSPostmarkTo];
+    [d setObject:self.subject forKey:kSSPostmarkSubject];
+    [d setObject:self.tag forKey:kSSPostmarkTag];
+    [d setObject:self.replyTo forKey:kSSPostmarkReplyTo];
+    
+    if (self.cc)
+        [d setObject:self.cc forKey:kSSPostmarkCC];
+    if (self.bcc)
+        [d setObject:self.bcc forKey:kSSPostmarkBCC];
+    if (self.headers)
+        [d setObject:self.headers forKey:kSSPostmarkHeaders];
+    if (self.htmlBody)
+        [d setObject:self.htmlBody forKey:kSSPostmarkHTMLBody];
+    if (self.textBody)
+        [d setObject:self.textBody forKey:kSSPostmarkTextBody];
+    
+    return d;
+}
 
-/** <#Description#>
- 
- <#Discussion#>
- 
- */
-@property (nonatomic, strong, readonly) NSOperationQueue *emailQueue;
-
-/** <#Description#>
- 
- <#Discussion#>
- 
- */
-- (BOOL)sendMessage:(SSPostmarkMessage *)message;
-
-/** <#Description#>
- 
- <#Discussion#>
- 
- */
-- (BOOL)sendMessage:(SSPostmarkMessage *)message completionHandler:(void (^)(void))completionHandler;
-
-/** <#Description#>
- 
- <#Discussion#>
- 
- */
-+ (instancetype)postmaster;
-
-/** Get the current version of SSPostmark
- 
- @return An NSString representing the current version of SSPostmark
- */
-+ (NSString *)version;
-
-+ (NSURL *)postmarkAPIURL;
-+ (NSURL *)postmarkBatchAPIURL;
 @end

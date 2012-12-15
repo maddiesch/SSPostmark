@@ -21,6 +21,17 @@
     
     NSLog(@"SSPostmark Version: '%@'",[SSPostmark version]);
     
+    SSPostmarkMessage *message = [SSPostmarkMessage new];
+    message.fromEmail = @"ss@schipp.co";
+    message.replyTo = @"ss@schipp.co";
+    message.to = @"ss@schipp.co";
+    message.textBody = @"Test Email";
+    message.subject = @"Just a test";
+    message.tag = @"sspm-test";
+    
+    [[SSPostmark postmaster] setApiKey:SSPOSTMARK_TEST_API_KEY];
+    [[SSPostmark postmaster] sendMessage:message];
+    
     
     return YES;
 }

@@ -1,4 +1,4 @@
-// SSPostmark.h
+// SSPostmarkMessage.h
 // 
 // Copyright (c) 2012 Skylar Schipper
 //
@@ -26,59 +26,114 @@
 // POSSIBILITY OF SUCH DAMAGE.
 
 #import <Foundation/Foundation.h>
-#import "SSPostmarkMessage.h"
 
-#define SSPOSTMARK_TEST_API_KEY @"POSTMARK_API_TEST"
-
-
-/** <#Description#>
- 
- <#Discussion#>
- 
- */
-@interface SSPostmark : NSObject
-
-/** <#Description#>
- 
- <#Discussion#>
- 
- */
-@property (nonatomic, strong) NSString *apiKey;
+NSString static const *kSSPostmarkHTMLBody = @"HtmlBody";
+NSString static const *kSSPostmarkTextBody = @"TextBody";
+NSString static const *kSSPostmarkFrom     = @"From";
+NSString static const *kSSPostmarkTo       = @"To";
+NSString static const *kSSPostmarkCC       = @"Cc";
+NSString static const *kSSPostmarkBCC      = @"Bcc";
+NSString static const *kSSPostmarkSubject  = @"Subject";
+NSString static const *kSSPostmarkTag      = @"Tag";
+NSString static const *kSSPostmarkReplyTo  = @"ReplyTo";
+NSString static const *kSSPostmarkHeaders  = @"Headers";
 
 /** <#Description#>
  
  <#Discussion#>
  
  */
-@property (nonatomic, strong, readonly) NSOperationQueue *emailQueue;
+@interface SSPostmarkMessage : NSObject
 
 /** <#Description#>
  
  <#Discussion#>
  
  */
-- (BOOL)sendMessage:(SSPostmarkMessage *)message;
+@property (nonatomic, retain) NSString *htmlBody;
 
 /** <#Description#>
  
  <#Discussion#>
  
  */
-- (BOOL)sendMessage:(SSPostmarkMessage *)message completionHandler:(void (^)(void))completionHandler;
+@property (nonatomic, retain) NSString *textBody;
 
 /** <#Description#>
  
  <#Discussion#>
  
  */
-+ (instancetype)postmaster;
+@property (nonatomic, retain) NSString *fromEmail;
 
-/** Get the current version of SSPostmark
+/** <#Description#>
  
- @return An NSString representing the current version of SSPostmark
+ <#Discussion#>
+ 
  */
-+ (NSString *)version;
+@property (nonatomic, retain) NSString *to;
 
-+ (NSURL *)postmarkAPIURL;
-+ (NSURL *)postmarkBatchAPIURL;
+/** <#Description#>
+ 
+ <#Discussion#>
+ 
+ */
+@property (nonatomic, retain) NSString *subject;
+
+/** <#Description#>
+ 
+ <#Discussion#>
+ 
+ */
+@property (nonatomic, retain) NSString *tag;
+
+/** <#Description#>
+ 
+ <#Discussion#>
+ 
+ */
+@property (nonatomic, retain) NSString *replyTo;
+
+/** <#Description#>
+ 
+ <#Discussion#>
+ 
+ */
+@property (nonatomic, retain) NSString *cc;
+
+/** <#Description#>
+ 
+ <#Discussion#>
+ 
+ */
+@property (nonatomic, retain) NSString *bcc;
+
+/** <#Description#>
+ 
+ <#Discussion#>
+ 
+ */
+@property (nonatomic, retain) NSDictionary *headers;
+
+/** <#Description#>
+ 
+ <#Discussion#>
+ 
+ */
+//@property (nonatomic, retain) NSArray *attachments;
+
+#pragma mark - Setup the request
+/** <#Description#>
+ 
+ <#Discussion#>
+ 
+ */
+- (NSData *)body;
+/** <#Description#>
+ 
+ <#Discussion#>
+ 
+ */
+@property (nonatomic, readonly, getter = isValid) BOOL valid;
+
 @end

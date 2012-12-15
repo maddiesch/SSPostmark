@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		940833E2167BC3E80034BE0E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 940833E1167BC3E80034BE0E /* Foundation.framework */; };
-		940833E7167BC3E80034BE0E /* SSPostmark.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 940833E6167BC3E80034BE0E /* SSPostmark.h */; };
-		940833E9167BC3E80034BE0E /* SSPostmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 940833E8167BC3E80034BE0E /* SSPostmark.m */; };
 		940833F9167BC42A0034BE0E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 940833F8167BC42A0034BE0E /* UIKit.framework */; };
 		940833FA167BC42A0034BE0E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 940833E1167BC3E80034BE0E /* Foundation.framework */; };
 		940833FC167BC42A0034BE0E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 940833FB167BC42A0034BE0E /* CoreGraphics.framework */; };
@@ -20,6 +18,8 @@
 		9408340C167BC42A0034BE0E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9408340B167BC42A0034BE0E /* Default@2x.png */; };
 		9408340E167BC42A0034BE0E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9408340D167BC42A0034BE0E /* Default-568h@2x.png */; };
 		94083415167BC4380034BE0E /* libSSPostmark.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 940833DE167BC3E80034BE0E /* libSSPostmark.a */; };
+		94DEB660167C4AC200823F00 /* SSPostmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DEB65F167C4AC200823F00 /* SSPostmark.m */; };
+		94DEB663167C4C6B00823F00 /* SSPostmarkMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DEB662167C4C6B00823F00 /* SSPostmarkMessage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +39,6 @@
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
-				940833E7167BC3E80034BE0E /* SSPostmark.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -49,8 +48,6 @@
 		940833DE167BC3E80034BE0E /* libSSPostmark.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSSPostmark.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		940833E1167BC3E80034BE0E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		940833E5167BC3E80034BE0E /* SSPostmark-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SSPostmark-Prefix.pch"; sourceTree = "<group>"; };
-		940833E6167BC3E80034BE0E /* SSPostmark.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSPostmark.h; sourceTree = "<group>"; };
-		940833E8167BC3E80034BE0E /* SSPostmark.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSPostmark.m; sourceTree = "<group>"; };
 		940833F6167BC42A0034BE0E /* SSPostmarkTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSPostmarkTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		940833F8167BC42A0034BE0E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		940833FB167BC42A0034BE0E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -63,6 +60,10 @@
 		94083409167BC42A0034BE0E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		9408340B167BC42A0034BE0E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		9408340D167BC42A0034BE0E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		94DEB65E167C4AC200823F00 /* SSPostmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPostmark.h; sourceTree = "<group>"; };
+		94DEB65F167C4AC200823F00 /* SSPostmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmark.m; sourceTree = "<group>"; };
+		94DEB661167C4C6B00823F00 /* SSPostmarkMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPostmarkMessage.h; sourceTree = "<group>"; };
+		94DEB662167C4C6B00823F00 /* SSPostmarkMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkMessage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,8 +121,10 @@
 		940833E3167BC3E80034BE0E /* SSPostmark */ = {
 			isa = PBXGroup;
 			children = (
-				940833E6167BC3E80034BE0E /* SSPostmark.h */,
-				940833E8167BC3E80034BE0E /* SSPostmark.m */,
+				94DEB65E167C4AC200823F00 /* SSPostmark.h */,
+				94DEB65F167C4AC200823F00 /* SSPostmark.m */,
+				94DEB661167C4C6B00823F00 /* SSPostmarkMessage.h */,
+				94DEB662167C4C6B00823F00 /* SSPostmarkMessage.m */,
 				940833E4167BC3E80034BE0E /* Supporting Files */,
 			);
 			path = SSPostmark;
@@ -243,7 +246,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				940833E9167BC3E80034BE0E /* SSPostmark.m in Sources */,
+				94DEB660167C4AC200823F00 /* SSPostmark.m in Sources */,
+				94DEB663167C4C6B00823F00 /* SSPostmarkMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +416,7 @@
 				94083410167BC42A0034BE0E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
