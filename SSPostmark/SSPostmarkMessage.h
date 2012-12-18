@@ -40,7 +40,9 @@ NSString static const *kSSPostmarkHeaders     = @"Headers";
 NSString static const *kSSPostmarkAttachments = @"Attachments";
 
 
-@class SSPostmarkAttachment;
+@class SSPostmarkAttachment, SSPostmarkMessage;
+
+typedef void (^SSPostmarkMessageCompletion)(SSPostmarkMessage *message, NSUInteger statusCode, NSDictionary *responseJSON);
 
 /** <#Description#>
  
@@ -170,5 +172,19 @@ NSString static const *kSSPostmarkAttachments = @"Attachments";
  
  */
 @property (nonatomic, readonly, getter = isValid) BOOL valid;
+
+#pragma mark - 
+
+/** <#Description#>
+ 
+ <#Discussion#>
+ */
+@property (nonatomic, copy) SSPostmarkMessageCompletion completion;
+
+/** <#Description#>
+ 
+ <#Discussion#>
+ */
+- (void)addCompletionBlock:(SSPostmarkMessageCompletion)completion;
 
 @end

@@ -96,4 +96,11 @@
     }
 }
 
+
+#pragma mark -
+#pragma mark -
+- (void)addCompletionBlock:(SSPostmarkMessageCompletion)completion {
+    _completion = completion;
+}
+
 @end

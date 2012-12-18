@@ -64,13 +64,6 @@
  <#Discussion#>
  
  */
-- (BOOL)sendMessage:(SSPostmarkMessage *)message completionHandler:(void (^)(void))completionHandler;
-
-/** <#Description#>
- 
- <#Discussion#>
- 
- */
 + (instancetype)postmaster;
 
 /** Get the current version of SSPostmark
