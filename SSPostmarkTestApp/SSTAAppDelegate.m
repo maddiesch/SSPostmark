@@ -19,9 +19,6 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    
-    NSLog(@"SSPostmark Version: '%@'",[SSPostmark version]);
-    
     SSPostmarkMessage *message = [SSPostmarkMessage new];
     message.fromEmail = @"ss@schipp.co";
     message.replyTo = @"ss@schipp.co";
@@ -29,6 +26,9 @@
     message.textBody = @"Test Email";
     message.subject = @"Just a test";
     message.tag = @"sspm-test";
+    [message addCompletionBlock:^(SSPostmarkMessage *message, NSUInteger statusCode, NSDictionary *responseJSON) {
+        NSLog(@"(%i)\n%@",statusCode,responseJSON);
+    }];
     
     SSPostmarkAttachment *att = [[SSPostmarkAttachment alloc] init];
     att.content = UIImagePNGRepresentation([UIImage imageNamed:@"sunset.jpg"]);

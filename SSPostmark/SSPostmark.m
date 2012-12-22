@@ -37,10 +37,7 @@ SSPostmark static *_SSPostmarkShared = nil;
 #pragma mark -
 #pragma mark - Sending Postmark Messages
 - (BOOL)sendMessage:(SSPostmarkMessage *)message {
-    return [self ss_SendMessage:message completionHandler:nil];
-}
-- (BOOL)sendMessage:(SSPostmarkMessage *)message completionHandler:(void (^)(void))completionHandler {
-    return [self ss_SendMessage:message completionHandler:completionHandler];
+    return [self ss_SendMessage:message];
 }
 
 
@@ -76,7 +73,7 @@ SSPostmark static *_SSPostmarkShared = nil;
 
 #pragma mark -
 #pragma mark - Private helper methods
-- (BOOL)ss_SendMessage:(SSPostmarkMessage *)message completionHandler:(void (^)(void))completionHandler {
+- (BOOL)ss_SendMessage:(SSPostmarkMessage *)message {
     if (![message isValid]) {
         return NO;
     }
@@ -99,7 +96,9 @@ SSPostmark static *_SSPostmarkShared = nil;
         if (JSONError != nil) {
             return;
         }
-        NSLog(@"(%i) :: %@",response.statusCode,JSON);
+        if (message.completion) {
+            message.completion(message, response.statusCode, JSON);
+        }
     }];
     return YES;
 }
