@@ -31,6 +31,18 @@ NSString static const *kSSPostmarkAttachmentName        = @"Name";
 NSString static const *kSSPostmarkAttachmentContent     = @"Content";
 NSString static const *kSSPostmarkAttachmentContentType = @"ContentType";
 
+#ifdef TARGET_OS_IPHONE
+#import <UIKit/UIKit.h>
+typedef UIImage SSPMImage;
+#else
+typedef NSImage SSPMImage;
+#endif
+
+typedef NS_ENUM(NSUInteger, SSPMImageType) {
+    SSPMImageTypePNG = 0,
+    SSPMImageTypeJPEG = 1,
+};
+
 @interface SSPostmarkAttachment : NSObject
 
 /** <#Description#>
@@ -60,5 +72,7 @@ NSString static const *kSSPostmarkAttachmentContentType = @"ContentType";
  
  */
 - (NSDictionary *)dictionary;
+
++ (instancetype)attachmentWithImage:(SSPMImage *)image name:(NSString *)name type:(SSPMImageType)type;
 
 @end

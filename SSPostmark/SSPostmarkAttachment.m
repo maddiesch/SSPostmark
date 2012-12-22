@@ -93,4 +93,23 @@
             });
 }
 
+#pragma mark -
+#pragma mark - Helper Methods
++ (instancetype)attachmentWithImage:(SSPMImage *)image name:(NSString *)name type:(SSPMImageType)type {
+    SSPostmarkAttachment *att = [[SSPostmarkAttachment alloc] init];
+    att.name = name;
+    if (type == SSPMImageTypePNG) {
+        att.content = [[self class] _dataWithPNG:image];
+    }
+    return att;
+}
+
++ (NSData *)_dataWithPNG:(SSPMImage *)image {
+#ifdef TARGET_OS_IPHONE
+    return UIImagePNGRepresentation(image);
+#else
+    
+#endif
+}
+
 @end
