@@ -37,7 +37,7 @@
     [message addAttachmentsObject:att];
     
     
-    [[SSPostmark postmaster] setApiKey:@"b73973a3-1b2f-4134-b30e-d0c635b0c0be"];
+    [[SSPostmark postmaster] setApiKey:SSPOSTMARK_TEST_API_KEY];
     [[SSPostmark postmaster] sendMessage:message];
     
     
