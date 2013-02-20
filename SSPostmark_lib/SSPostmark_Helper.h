@@ -63,32 +63,32 @@
  *
  *
  */
-static const NSString *kSSPostmarkHTMLBody = @"HtmlBody"; // Expects NSString
-static const NSString *kSSPostmarkTextBody = @"TextBody"; // Expects NSString
-static const NSString *kSSPostmarkFrom     = @"From"; // Expects NSString
-static const NSString *kSSPostmarkTo       = @"To"; // Expects NSString
-static const NSString *kSSPostmarkCC       = @"Cc"; // Expects NSString :: OPTIONAL
-static const NSString *kSSPostmarkBCC      = @"Bcc"; // Expects NSString :: OPTIONAL
-static const NSString *kSSPostmarkSubject  = @"Subject"; // Expects NSString
-static const NSString *kSSPostmarkTag      = @"Tag"; // Expects NSString
-static const NSString *kSSPostmarkReplyTo  = @"ReplyTo"; // Expects NSString
-static const NSString *kSSPostmarkHeaders  = @"Headers";// Expects NSDictionary :: OPTIONAL
+static const NSString *kSSPostmarkHTMLBody __attribute__((unused)) = @"HtmlBody"; // Expects NSString
+static const NSString *kSSPostmarkTextBody __attribute__((unused)) = @"TextBody"; // Expects NSString
+static const NSString *kSSPostmarkFrom     __attribute__((unused)) = @"From"; // Expects NSString
+static const NSString *kSSPostmarkTo       __attribute__((unused)) = @"To"; // Expects NSString
+static const NSString *kSSPostmarkCC       __attribute__((unused)) = @"Cc"; // Expects NSString :: OPTIONAL
+static const NSString *kSSPostmarkBCC      __attribute__((unused)) = @"Bcc"; // Expects NSString :: OPTIONAL
+static const NSString *kSSPostmarkSubject  __attribute__((unused)) = @"Subject"; // Expects NSString
+static const NSString *kSSPostmarkTag      __attribute__((unused)) = @"Tag"; // Expects NSString
+static const NSString *kSSPostmarkReplyTo  __attribute__((unused)) = @"ReplyTo"; // Expects NSString
+static const NSString *kSSPostmarkHeaders  __attribute__((unused)) = @"Headers";// Expects NSDictionary :: OPTIONAL
 
 // See http://developer.postmarkapp.com/developer-build.html#attachments
-static const NSString *kSSPostmarkAttachments           = @"Attachments";// :: OPTIONAL :: Expects NSArray of NSDictionaries with the following attachment keys
-static const NSString *kSSPostmarkAttachmentName        = @"Name";// Expects NSString
-static const NSString *kSSPostmarkAttachmentContent     = @"Content";// Expects Base64-encoded binary content as an NSString
-static const NSString *kSSPostmarkAttachmentContentType = @"ContentType";// Expects NSString
+static const NSString *kSSPostmarkAttachments           __attribute__((unused)) = @"Attachments";// :: OPTIONAL :: Expects NSArray of NSDictionaries with the following attachment keys
+static const NSString *kSSPostmarkAttachmentName        __attribute__((unused)) = @"Name";// Expects NSString
+static const NSString *kSSPostmarkAttachmentContent     __attribute__((unused)) = @"Content";// Expects Base64-encoded binary content as an NSString
+static const NSString *kSSPostmarkAttachmentContentType __attribute__((unused)) = @"ContentType";// Expects NSString
 /**
  *
  *  Response Keys
  *      The parsed JSON dictionary should contain these keys
  */
-static const NSString *kSSPostmarkResp_ErrorCode   = @"";
-static const NSString *kSSPostmarkResp_Message     = @"Message";
-static const NSString *kSSPostmarkResp_MessageID   = @"MessageID";
-static const NSString *kSSPostmarkResp_SubmittedAt = @"SubmittedAt";
-static const NSString *kSSPostmarkResp_To          = @"To";
+static const NSString *kSSPostmarkResp_ErrorCode   __attribute__((unused)) = @"";
+static const NSString *kSSPostmarkResp_Message     __attribute__((unused)) = @"Message";
+static const NSString *kSSPostmarkResp_MessageID   __attribute__((unused)) = @"MessageID";
+static const NSString *kSSPostmarkResp_SubmittedAt __attribute__((unused)) = @"SubmittedAt";
+static const NSString *kSSPostmarkResp_To          __attribute__((unused)) = @"To";
 
 // check out http://developer.postmarkapp.com/developer-build.html for more info
 typedef enum {
@@ -111,6 +111,6 @@ typedef enum {
 typedef void (^SSPostmarkCompletionHandler)(NSDictionary *postmarkResponse, SSPMErrorType errorType);
 
 // Default as per http://developer.postmarkapp.com/developer-build.html#attachments
-static NSString *_kSSPostmarkDefaultDataType = @"application/octet-stream";
+static NSString *_kSSPostmarkDefaultDataType __attribute__((unused)) = @"application/octet-stream";
 
 #endif
