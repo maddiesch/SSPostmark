@@ -4,7 +4,7 @@
  *	   @copyright - (2011 - 2013) (c) Skylar Schipper
  *			(All rights reserved)
  *
- *    SSPostmark.h
+ *    SSPostmarkValidators.m
  *    6/2/2013
  *
  /////////////////////////////////////////////////////////
@@ -40,25 +40,33 @@
  *
  ***/
 
-#import <Foundation/Foundation.h>
+#define EMAIL_STRICT_REGEX @"^[a-zA-Z0-9][A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$"
+#define EMAIL_LAX_REGEX @".+@.+\\.[A-Za-z]{2}[A-Za-z]*"
 
-@interface SSPostmark : NSObject
+#import "SSPostmarkValidators.h"
 
-/** Your API key.
- 
- This is required to talk to the Postmark API.  If you don't know your api key it can be found by going to [https://postmarkapp.com/servers](https://postmarkapp.com/servers).  Select the server who you want to send through and then select __Credentials__.
- */
-@property (nonatomic, strong, readonly) NSString *apiKey;
+@implementation SSPostmarkValidators
 
+#pragma mark -
+#pragma mark - Validation Methods
++ (BOOL)validatesEmail:(NSString *)email type:(SSPostmarkEmailAddressValidationType)type {
+    NSAssert(email, @"Must pass an email address");
+    if (type == SSPostmarkEmailAddressValidateStrict) {
+        return [self _validateStrictEmail:email];
+    }
+    if (type == SSPostmarkEmailAddressValidateLax) {
+        return [self _validateLaxEmail:email];
+    }
+    return NO;
+}
 
-/** Designated Initalizer
- 
- Returns a new instance of SSPostmark witht the passed apiKey
- 
- @param apiKey The API key used to authenticate with the Postmark API
- 
- @return A new SSPostmark instance
- */
-- (id)initWithApiKey:(NSString *)apiKey;
+#pragma mark -
+#pragma mark - Private Email Validations
++ (BOOL)_validateStrictEmail:(NSString *)email {
+    return [[NSPredicate predicateWithFormat:@"SELF MATCHES %@",EMAIL_STRICT_REGEX] evaluateWithObject:email];
+}
++ (BOOL)_validateLaxEmail:(NSString *)email {
+    return [[NSPredicate predicateWithFormat:@"SELF MATCHES %@",EMAIL_LAX_REGEX] evaluateWithObject:email];
+}
 
 @end

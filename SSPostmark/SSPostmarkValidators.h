@@ -4,7 +4,7 @@
  *	   @copyright - (2011 - 2013) (c) Skylar Schipper
  *			(All rights reserved)
  *
- *    SSPostmark.h
+ *    SSPostmarkValidators.h
  *    6/2/2013
  *
  /////////////////////////////////////////////////////////
@@ -42,23 +42,36 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SSPostmark : NSObject
+typedef NS_ENUM(NSUInteger, SSPostmarkEmailAddressValidationType) {
+    SSPostmarkEmailAddressValidateStrict = 0,
+    SSPostmarkEmailAddressValidateLax    = 1
+};
 
-/** Your API key.
+/** Helper class for validation
  
- This is required to talk to the Postmark API.  If you don't know your api key it can be found by going to [https://postmarkapp.com/servers](https://postmarkapp.com/servers).  Select the server who you want to send through and then select __Credentials__.
  */
-@property (nonatomic, strong, readonly) NSString *apiKey;
+@interface SSPostmarkValidators : NSObject
 
-
-/** Designated Initalizer
+/** Checks the passed string for valid email format
  
- Returns a new instance of SSPostmark witht the passed apiKey
+ This does not check if the email *exists*.  It only checks that it is in the correct format.
  
- @param apiKey The API key used to authenticate with the Postmark API
+ @param email A NSString containing an email address
  
- @return A new SSPostmark instance
+ @param type The type of validation to perform on the email address
+ 
+ Defined as 
+ 
+    typedef NS_ENUM(NSUInteger, SSPostmarkEmailValidationType) {
+        SSPostmarkEmailValidateStrict = 0,
+        SSPostmarkEmailValidateLax    = 1
+    };
+ 
+ - `SSPostmarkEmailValidateStrict` A more strict email validation method
+ 
+ - `SSPostmarkEmailValidateLax` Very simple validation for an email address
+ 
  */
-- (id)initWithApiKey:(NSString *)apiKey;
++ (BOOL)validatesEmail:(NSString *)email type:(SSPostmarkEmailAddressValidationType)type;
 
 @end
