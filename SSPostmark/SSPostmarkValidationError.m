@@ -4,7 +4,7 @@
  *	   @copyright - (2011 - 2013) (c) Skylar Schipper
  *			(All rights reserved)
  *
- *    SSPostmarkValidators.h
+ *    SSPostmarkEmailError.m
  *    6/2/2013
  *
  /////////////////////////////////////////////////////////
@@ -40,47 +40,27 @@
  *
  ***/
 
-#import <Foundation/Foundation.h>
 #import "SSPostmarkValidationError.h"
 
-typedef NS_ENUM(NSUInteger, SSPostmarkEmailAddressValidationType) {
-    SSPostmarkEmailAddressValidateStrict = 0,
-    SSPostmarkEmailAddressValidateLax    = 1
-};
-typedef NS_OPTIONS(NSUInteger, SSPostmarkEmailValidations) {
-    SSPostmarkEmailValidationsNone     = 0,
-    SSPostmarkEmailValidateToAddress   = 1 << 1,
-    SSPostmarkEmailValidateFromAddress = 1 << 2,
-    SSPostmarkEmailValidateCCAddress   = 1 << 3,
-    SSPostmarkEmailValidateBCCAddress  = 1 << 4,
-    SSPostmarkEmailValidateSubject     = 1 << 5
-};
+@implementation SSPostmarkValidationError
 
-/** Helper class for validation
- 
- */
-@interface SSPostmarkValidators : NSObject
++ (instancetype)errorForObject:(id)failedObject failure:(NSUInteger)failure {
+    SSPostmarkValidationError *error = [[SSPostmarkValidationError alloc] initWithDomain:SSPostmarkValidationEmailError code:failure userInfo:nil];
+    error.emailValidationFailure = failure;
+    error.failedValidationObject = failedObject;
+    return error;
+}
 
-/** Checks the passed string for valid email format
- 
- This does not check if the email *exists*.  It only checks that it is in the correct format.
- 
- @param email A NSString containing an email address
- 
- @param type The type of validation to perform on the email address
- 
- Defined as 
- 
-    typedef NS_ENUM(NSUInteger, SSPostmarkEmailAddressValidationType) {
-        SSPostmarkEmailAddressValidateStrict = 0,
-        SSPostmarkEmailAddressValidateLax    = 1
-    };
- 
- - `SSPostmarkEmailValidateStrict` A more strict email validation method
- 
- - `SSPostmarkEmailValidateLax` Very simple validation for an email address
- 
- */
-+ (BOOL)validatesEmail:(NSString *)email type:(SSPostmarkEmailAddressValidationType)type;
+- (NSString *)localizedDescription {
+    return [NSString stringWithFormat:NSLocalizedString(@"%@ for email is invalid", @"{Object that failed validation} for email is invalid"),self.failedValidationObject];
+}
+- (NSString *)localizedRecoverySuggestion {
+    if (self.instructions) {
+        return self.instructions;
+    }
+    return [super localizedRecoverySuggestion];
+}
 
 @end
+
+NSString * const SSPostmarkValidationEmailError = @"com.skylarsch.emailvalidations";

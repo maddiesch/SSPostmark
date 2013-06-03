@@ -21,6 +21,7 @@
 		9457B536175C0174006BF376 /* SSPostmarkEmailValidationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9457B535175C0174006BF376 /* SSPostmarkEmailValidationTest.m */; };
 		9457B539175C0E3D006BF376 /* SSPostmarkEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 9457B538175C0E3D006BF376 /* SSPostmarkEmail.m */; };
 		9457B53D175C113A006BF376 /* SSPostmarkEmailTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9457B53C175C113A006BF376 /* SSPostmarkEmailTest.m */; };
+		9457B540175C17E6006BF376 /* SSPostmarkValidationError.m in Sources */ = {isa = PBXBuildFile; fileRef = 9457B53F175C17E6006BF376 /* SSPostmarkValidationError.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,8 @@
 		9457B537175C0E3D006BF376 /* SSPostmarkEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPostmarkEmail.h; sourceTree = "<group>"; };
 		9457B538175C0E3D006BF376 /* SSPostmarkEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkEmail.m; sourceTree = "<group>"; };
 		9457B53C175C113A006BF376 /* SSPostmarkEmailTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkEmailTest.m; sourceTree = "<group>"; };
+		9457B53E175C17E6006BF376 /* SSPostmarkValidationError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPostmarkValidationError.h; sourceTree = "<group>"; };
+		9457B53F175C17E6006BF376 /* SSPostmarkValidationError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkValidationError.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +163,8 @@
 				9457B538175C0E3D006BF376 /* SSPostmarkEmail.m */,
 				9457B532175BFF8A006BF376 /* SSPostmarkValidators.h */,
 				9457B533175BFF8A006BF376 /* SSPostmarkValidators.m */,
+				9457B53E175C17E6006BF376 /* SSPostmarkValidationError.h */,
+				9457B53F175C17E6006BF376 /* SSPostmarkValidationError.m */,
 				9457B34A175BFA74006BF376 /* Supporting Files */,
 			);
 			path = SSPostmark;
@@ -353,6 +358,7 @@
 				9457B34F175BFA74006BF376 /* SSPostmark.m in Sources */,
 				9457B534175BFF8A006BF376 /* SSPostmarkValidators.m in Sources */,
 				9457B539175C0E3D006BF376 /* SSPostmarkEmail.m in Sources */,
+				9457B540175C17E6006BF376 /* SSPostmarkValidationError.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

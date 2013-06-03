@@ -52,4 +52,10 @@
     return self;
 }
 
+#pragma mark -
+#pragma mark - Private Helpers
+- (NSURL *)_postmarkEmailAPIURL {
+    return [NSURL URLWithString:@"https://api.postmarkapp.com/email"];
+}
+
 @end

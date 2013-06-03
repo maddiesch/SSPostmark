@@ -4,7 +4,7 @@
  *	   @copyright - (2011 - 2013) (c) Skylar Schipper
  *			(All rights reserved)
  *
- *    SSPostmarkValidators.h
+ *    SSPostmarkEmailError.h
  *    6/2/2013
  *
  /////////////////////////////////////////////////////////
@@ -41,46 +41,46 @@
  ***/
 
 #import <Foundation/Foundation.h>
-#import "SSPostmarkValidationError.h"
 
-typedef NS_ENUM(NSUInteger, SSPostmarkEmailAddressValidationType) {
-    SSPostmarkEmailAddressValidateStrict = 0,
-    SSPostmarkEmailAddressValidateLax    = 1
-};
-typedef NS_OPTIONS(NSUInteger, SSPostmarkEmailValidations) {
-    SSPostmarkEmailValidationsNone     = 0,
-    SSPostmarkEmailValidateToAddress   = 1 << 1,
-    SSPostmarkEmailValidateFromAddress = 1 << 2,
-    SSPostmarkEmailValidateCCAddress   = 1 << 3,
-    SSPostmarkEmailValidateBCCAddress  = 1 << 4,
-    SSPostmarkEmailValidateSubject     = 1 << 5
-};
+extern NSString * const SSPostmarkValidationEmailError;
 
-/** Helper class for validation
+
+/** Email Validation Error
+ 
+ Status Codes
+ 
+ - 1 Invalid to email address
+ 
+ - 2 Invalid from email address
+ 
+ - 3 Invalid cc email address
+ 
+ - 4 Invalid bcc email address
+ 
+ - 100 No to email addresses found
+ 
+ - 101 No from email addresss found
  
  */
-@interface SSPostmarkValidators : NSObject
+@interface SSPostmarkValidationError : NSError
 
-/** Checks the passed string for valid email format
+/** Validation failure
  
- This does not check if the email *exists*.  It only checks that it is in the correct format.
- 
- @param email A NSString containing an email address
- 
- @param type The type of validation to perform on the email address
- 
- Defined as 
- 
-    typedef NS_ENUM(NSUInteger, SSPostmarkEmailAddressValidationType) {
-        SSPostmarkEmailAddressValidateStrict = 0,
-        SSPostmarkEmailAddressValidateLax    = 1
-    };
- 
- - `SSPostmarkEmailValidateStrict` A more strict email validation method
- 
- - `SSPostmarkEmailValidateLax` Very simple validation for an email address
+ Normaly the same as `-[NSError code]`
+ */
+@property (nonatomic) NSUInteger emailValidationFailure;
+
+/** The object that failed validation
  
  */
-+ (BOOL)validatesEmail:(NSString *)email type:(SSPostmarkEmailAddressValidationType)type;
+@property (nonatomic) id failedValidationObject;
+
+/** Localized string with instuctions for making the error pass
+ 
+ */
+@property (nonatomic) NSString *instructions;
+
+
++ (instancetype)errorForObject:(id)failedObject failure:(NSUInteger)failure;
 
 @end
