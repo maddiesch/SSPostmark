@@ -24,6 +24,18 @@
 		9457B540175C17E6006BF376 /* SSPostmarkValidationError.m in Sources */ = {isa = PBXBuildFile; fileRef = 9457B53F175C17E6006BF376 /* SSPostmarkValidationError.m */; };
 		9457B543175C418D006BF376 /* SSPostmarkAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9457B542175C418D006BF376 /* SSPostmarkAttachment.m */; };
 		9457B545175C43A6006BF376 /* SSPostmarkAttachmentTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9457B544175C43A6006BF376 /* SSPostmarkAttachmentTest.m */; };
+		9457B54B175C4EB1006BF376 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9457B358175BFA74006BF376 /* UIKit.framework */; };
+		9457B54C175C4EB1006BF376 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9457B347175BFA74006BF376 /* Foundation.framework */; };
+		9457B54E175C4EB1006BF376 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9457B54D175C4EB1006BF376 /* CoreGraphics.framework */; };
+		9457B554175C4EB1006BF376 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9457B552175C4EB1006BF376 /* InfoPlist.strings */; };
+		9457B556175C4EB1006BF376 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9457B555175C4EB1006BF376 /* main.m */; };
+		9457B55A175C4EB1006BF376 /* SSPMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9457B559175C4EB1006BF376 /* SSPMAppDelegate.m */; };
+		9457B55C175C4EB1006BF376 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9457B55B175C4EB1006BF376 /* Default.png */; };
+		9457B55E175C4EB1006BF376 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9457B55D175C4EB1006BF376 /* Default@2x.png */; };
+		9457B560175C4EB1006BF376 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9457B55F175C4EB1006BF376 /* Default-568h@2x.png */; };
+		9457B563175C4EB1006BF376 /* SSPMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9457B562175C4EB1006BF376 /* SSPMViewController.m */; };
+		9457B566175C4EB1006BF376 /* SSPMViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9457B564175C4EB1006BF376 /* SSPMViewController.xib */; };
+		9457B56C175C4EC0006BF376 /* libSSPostmark.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9457B344175BFA74006BF376 /* libSSPostmark.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +73,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = F5015B9E11583A77002E9A98;
 			remoteInfo = Kiwi;
+		};
+		9457B56A175C4EBB006BF376 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9457B33C175BFA73006BF376 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9457B343175BFA73006BF376;
+			remoteInfo = SSPostmark;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -103,6 +122,20 @@
 		9457B541175C418D006BF376 /* SSPostmarkAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPostmarkAttachment.h; sourceTree = "<group>"; };
 		9457B542175C418D006BF376 /* SSPostmarkAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkAttachment.m; sourceTree = "<group>"; };
 		9457B544175C43A6006BF376 /* SSPostmarkAttachmentTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkAttachmentTest.m; sourceTree = "<group>"; };
+		9457B54A175C4EB1006BF376 /* SSPostmarkTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSPostmarkTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9457B54D175C4EB1006BF376 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		9457B551175C4EB1006BF376 /* SSPostmarkTestApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SSPostmarkTestApp-Info.plist"; sourceTree = "<group>"; };
+		9457B553175C4EB1006BF376 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9457B555175C4EB1006BF376 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9457B557175C4EB1006BF376 /* SSPostmarkTestApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SSPostmarkTestApp-Prefix.pch"; sourceTree = "<group>"; };
+		9457B558175C4EB1006BF376 /* SSPMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSPMAppDelegate.h; sourceTree = "<group>"; };
+		9457B559175C4EB1006BF376 /* SSPMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSPMAppDelegate.m; sourceTree = "<group>"; };
+		9457B55B175C4EB1006BF376 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		9457B55D175C4EB1006BF376 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		9457B55F175C4EB1006BF376 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		9457B561175C4EB1006BF376 /* SSPMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSPMViewController.h; sourceTree = "<group>"; };
+		9457B562175C4EB1006BF376 /* SSPMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSPMViewController.m; sourceTree = "<group>"; };
+		9457B565175C4EB1006BF376 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SSPMViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +159,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9457B547175C4EB1006BF376 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9457B56C175C4EC0006BF376 /* libSSPostmark.a in Frameworks */,
+				9457B54B175C4EB1006BF376 /* UIKit.framework in Frameworks */,
+				9457B54C175C4EB1006BF376 /* Foundation.framework in Frameworks */,
+				9457B54E175C4EB1006BF376 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -134,6 +178,7 @@
 			children = (
 				9457B349175BFA74006BF376 /* SSPostmark */,
 				9457B35E175BFA74006BF376 /* SSPostmarkTests */,
+				9457B54F175C4EB1006BF376 /* SSPostmarkTestApp */,
 				9457B346175BFA74006BF376 /* Frameworks */,
 				9457B345175BFA74006BF376 /* Products */,
 				9457B36F175BFB89006BF376 /* Vendor */,
@@ -145,6 +190,7 @@
 			children = (
 				9457B344175BFA74006BF376 /* libSSPostmark.a */,
 				9457B355175BFA74006BF376 /* SSPostmarkTests.octest */,
+				9457B54A175C4EB1006BF376 /* SSPostmarkTestApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -155,6 +201,7 @@
 				9457B347175BFA74006BF376 /* Foundation.framework */,
 				9457B356175BFA74006BF376 /* SenTestingKit.framework */,
 				9457B358175BFA74006BF376 /* UIKit.framework */,
+				9457B54D175C4EB1006BF376 /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -234,6 +281,33 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9457B54F175C4EB1006BF376 /* SSPostmarkTestApp */ = {
+			isa = PBXGroup;
+			children = (
+				9457B558175C4EB1006BF376 /* SSPMAppDelegate.h */,
+				9457B559175C4EB1006BF376 /* SSPMAppDelegate.m */,
+				9457B561175C4EB1006BF376 /* SSPMViewController.h */,
+				9457B562175C4EB1006BF376 /* SSPMViewController.m */,
+				9457B564175C4EB1006BF376 /* SSPMViewController.xib */,
+				9457B550175C4EB1006BF376 /* Supporting Files */,
+			);
+			path = SSPostmarkTestApp;
+			sourceTree = "<group>";
+		};
+		9457B550175C4EB1006BF376 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9457B551175C4EB1006BF376 /* SSPostmarkTestApp-Info.plist */,
+				9457B552175C4EB1006BF376 /* InfoPlist.strings */,
+				9457B555175C4EB1006BF376 /* main.m */,
+				9457B557175C4EB1006BF376 /* SSPostmarkTestApp-Prefix.pch */,
+				9457B55B175C4EB1006BF376 /* Default.png */,
+				9457B55D175C4EB1006BF376 /* Default@2x.png */,
+				9457B55F175C4EB1006BF376 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -274,6 +348,24 @@
 			productReference = 9457B355175BFA74006BF376 /* SSPostmarkTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
+		9457B549175C4EB1006BF376 /* SSPostmarkTestApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9457B567175C4EB1006BF376 /* Build configuration list for PBXNativeTarget "SSPostmarkTestApp" */;
+			buildPhases = (
+				9457B546175C4EB1006BF376 /* Sources */,
+				9457B547175C4EB1006BF376 /* Frameworks */,
+				9457B548175C4EB1006BF376 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9457B56B175C4EBB006BF376 /* PBXTargetDependency */,
+			);
+			name = SSPostmarkTestApp;
+			productName = SSPostmarkTestApp;
+			productReference = 9457B54A175C4EB1006BF376 /* SSPostmarkTestApp.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -303,6 +395,7 @@
 			targets = (
 				9457B343175BFA73006BF376 /* SSPostmark */,
 				9457B354175BFA74006BF376 /* SSPostmarkTests */,
+				9457B549175C4EB1006BF376 /* SSPostmarkTestApp */,
 			);
 		};
 /* End PBXProject section */
@@ -337,6 +430,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				9457B363175BFA74006BF376 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9457B548175C4EB1006BF376 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9457B554175C4EB1006BF376 /* InfoPlist.strings in Resources */,
+				9457B55C175C4EB1006BF376 /* Default.png in Resources */,
+				9457B55E175C4EB1006BF376 /* Default@2x.png in Resources */,
+				9457B560175C4EB1006BF376 /* Default-568h@2x.png in Resources */,
+				9457B566175C4EB1006BF376 /* SSPMViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,6 +487,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9457B546175C4EB1006BF376 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9457B556175C4EB1006BF376 /* main.m in Sources */,
+				9457B55A175C4EB1006BF376 /* SSPMAppDelegate.m in Sources */,
+				9457B563175C4EB1006BF376 /* SSPMViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -395,6 +510,11 @@
 			name = Kiwi;
 			targetProxy = 9457B529175BFBA2006BF376 /* PBXContainerItemProxy */;
 		};
+		9457B56B175C4EBB006BF376 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9457B343175BFA73006BF376 /* SSPostmark */;
+			targetProxy = 9457B56A175C4EBB006BF376 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -404,6 +524,22 @@
 				9457B362175BFA74006BF376 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		9457B552175C4EB1006BF376 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9457B553175C4EB1006BF376 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		9457B564175C4EB1006BF376 /* SSPMViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9457B565175C4EB1006BF376 /* en */,
+			);
+			name = SSPMViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -532,6 +668,49 @@
 			};
 			name = Release;
 		};
+		9457B568175C4EB1006BF376 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SSPostmarkTestApp/SSPostmarkTestApp-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/SSPostmark\"";
+				INFOPLIST_FILE = "SSPostmarkTestApp/SSPostmarkTestApp-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		9457B569175C4EB1006BF376 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SSPostmarkTestApp/SSPostmarkTestApp-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/SSPostmark\"";
+				INFOPLIST_FILE = "SSPostmarkTestApp/SSPostmarkTestApp-Info.plist";
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -561,6 +740,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		9457B567175C4EB1006BF376 /* Build configuration list for PBXNativeTarget "SSPostmarkTestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9457B568175C4EB1006BF376 /* Debug */,
+				9457B569175C4EB1006BF376 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
