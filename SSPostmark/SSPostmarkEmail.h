@@ -42,6 +42,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SSPostmarkValidators.h"
+#import "SSPostmarkAttachment.h"
 
 /** The email object that represents a Postmark Email
  
@@ -53,7 +54,15 @@
  An array of people to send the emails to.
  */
 @property (nonatomic, strong) NSMutableArray *toAddresses;
+
+/** Who to send a cc copy of the email to.
+ 
+ */
 @property (nonatomic, strong) NSMutableArray *ccAddresses;
+
+/** Who to send a bcc copy of the email to.
+ 
+ */
 @property (nonatomic, strong) NSMutableArray *bccAddresses;
 
 /** Who the email is coming from
@@ -61,6 +70,11 @@
  The array of addresses who the email is coming from
  */
 @property (nonatomic, strong) NSString *fromAddress;
+/** The display name for the from email address
+ 
+ */
+@property (nonatomic, strong) NSString *nameForFromAddress;
+
 /** Email Addres recipient should reply to
  
  If none is set the value in fromAddress will be used
@@ -92,6 +106,13 @@
 - (void)setBody:(NSString *)body isHTML:(BOOL)isHTML;
 
 #pragma mark -
+#pragma mark - Attachments
+- (void)addAttachment:(SSPostmarkAttachment *)attachment;
+- (void)removeAttachment:(SSPostmarkAttachment *)attachment;
+- (void)addAttachments:(NSArray *)attachments;
+- (void)removeAttachments:(NSArray *)attachments;
+
+#pragma mark -
 #pragma mark - Metadata
 /** The tag for the message
  
@@ -99,6 +120,17 @@
  */
 @property (nonatomic, strong) NSString *tag;
 
+/** Set a value for a custom header
+ 
+ Used by the Postmark API
+ 
+ @param value The value to set for the name
+ 
+ @param header The header name
+ 
+ @warning This does not set any values for the HTTP request
+ */
+- (void)setValue:(NSString *)value forHeader:(NSString *)header;
 
 #pragma mark -
 #pragma mark - Validations

@@ -45,6 +45,8 @@
 @interface SSPostmarkEmail ()
 
 @property (nonatomic, strong) NSMutableArray *errorArray;
+@property (nonatomic, strong) NSMutableArray *customHeaders;
+@property (nonatomic, strong) NSMutableArray *attachments;
 
 @end
 
@@ -78,8 +80,16 @@
     if (self.validations == SSPostmarkEmailValidationsNone) {
         return;
     }
+    [self _performCountValidations];
     [self _performPresenceValidations];
     [self _performEmailAddressValidations];
+}
+- (void)_performCountValidations {
+    if (([self.toAddresses count] + [self.ccAddresses count] + [self.bccAddresses count]) > 20) {
+        SSPostmarkValidationError *error = [SSPostmarkValidationError errorForObject:@"To many recipients" failure:200];
+        error.instructions = NSLocalizedString(@"Postmark limits the number of recipients to 20 per email", nil);
+        [self.errorArray addObject:error];
+    }
 }
 - (void)_performPresenceValidations {
     if ([self.toAddresses count] == 0) {
@@ -170,14 +180,97 @@
     return _bccAddresses;
 }
 
+- (NSMutableArray *)customHeaders {
+    if (!_customHeaders) {
+        _customHeaders = [NSMutableArray array];
+    }
+    return _customHeaders;
+}
+
+- (NSMutableArray *)attachments {
+    if (!_attachments) {
+        _attachments = [NSMutableArray array];
+    }
+    return _attachments;
+}
+
+#pragma mark -
+#pragma mark - Attachments
+- (void)addAttachment:(SSPostmarkAttachment *)attachment {
+    [self addAttachments:@[attachment]];
+}
+- (void)removeAttachment:(SSPostmarkAttachment *)attachment {
+    [self removeAttachments:@[attachment]];
+}
+- (void)addAttachments:(NSArray *)attachments {
+    [self.attachments addObjectsFromArray:attachments];
+}
+- (void)removeAttachments:(NSArray *)attachments {
+    [self.attachments removeObjectsInArray:attachments];
+}
+
+#pragma mark -
+#pragma mark - MetaData
+- (void)setValue:(NSString *)value forHeader:(NSString *)header {
+    NSAssert(value, @"value is required");
+    NSAssert(header, @"header is required");
+    [self.customHeaders addObject:@{@"Name": header, @"Value" : value}];
+}
+
 #pragma mark -
 #pragma mark - API Helper Methods
 - (NSDictionary *)asJSONObject {
-    return (@{
-            });
+    NSMutableDictionary *dict = [NSMutableDictionary new];
+    
+    if (self.nameForFromAddress) {
+        [dict setValue:[NSString stringWithFormat:@"%@ <%@>",self.nameForFromAddress,self.fromAddress] forKey:@"From"];
+    } else {
+        [dict setValue:self.fromAddress forKey:@"From"];
+    }
+    [dict setValue:[self.toAddresses componentsJoinedByString:@","] forKey:@"To"];
+    if ([self.ccAddresses count] > 0) {
+        [dict setValue:[self.ccAddresses componentsJoinedByString:@","] forKey:@"Cc"];
+    }
+    if ([self.bccAddresses count] > 0) {
+        [dict setValue:[self.bccAddresses componentsJoinedByString:@","] forKey:@"Bcc"];
+    }
+    if (self.tag) {
+        [dict setValue:self.tag forKey:@"Tag"];
+    }
+    if (self.replyTo) {
+        [dict setValue:self.replyTo forKey:@"ReplyTo"];
+    } else {
+        [dict setValue:self.fromAddress forKey:@"ReplyTo"];
+    }
+    if (self.subject) {
+        [dict setValue:self.subject forKey:@"Subject"];
+    }
+    if (self.body && [self isHTML]) {
+        [dict setValue:self.body forKey:@"HtmlBody"];
+    }
+    if (self.body && ![self isHTML]) {
+        [dict setValue:self.body forKey:@"TextBody"];
+    }
+    if ([self.customHeaders count] > 0) {
+        [dict setValue:self.customHeaders forKey:@"Headers"];
+    }
+    if ([self.attachments count] > 0) {
+        NSMutableArray *attachmentArray = [NSMutableArray new];
+        for (SSPostmarkAttachment *attachment in self.attachments) {
+            [attachmentArray addObject:[attachment asJSONObject]];
+        }
+        [dict setValue:attachmentArray forKey:@"Attachments"];
+    }
+    return dict;
 }
 - (NSData *)binaryJSON {
     return [NSJSONSerialization dataWithJSONObject:[self asJSONObject] options:0 error:nil];
+}
+
+#pragma mark -
+#pragma mark - Overrides
+- (NSString *)description {
+    return [NSString stringWithFormat:@"%@ Tag: \"%@\" Subject: \"%@\" From: \"%@\" To: %@\nBody: %@\nCustom Headers: %@",NSStringFromClass([self class]),self.tag,self.subject,self.fromAddress,self.toAddresses,self.body,self.customHeaders];
 }
 
 @end

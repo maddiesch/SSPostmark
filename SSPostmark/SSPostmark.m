@@ -41,10 +41,13 @@
  ***/
 
 #import "SSPostmark.h"
+#import "SSPostmarkEmail.h"
 
 @implementation SSPostmark
 
 - (id)initWithApiKey:(NSString *)apiKey {
+    NSAssert(apiKey, @"apiKey is required");
+    
     self = [super init];
     if (self) {
         _apiKey = apiKey;
@@ -58,4 +61,57 @@
     return [NSURL URLWithString:@"https://api.postmarkapp.com/email"];
 }
 
+#pragma mark -
+#pragma mark - Send Email
+- (void)sendEmail:(SSPostmarkEmail *)email {
+    [self sendEmail:email completion:nil];
+}
+- (void)sendEmail:(SSPostmarkEmail *)email completion:(void(^)(BOOL success, NSError *error))completion {
+    NSAssert(email, @"email is required");
+    [NSURLConnection sendAsynchronousRequest:[self _requestForEmail:email] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *responseData, NSError *error) {
+        if (!response && error != nil) {
+            NSError *networkError = [NSError errorWithDomain:SSPostmarkNetworkErrorDomain code:[error code] userInfo:[error userInfo]];
+            completion(NO, networkError);
+            return;
+        }
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+        if (httpResponse.statusCode == 200 && completion) {
+            completion(YES, nil);
+            return;
+        }
+        if (httpResponse.statusCode == 401 && completion) {
+            NSError *apiError = [NSError errorWithDomain:SSPostmarkAPIErrorDomain code:401 userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Missing or incorrect API Key header.", nil)}];
+            completion(NO, apiError);
+            return;
+        }
+        if (httpResponse.statusCode == 422 && completion) {
+            NSError *apiError = [NSError errorWithDomain:SSPostmarkAPIErrorDomain code:422 userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Something with the message is not quite right (either malformed JSON or incorrect fields).", nil), @"responseBodyData" : responseData}];
+            completion(NO, apiError);
+            return;
+        }
+        if (httpResponse.statusCode == 500 && completion) {
+            NSError *apiError = [NSError errorWithDomain:SSPostmarkAPIErrorDomain code:500 userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Internal Server Error", nil)}];
+            completion(NO, apiError);
+            return;
+        }
+    }];
+}
+
+- (NSMutableURLRequest *)_requestForEmail:(SSPostmarkEmail *)email {
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[self _postmarkEmailAPIURL]];
+    
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:[email binaryJSON]];
+    
+    [request setValue:[NSString stringWithFormat:@"%i",[[request HTTPBody] length]] forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:self.apiKey forHTTPHeaderField:@"X-Postmark-Server-Token"];
+    
+    return request;
+}
+
 @end
+
+NSString * const SSPostmarkAPIErrorDomain = @"com.skylarsch.postmark_api_error";
+NSString * const SSPostmarkNetworkErrorDomain = @"com.skylarsch.sspostmark_network_error";

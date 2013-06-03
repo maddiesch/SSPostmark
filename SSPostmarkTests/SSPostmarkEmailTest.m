@@ -109,7 +109,23 @@ describe(@"validations", ^{
             [[theValue([error code]) should] equal:theValue(4)];
         });
     });
-    
+    describe(@"counts", ^{
+        it(@"validates number of recipients", ^{
+            for (NSUInteger i = 0; i < 8; i++) {
+                [_email.toAddresses addObject:[NSString stringWithFormat:@"test-%i@example.com",i]];
+            }
+            for (NSUInteger i = 0; i < 8; i++) {
+                [_email.ccAddresses addObject:[NSString stringWithFormat:@"test-cc-%i@example.com",i]];
+            }
+            for (NSUInteger i = 0; i < 8; i++) {
+                [_email.bccAddresses addObject:[NSString stringWithFormat:@"test-bcc-%i@example.com",i]];
+            }
+            [[theValue([_email isValid]) should] equal:theValue(NO)];
+            [[theValue([[_email errors] count]) should] equal:theValue(1)];
+            SSPostmarkValidationError *error = [[_email errors] lastObject];
+            [[theValue([error code]) should] equal:theValue(200)];
+        });
+    });
 });
 
 SPEC_END

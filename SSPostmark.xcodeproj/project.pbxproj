@@ -22,6 +22,8 @@
 		9457B539175C0E3D006BF376 /* SSPostmarkEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 9457B538175C0E3D006BF376 /* SSPostmarkEmail.m */; };
 		9457B53D175C113A006BF376 /* SSPostmarkEmailTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9457B53C175C113A006BF376 /* SSPostmarkEmailTest.m */; };
 		9457B540175C17E6006BF376 /* SSPostmarkValidationError.m in Sources */ = {isa = PBXBuildFile; fileRef = 9457B53F175C17E6006BF376 /* SSPostmarkValidationError.m */; };
+		9457B543175C418D006BF376 /* SSPostmarkAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9457B542175C418D006BF376 /* SSPostmarkAttachment.m */; };
+		9457B545175C43A6006BF376 /* SSPostmarkAttachmentTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9457B544175C43A6006BF376 /* SSPostmarkAttachmentTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +100,9 @@
 		9457B53C175C113A006BF376 /* SSPostmarkEmailTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkEmailTest.m; sourceTree = "<group>"; };
 		9457B53E175C17E6006BF376 /* SSPostmarkValidationError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPostmarkValidationError.h; sourceTree = "<group>"; };
 		9457B53F175C17E6006BF376 /* SSPostmarkValidationError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkValidationError.m; sourceTree = "<group>"; };
+		9457B541175C418D006BF376 /* SSPostmarkAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPostmarkAttachment.h; sourceTree = "<group>"; };
+		9457B542175C418D006BF376 /* SSPostmarkAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkAttachment.m; sourceTree = "<group>"; };
+		9457B544175C43A6006BF376 /* SSPostmarkAttachmentTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkAttachmentTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +166,8 @@
 				9457B34E175BFA74006BF376 /* SSPostmark.m */,
 				9457B537175C0E3D006BF376 /* SSPostmarkEmail.h */,
 				9457B538175C0E3D006BF376 /* SSPostmarkEmail.m */,
+				9457B541175C418D006BF376 /* SSPostmarkAttachment.h */,
+				9457B542175C418D006BF376 /* SSPostmarkAttachment.m */,
 				9457B532175BFF8A006BF376 /* SSPostmarkValidators.h */,
 				9457B533175BFF8A006BF376 /* SSPostmarkValidators.m */,
 				9457B53E175C17E6006BF376 /* SSPostmarkValidationError.h */,
@@ -184,6 +191,7 @@
 				9457B52D175BFC18006BF376 /* SSPostmarkTest.m */,
 				9457B53C175C113A006BF376 /* SSPostmarkEmailTest.m */,
 				9457B535175C0174006BF376 /* SSPostmarkEmailValidationTest.m */,
+				9457B544175C43A6006BF376 /* SSPostmarkAttachmentTest.m */,
 				9457B35F175BFA74006BF376 /* Supporting Files */,
 				9457B530175BFD38006BF376 /* TEST_API_KEY_example.h */,
 				9457B531175BFE11006BF376 /* TEST_API_KEY.h */,
@@ -359,6 +367,7 @@
 				9457B534175BFF8A006BF376 /* SSPostmarkValidators.m in Sources */,
 				9457B539175C0E3D006BF376 /* SSPostmarkEmail.m in Sources */,
 				9457B540175C17E6006BF376 /* SSPostmarkValidationError.m in Sources */,
+				9457B543175C418D006BF376 /* SSPostmarkAttachment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,6 +378,7 @@
 				9457B52E175BFC18006BF376 /* SSPostmarkTest.m in Sources */,
 				9457B536175C0174006BF376 /* SSPostmarkEmailValidationTest.m in Sources */,
 				9457B53D175C113A006BF376 /* SSPostmarkEmailTest.m in Sources */,
+				9457B545175C43A6006BF376 /* SSPostmarkAttachmentTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

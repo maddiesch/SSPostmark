@@ -42,6 +42,14 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const SSPostmarkAPIErrorDomain;
+extern NSString * const SSPostmarkNetworkErrorDomain;
+
+@class SSPostmarkEmail;
+
+/** Used to interface with teh Postmark API
+ 
+ */
 @interface SSPostmark : NSObject
 
 /** Your API key.
@@ -60,5 +68,10 @@
  @return A new SSPostmark instance
  */
 - (id)initWithApiKey:(NSString *)apiKey;
+
+#pragma mark -
+#pragma mark - Send Email
+- (void)sendEmail:(SSPostmarkEmail *)email;
+- (void)sendEmail:(SSPostmarkEmail *)email completion:(void(^)(BOOL success, NSError *error))completion;
 
 @end
