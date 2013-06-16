@@ -44,10 +44,17 @@
 
 extern NSString * const SSPostmarkAPIErrorDomain;
 extern NSString * const SSPostmarkNetworkErrorDomain;
+extern NSString * const SSPostmarkBatchEmailValidDomain;
 
 @class SSPostmarkEmail;
 
-/** Used to interface with teh Postmark API
+typedef NS_OPTIONS(NSUInteger, SSPostmarkBatchEmailOptions) {
+    SSPostmarkBatchEmailFailOnInvalid    = 1 << 0,
+    SSPostmarkBatchEmailDiscardOnInvalid = 1 << 1,
+    SSPostmarkBatchEmailRaiseOnInvalid   = 1 << 2
+};
+
+/** Used to interface with the Postmark API
  
  */
 @interface SSPostmark : NSObject
@@ -74,4 +81,9 @@ extern NSString * const SSPostmarkNetworkErrorDomain;
 - (void)sendEmail:(SSPostmarkEmail *)email;
 - (void)sendEmail:(SSPostmarkEmail *)email completion:(void(^)(BOOL success, NSError *error))completion;
 
+#pragma mark -
+#pragma mark - Send batch email
+- (void)sendBatchEmails:(NSArray *)emails;
+- (void)sendBatchEmails:(NSArray *)emails completion:(void(^)(BOOL success, NSError *error))completion;
+- (void)sendBatchEmails:(NSArray *)emails options:(SSPostmarkBatchEmailOptions)options completion:(void(^)(BOOL success, NSError *error))completion;
 @end

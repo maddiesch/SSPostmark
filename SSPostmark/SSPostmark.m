@@ -60,6 +60,9 @@
 - (NSURL *)_postmarkEmailAPIURL {
     return [NSURL URLWithString:@"https://api.postmarkapp.com/email"];
 }
+- (NSURL *)_postmarkBatchEmailAPIURL {
+    return [NSURL URLWithString:@"http://api.postmarkapp.com/email/batch"];
+}
 
 #pragma mark -
 #pragma mark - Send Email
@@ -110,8 +113,77 @@
     
     return request;
 }
+- (NSMutableURLRequest *)_requestForBatchEmails:(NSData *)jsonArray {
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[self _postmarkBatchEmailAPIURL]];
+    
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:jsonArray];
+    
+    [request setValue:[NSString stringWithFormat:@"%i",[[request HTTPBody] length]] forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:self.apiKey forHTTPHeaderField:@"X-Postmark-Server-Token"];
+    
+    return request;
+}
+
+#pragma mark -
+#pragma mark - Send batch email
+- (void)sendBatchEmails:(NSArray *)emails {
+    [self sendBatchEmails:emails completion:nil];
+}
+- (void)sendBatchEmails:(NSArray *)emails completion:(void(^)(BOOL success, NSError *error))completion {
+    [self sendBatchEmails:emails options:SSPostmarkBatchEmailFailOnInvalid completion:completion];
+}
+- (void)sendBatchEmails:(NSArray *)emails options:(SSPostmarkBatchEmailOptions)options completion:(void(^)(BOOL success, NSError *error))completion {
+    NSMutableArray *sendMail = [NSMutableArray new];
+    for (SSPostmarkEmail *email in emails) {
+        if (![email isValid]) {
+            if (options & SSPostmarkBatchEmailFailOnInvalid) {
+                if (completion) {
+                    completion(NO, [NSError errorWithDomain:SSPostmarkBatchEmailValidDomain code:888 userInfo:@{NSLocalizedDescriptionKey:NSLocalizedString(@"Invalid email object.", nil), @"Bad Email" : email}]);
+                }
+                return;
+            } else if (options & SSPostmarkBatchEmailRaiseOnInvalid) {
+                [NSException raise:@"Invalid email in batch send" format:@"%@ is invalid.",email];
+                return;
+            }
+        } else {
+            [sendMail addObject:[email asJSONObject]];
+        }
+    }
+    NSData *postJSON = [NSJSONSerialization dataWithJSONObject:sendMail options:0 error:nil];
+    [NSURLConnection sendAsynchronousRequest:[self _requestForBatchEmails:postJSON] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *responseData, NSError *error) {
+        if (!response && error != nil) {
+            NSError *networkError = [NSError errorWithDomain:SSPostmarkNetworkErrorDomain code:[error code] userInfo:[error userInfo]];
+            completion(NO, networkError);
+            return;
+        }
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+        if (httpResponse.statusCode == 200 && completion) {
+            completion(YES, nil);
+            return;
+        }
+        if (httpResponse.statusCode == 401 && completion) {
+            NSError *apiError = [NSError errorWithDomain:SSPostmarkAPIErrorDomain code:401 userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Missing or incorrect API Key header.", nil)}];
+            completion(NO, apiError);
+            return;
+        }
+        if (httpResponse.statusCode == 422 && completion) {
+            NSError *apiError = [NSError errorWithDomain:SSPostmarkAPIErrorDomain code:422 userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Something with the message is not quite right (either malformed JSON or incorrect fields).", nil), @"responseBodyData" : responseData}];
+            completion(NO, apiError);
+            return;
+        }
+        if (httpResponse.statusCode == 500 && completion) {
+            NSError *apiError = [NSError errorWithDomain:SSPostmarkAPIErrorDomain code:500 userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Internal Server Error", nil)}];
+            completion(NO, apiError);
+            return;
+        }
+    }];
+}
 
 @end
 
 NSString * const SSPostmarkAPIErrorDomain = @"com.skylarsch.postmark_api_error";
 NSString * const SSPostmarkNetworkErrorDomain = @"com.skylarsch.sspostmark_network_error";
+NSString * const SSPostmarkBatchEmailValidDomain = @"com.skylarsch.sspostmark_invalid_batch_mail";
