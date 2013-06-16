@@ -273,4 +273,37 @@
     return [NSString stringWithFormat:@"%@ Tag: \"%@\" Subject: \"%@\" From: \"%@\" To: %@\nBody: %@\nCustom Headers: %@",NSStringFromClass([self class]),self.tag,self.subject,self.fromAddress,self.toAddresses,self.body,self.customHeaders];
 }
 
+#pragma mark -
+#pragma mark - Coding
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.toAddresses forKey:@"toAddresses"];
+    [aCoder encodeObject:self.ccAddresses forKey:@"ccAddresses"];
+    [aCoder encodeObject:self.bccAddresses forKey:@"bccAddresses"];
+    [aCoder encodeObject:self.fromAddress forKey:@"fromAddress"];
+    [aCoder encodeObject:self.nameForFromAddress forKey:@"nameForFromAddress"];
+    [aCoder encodeObject:self.replyTo forKey:@"replyTo"];
+    [aCoder encodeObject:self.subject forKey:@"subject"];
+    [aCoder encodeObject:self.body forKey:@"body"];
+    [aCoder encodeBool:self.html forKey:@"html"];
+    [aCoder encodeObject:self.attachments forKey:@"attachments"];
+    [aCoder encodeObject:self.customHeaders forKey:@"customHeaders"];
+}
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [self init];
+    if (self) {
+        self.toAddresses = [aDecoder decodeObjectForKey:@"toAddresses"];
+        self.ccAddresses = [aDecoder decodeObjectForKey:@"ccAddresses"];
+        self.bccAddresses = [aDecoder decodeObjectForKey:@"bccAddresses"];
+        self.fromAddress = [aDecoder decodeObjectForKey:@"fromAddress"];
+        self.nameForFromAddress = [aDecoder decodeObjectForKey:@"nameForFromAddress"];
+        self.replyTo = [aDecoder decodeObjectForKey:@"replyTo"];
+        self.subject = [aDecoder decodeObjectForKey:@"subject"];
+        self.body = [aDecoder decodeObjectForKey:@"body"];
+        self.html = [aDecoder decodeBoolForKey:@"html"];
+        self.attachments = [aDecoder decodeObjectForKey:@"attachments"];
+        self.customHeaders = [aDecoder decodeObjectForKey:@"customHeaders"];
+    }
+    return self;
+}
+
 @end

@@ -47,7 +47,7 @@
 /** The email object that represents a Postmark Email
  
  */
-@interface SSPostmarkEmail : NSObject
+@interface SSPostmarkEmail : NSObject <NSCoding>
 
 /** Who to send the email to
  

@@ -113,6 +113,23 @@
     return [NSJSONSerialization dataWithJSONObject:[self asJSONObject] options:0 error:nil];
 }
 
+#pragma mark -
+#pragma mark - coding
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.name forKey:@"name"];
+    [aCoder encodeObject:self.content forKey:@"content"];
+    [aCoder encodeObject:self.contentType forKey:@"contentType"];
+}
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [self init];
+    if (self) {
+        self.name = [aDecoder decodeObjectForKey:@"name"];
+        self.content = [aDecoder decodeObjectForKey:@"content"];
+        self.contentType = [aDecoder decodeObjectForKey:@"contentType"];
+    }
+    return self;
+}
+
 @end
 
 NSString * const SSPostmarkAttachmentInvalidNameException = @"SSPostmarkAttachmentInvalidNameException";

@@ -18,7 +18,7 @@ extern NSString * const SSPostmarkAttachmentInvalidNameException;
  Postmark will handle sending attachments with emails as long as the raw data doesn't exceed 10MB per message total.
  
  */
-@interface SSPostmarkAttachment : NSObject
+@interface SSPostmarkAttachment : NSObject <NSCoding>
 
 /** The name for the attached file
  
