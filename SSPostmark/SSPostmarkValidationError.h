@@ -59,14 +59,14 @@ extern NSString * const SSPostmarkValidationEmailError;
  
  - 100 No to email addresses found
  
- - 101 No from email addresss found
+ - 101 No from email address found
  
  */
 @interface SSPostmarkValidationError : NSError
 
 /** Validation failure
  
- Normaly the same as `-[NSError code]`
+ Normally the same as `-[NSError code]`
  */
 @property (nonatomic) NSUInteger emailValidationFailure;
 
@@ -75,7 +75,7 @@ extern NSString * const SSPostmarkValidationEmailError;
  */
 @property (nonatomic) id failedValidationObject;
 
-/** Localized string with instuctions for making the error pass
+/** Localized string with instructions for making the error pass
  
  */
 @property (nonatomic) NSString *instructions;

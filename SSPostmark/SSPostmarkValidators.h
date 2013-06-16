@@ -57,6 +57,24 @@ typedef NS_OPTIONS(NSUInteger, SSPostmarkEmailValidations) {
 };
 
 /** Helper class for validation
+
+ Defined Enums
+ 
+ 	typedef NS_ENUM(NSUInteger, SSPostmarkEmailAddressValidationType) {
+    	SSPostmarkEmailAddressValidateStrict = 0,
+    	SSPostmarkEmailAddressValidateLax    = 1
+	};
+	
+ Defined Options
+ 
+ 	typedef NS_OPTIONS(NSUInteger, SSPostmarkEmailValidations) {
+    	SSPostmarkEmailValidationsNone     = 0,
+    	SSPostmarkEmailValidateToAddress   = 1 << 1,
+    	SSPostmarkEmailValidateFromAddress = 1 << 2,
+    	SSPostmarkEmailValidateCCAddress   = 1 << 3,
+    	SSPostmarkEmailValidateBCCAddress  = 1 << 4,
+    	SSPostmarkEmailValidateSubject     = 1 << 5
+	};
  
  */
 @interface SSPostmarkValidators : NSObject

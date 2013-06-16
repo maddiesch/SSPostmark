@@ -10,11 +10,11 @@
 
 @implementation SSPostmarkAttachment
 
-+ (NSArray *)allowedAttachmentExtentions {
++ (NSArray *)allowedAttachmentExtensions {
     return @[@"gif",@"jpeg",@"png",@"swf",@"dcr",@"tiff",@"bmp",@"ico",@"page-icon",@"wav",@"mp3",@"flv",@"avi",@"mpg",@"wmv",@"rm",@"mov",@"3gp",@"mp4",@"m4a",@"ogv",@"wma",@"svg",@"txt",@"rtf",@"html",@"xml",@"ics",@"pdf",@"log",@"csv",@"docx",@"dotx",@"pptx",@"xlsx",@"odt",@"psd",@"ai",@"vcf",@"mobi",@"epub",@"pgp",@"ods",@"wps",@"pages",@"stl",@"ppt",@"xls",@"doc",@"dat",@"pkpass",@"mms",@"mmr",@"json",@"pcm",@"mpp",@"mppx",@"prn",@"eps",@"license",@"zip",@"dcm",@"enc",@"cdr",@"css",@"pst",@"mobileconfig",@"eml",@"gpx",@"kml",@"kmz",@"msl",@"rb",@"js",@"java",@"c",@"cpp",@"py",@"php",@"fl",@"jar",@"ttf",@"vpv",@"iif",@"timo",@"autorit",@"cathodelicense",@"itn",@"freshroute"];
 }
 + (BOOL)nameIsAllowed:(NSString *)name {
-    return [[NSPredicate predicateWithFormat:@"pathExtension IN (%@)",[self allowedAttachmentExtentions]] evaluateWithObject:name];
+    return [[NSPredicate predicateWithFormat:@"pathExtension IN (%@)",[self allowedAttachmentExtensions]] evaluateWithObject:name];
 }
 
 - (id)init {

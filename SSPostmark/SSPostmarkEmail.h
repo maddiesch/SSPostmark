@@ -75,7 +75,7 @@
  */
 @property (nonatomic, strong) NSString *nameForFromAddress;
 
-/** Email Addres recipient should reply to
+/** Email address recipient should reply to
  
  If none is set the value in fromAddress will be used
  */

@@ -15,14 +15,14 @@ extern NSString * const SSPostmarkAttachmentInvalidNameException;
 
 /** A Postmark Email Attachment Object
  
- Postmark will handle sending attachments with emails as long as the raw data doesn't exceede 10MB per message total.
+ Postmark will handle sending attachments with emails as long as the raw data doesn't exceed 10MB per message total.
  
  */
 @interface SSPostmarkAttachment : NSObject
 
 /** The name for the attached file
  
- The name should have a valid Postmark file extention. Can be found in +[SSPostmarkAttachment allowedAttachmentExtentions]
+ The name should have a valid Postmark file extension. Can be found in +[SSPostmarkAttachment allowedAttachmentExtensions]
  
  @warning Will raise `SSPostmarkAttachmentInvalidNameException` if the name is not allowed.
  
@@ -50,17 +50,17 @@ extern NSString * const SSPostmarkAttachmentInvalidNameException;
  */
 - (void)setContentData:(NSData *)data;
 
-/** The file extentions allowed by Postmark
+/** The file extensions allowed by Postmark
  
- @return An NSArray containing the list of file extentions
+ @return An NSArray containing the list of file extensions
  */
-+ (NSArray *)allowedAttachmentExtentions;
++ (NSArray *)allowedAttachmentExtensions;
 
 /** Indicates if the name will be allowed
  
  @param name The file name
  
- @return A boolean indicating if the name sould be allowed or not
+ @return A boolean indicating if the name should be allowed or not
  */
 + (BOOL)nameIsAllowed:(NSString *)name;
 
@@ -77,13 +77,13 @@ extern NSString * const SSPostmarkAttachmentInvalidNameException;
  
  @param image The UIImage to send as an attachment
  
- @param name The name for the attachment.  The file extention will be used for the encoding
+ @param name The name for the attachment.  The file extension will be used for the encoding
  
  @return A valid SSPostmarkAttachment object
  
- @warning Will return nil if the name file extention is not `png` or `jpeg`
+ @warning Will return nil if the name file extension is not `png` or `jpeg`
  
- Will also return nil if the image incoding fails
+ Will also return nil if the image encoding fails
  */
 + (instancetype)attachmentWithImage:(UIImage *)image name:(NSString *)name;
 #endif

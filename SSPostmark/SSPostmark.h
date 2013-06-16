@@ -66,9 +66,9 @@ typedef NS_OPTIONS(NSUInteger, SSPostmarkBatchEmailOptions) {
 @property (nonatomic, strong, readonly) NSString *apiKey;
 
 
-/** Designated Initalizer
+/** Designated Initializer
  
- Returns a new instance of SSPostmark witht the passed apiKey
+ Returns a new instance of SSPostmark with the passed apiKey
  
  @param apiKey The API key used to authenticate with the Postmark API
  

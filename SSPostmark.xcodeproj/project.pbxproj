@@ -748,6 +748,7 @@
 				9457B569175C4EB1006BF376 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
