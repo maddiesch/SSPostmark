@@ -23,5 +23,9 @@ namespace :doc do
     Rake::Task["doc:generate"].invoke
     Rake::Task["doc:open"].invoke
   end
+  desc "Update Docs"
+  task :update do |t, args|
+    Rake::Task["doc:generate_open"].invoke
+  end
 end
 

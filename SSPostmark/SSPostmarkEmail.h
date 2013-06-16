@@ -107,9 +107,29 @@
 
 #pragma mark -
 #pragma mark - Attachments
+
+/** Add a SSPostmarkAttachment to an email
+ 
+ @param attachment A valid SSPostmarkAttachment object
+ */
 - (void)addAttachment:(SSPostmarkAttachment *)attachment;
+
+/** Remove an attachment from the email
+
+ @param attachment A valid SSPostmarkAttachment object
+ */
 - (void)removeAttachment:(SSPostmarkAttachment *)attachment;
+
+/** Add multiple attachments
+
+ @param attachments An array of SSPostmarkAttachment objects
+ */
 - (void)addAttachments:(NSArray *)attachments;
+
+/** Remove the passed attachments from the email
+
+ @param attachments An array of SSPostmarkAttachment objects
+ */
 - (void)removeAttachments:(NSArray *)attachments;
 
 #pragma mark -

@@ -55,6 +55,14 @@ typedef NS_OPTIONS(NSUInteger, SSPostmarkBatchEmailOptions) {
 };
 
 /** Used to interface with the Postmark API
+
+ Defined options:
+ 
+ 	typedef NS_OPTIONS(NSUInteger, SSPostmarkBatchEmailOptions) {
+    	SSPostmarkBatchEmailFailOnInvalid    = 1 << 0,
+    	SSPostmarkBatchEmailDiscardOnInvalid = 1 << 1,
+    	SSPostmarkBatchEmailRaiseOnInvalid   = 1 << 2
+	};
  
  */
 @interface SSPostmark : NSObject
@@ -78,7 +86,25 @@ typedef NS_OPTIONS(NSUInteger, SSPostmarkBatchEmailOptions) {
 
 #pragma mark -
 #pragma mark - Send Email
+
+/** Send a single email to the Postmark API for delivery
+
+ @param email A valid SSPostmarkEmail object
+ */
 - (void)sendEmail:(SSPostmarkEmail *)email;
+
+/** Send a single email to the Postmark API for delivery
+
+ Takes an optional completion block that is called on completions or failure of the operation.
+ 
+ @param email A valid SSPostmarkEmail object
+ 
+ @param completion A block that is called when the operation completes or fails.  It is passed two parameters.
+ 
+ - `success` : A boolean indicating if the operation completed successfully and the API returned an OK response.
+ 
+ - `error` : A NSError object describing what went wrong.
+ */
 - (void)sendEmail:(SSPostmarkEmail *)email completion:(void(^)(BOOL success, NSError *error))completion;
 
 #pragma mark -
