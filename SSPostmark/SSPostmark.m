@@ -106,7 +106,7 @@
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[email binaryJSON]];
     
-    [request setValue:[NSString stringWithFormat:@"%i",[[request HTTPBody] length]] forHTTPHeaderField:@"Content-Length"];
+    [request setValue:[NSString stringWithFormat:@"%lu",(unsigned long)[[request HTTPBody] length]] forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:self.apiKey forHTTPHeaderField:@"X-Postmark-Server-Token"];
@@ -119,7 +119,7 @@
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:jsonArray];
     
-    [request setValue:[NSString stringWithFormat:@"%i",[[request HTTPBody] length]] forHTTPHeaderField:@"Content-Length"];
+    [request setValue:[NSString stringWithFormat:@"%lu",(unsigned long)[[request HTTPBody] length]] forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:self.apiKey forHTTPHeaderField:@"X-Postmark-Server-Token"];
