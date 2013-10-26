@@ -1,6 +1,7 @@
-#import "Kiwi.h"
+#import <XCTest/XCTest.h>
 #import "SSPostmarkEmail.h"
 
+/*
 SPEC_BEGIN(SSPostmarkEmailTest)
 
 static SSPostmarkEmail *_email = nil;
@@ -129,3 +130,4 @@ describe(@"validations", ^{
 });
 
 SPEC_END
+*/

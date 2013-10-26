@@ -1,6 +1,7 @@
-#import "Kiwi.h"
+#import <XCTest/XCTest.h>
 #import "SSPostmarkAttachment.h"
 
+/*
 SPEC_BEGIN(SSPostmarkAttachmentTest)
 
 static SSPostmarkAttachment *_attachment = nil;
@@ -38,3 +39,4 @@ describe(@"base64 encode", ^{
 });
 
 SPEC_END
+*/

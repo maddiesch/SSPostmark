@@ -1,10 +1,22 @@
-#import "Kiwi.h"
+#import <XCTest/XCTest.h>
 #import "SSPostmark.h"
 
 // If this file isn't found look at TEST_API_KEY_example.h for creating your own.
-#import "TEST_API_KEY.h"
+#import "TEST_API_KEY_example.h"
 
+@interface SSPostmarkTest : XCTestCase
 
+@end
+
+@implementation SSPostmarkTest
+
+- (void)testTesting {
+    
+}
+
+@end
+
+/*
 static SSPostmark *_postmark = nil;
 SPEC_BEGIN(SSPostmarkTest)
 
@@ -17,4 +29,5 @@ afterEach(^{
 });
 
 
-SPEC_END
+ SPEC_END
+ */

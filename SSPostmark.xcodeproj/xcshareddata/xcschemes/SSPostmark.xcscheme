@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9457B354175BFA74006BF376"
-               BuildableName = "SSPostmarkTests.octest"
-               BlueprintName = "SSPostmarkTests"
+               BlueprintIdentifier = "94E17D96181B840C00DEE006"
+               BuildableName = "SSPostmark Unit Tests.xctest"
+               BlueprintName = "SSPostmark Unit Tests"
                ReferencedContainer = "container:SSPostmark.xcodeproj">
             </BuildableReference>
          </TestableReference>
