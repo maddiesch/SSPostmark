@@ -112,4 +112,5 @@ typedef NS_OPTIONS(NSUInteger, SSPostmarkBatchEmailOptions) {
 - (void)sendBatchEmails:(NSArray *)emails;
 - (void)sendBatchEmails:(NSArray *)emails completion:(void(^)(BOOL success, NSError *error))completion;
 - (void)sendBatchEmails:(NSArray *)emails options:(SSPostmarkBatchEmailOptions)options completion:(void(^)(BOOL success, NSError *error))completion;
+
 @end

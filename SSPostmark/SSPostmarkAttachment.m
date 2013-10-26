@@ -42,6 +42,9 @@
 #pragma mark -
 #pragma mark - Helpers
 + (NSString *)base64EndcodeData:(NSData *)data {
+    if ([data respondsToSelector:@selector(base64EncodedStringWithOptions:)]) {
+        return [data base64EncodedStringWithOptions:0];
+    }
     const char SSPostmarkBase64EncodingTable[64] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
     const unsigned char * objRawData = [data bytes];
     char * objPointer;
