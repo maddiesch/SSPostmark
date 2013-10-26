@@ -4,6 +4,8 @@
 
 This is a simple Objective-C class to send email using the Postmark API.
 
+Now with 64bit support.
+
 ***
 
 #### [Documentation](http://sspostmark.schipp.co/)
