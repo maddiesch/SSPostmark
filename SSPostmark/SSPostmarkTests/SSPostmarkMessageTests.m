@@ -8,6 +8,8 @@
 
 @import XCTest;
 
+#import "TestHelpers.h"
+
 #import "SSPostmarkMessagePrivate.h"
 
 @interface SSPostmarkMessageTests : XCTestCase

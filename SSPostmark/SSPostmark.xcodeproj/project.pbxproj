@@ -13,6 +13,8 @@
 		943759EF197767E100E4F882 /* SSPostmarkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 943759EE197767E100E4F882 /* SSPostmarkTests.m */; };
 		943759F21977696E00E4F882 /* SSPostmarkMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 943759F11977696E00E4F882 /* SSPostmarkMessage.m */; };
 		9494EF5419776E31003CB502 /* SSPostmarkMessageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9494EF5319776E31003CB502 /* SSPostmarkMessageTests.m */; };
+		9494EF5919777BA6003CB502 /* SSAsync.m in Sources */ = {isa = PBXBuildFile; fileRef = 9494EF5819777BA6003CB502 /* SSAsync.m */; };
+		9494EF5D19777E16003CB502 /* SSPostmarkResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 9494EF5C19777E16003CB502 /* SSPostmarkResponse.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,12 @@
 		943759F11977696E00E4F882 /* SSPostmarkMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkMessage.m; sourceTree = "<group>"; };
 		9494EF5319776E31003CB502 /* SSPostmarkMessageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkMessageTests.m; sourceTree = "<group>"; };
 		9494EF5519777090003CB502 /* SSPostmarkMessagePrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSPostmarkMessagePrivate.h; sourceTree = "<group>"; };
+		9494EF561977758F003CB502 /* TestHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestHelpers.h; sourceTree = "<group>"; };
+		9494EF5719777BA6003CB502 /* SSAsync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSAsync.h; sourceTree = "<group>"; };
+		9494EF5819777BA6003CB502 /* SSAsync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSAsync.m; sourceTree = "<group>"; };
+		9494EF5B19777E16003CB502 /* SSPostmarkResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPostmarkResponse.h; sourceTree = "<group>"; };
+		9494EF5C19777E16003CB502 /* SSPostmarkResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkResponse.m; sourceTree = "<group>"; };
+		9494EF5E19777EA9003CB502 /* SSPostmarkResponsePrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSPostmarkResponsePrivate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +102,10 @@
 				943759D71977677100E4F882 /* SSPostmark.h */,
 				943759D91977677100E4F882 /* SSPostmark.m */,
 				943759F01977696E00E4F882 /* SSPostmarkMessage.h */,
-				9494EF5519777090003CB502 /* SSPostmarkMessagePrivate.h */,
 				943759F11977696E00E4F882 /* SSPostmarkMessage.m */,
+				9494EF5B19777E16003CB502 /* SSPostmarkResponse.h */,
+				9494EF5C19777E16003CB502 /* SSPostmarkResponse.m */,
+				9494EF5A19777E02003CB502 /* Private Headers */,
 			);
 			path = SSPostmark;
 			sourceTree = "<group>";
@@ -103,9 +113,12 @@
 		943759E31977677100E4F882 /* SSPostmarkTests */ = {
 			isa = PBXGroup;
 			children = (
-				943759E41977677100E4F882 /* Supporting Files */,
+				9494EF561977758F003CB502 /* TestHelpers.h */,
+				9494EF5719777BA6003CB502 /* SSAsync.h */,
+				9494EF5819777BA6003CB502 /* SSAsync.m */,
 				943759EE197767E100E4F882 /* SSPostmarkTests.m */,
 				9494EF5319776E31003CB502 /* SSPostmarkMessageTests.m */,
+				943759E41977677100E4F882 /* Supporting Files */,
 			);
 			path = SSPostmarkTests;
 			sourceTree = "<group>";
@@ -116,6 +129,15 @@
 				943759E51977677100E4F882 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9494EF5A19777E02003CB502 /* Private Headers */ = {
+			isa = PBXGroup;
+			children = (
+				9494EF5519777090003CB502 /* SSPostmarkMessagePrivate.h */,
+				9494EF5E19777EA9003CB502 /* SSPostmarkResponsePrivate.h */,
+			);
+			name = "Private Headers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,6 +229,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9494EF5D19777E16003CB502 /* SSPostmarkResponse.m in Sources */,
 				943759F21977696E00E4F882 /* SSPostmarkMessage.m in Sources */,
 				943759DA1977677100E4F882 /* SSPostmark.m in Sources */,
 			);
@@ -216,6 +239,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9494EF5919777BA6003CB502 /* SSAsync.m in Sources */,
 				9494EF5419776E31003CB502 /* SSPostmarkMessageTests.m in Sources */,
 				943759EF197767E100E4F882 /* SSPostmarkTests.m in Sources */,
 			);
