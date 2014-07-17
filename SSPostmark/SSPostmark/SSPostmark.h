@@ -6,4 +6,13 @@
 //  Copyright (c) 2014 OpenSky, LLC. All rights reserved.
 //
 
+#ifndef SSPostmark_SSPostmark_h
+#define SSPostmark_SSPostmark_h
 
+@import Foundation;
+
+@interface SSPostmark : NSObject
+
+@end
+
+#endif

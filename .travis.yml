@@ -1,3 +1,6 @@
 language: objective-c
+before_install:
+  - brew update
+  - brew upgrade xctool
 script:
-  - xcodebuild -project SSPostmark/SSPostmark.xcodeproj -scheme SSPostmark -sdk iphonesimulator test
+  - xctool -project SSPostmark/SSPostmark.xcodeproj -scheme SSPostmark -sdk iphonesimulator test

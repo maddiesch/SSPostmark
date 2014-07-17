@@ -7,123 +7,117 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		943759B51977643500E4F882 /* SSPostmark.h in Headers */ = {isa = PBXBuildFile; fileRef = 943759B41977643500E4F882 /* SSPostmark.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		943759BB1977643500E4F882 /* SSPostmark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 943759AF1977643500E4F882 /* SSPostmark.framework */; };
-		943759C21977643500E4F882 /* SSPostmarkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 943759C11977643500E4F882 /* SSPostmarkTests.m */; };
+		943759D81977677100E4F882 /* SSPostmark.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 943759D71977677100E4F882 /* SSPostmark.h */; };
+		943759DA1977677100E4F882 /* SSPostmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 943759D91977677100E4F882 /* SSPostmark.m */; };
+		943759E01977677100E4F882 /* libSSPostmark.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 943759D41977677100E4F882 /* libSSPostmark.a */; };
+		943759EF197767E100E4F882 /* SSPostmarkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 943759EE197767E100E4F882 /* SSPostmarkTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		943759BC1977643500E4F882 /* PBXContainerItemProxy */ = {
+		943759E11977677100E4F882 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 943759A61977643500E4F882 /* Project object */;
+			containerPortal = 943759CC1977677100E4F882 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 943759AE1977643500E4F882;
+			remoteGlobalIDString = 943759D31977677100E4F882;
 			remoteInfo = SSPostmark;
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		943759D21977677100E4F882 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				943759D81977677100E4F882 /* SSPostmark.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		943759AF1977643500E4F882 /* SSPostmark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SSPostmark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		943759B31977643500E4F882 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		943759B41977643500E4F882 /* SSPostmark.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSPostmark.h; sourceTree = "<group>"; };
-		943759BA1977643500E4F882 /* SSPostmarkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SSPostmarkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		943759C01977643500E4F882 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		943759C11977643500E4F882 /* SSPostmarkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkTests.m; sourceTree = "<group>"; };
+		943759D41977677100E4F882 /* libSSPostmark.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSSPostmark.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		943759D71977677100E4F882 /* SSPostmark.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSPostmark.h; sourceTree = "<group>"; };
+		943759D91977677100E4F882 /* SSPostmark.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSPostmark.m; sourceTree = "<group>"; };
+		943759DF1977677100E4F882 /* SSPostmarkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SSPostmarkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		943759E51977677100E4F882 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		943759EE197767E100E4F882 /* SSPostmarkTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		943759AB1977643500E4F882 /* Frameworks */ = {
+		943759D11977677100E4F882 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		943759B71977643500E4F882 /* Frameworks */ = {
+		943759DC1977677100E4F882 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				943759BB1977643500E4F882 /* SSPostmark.framework in Frameworks */,
+				943759E01977677100E4F882 /* libSSPostmark.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		943759A51977643500E4F882 = {
+		943759CB1977677100E4F882 = {
 			isa = PBXGroup;
 			children = (
-				943759B11977643500E4F882 /* SSPostmark */,
-				943759BE1977643500E4F882 /* SSPostmarkTests */,
-				943759B01977643500E4F882 /* Products */,
+				943759D61977677100E4F882 /* SSPostmark */,
+				943759E31977677100E4F882 /* SSPostmarkTests */,
+				943759D51977677100E4F882 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		943759B01977643500E4F882 /* Products */ = {
+		943759D51977677100E4F882 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				943759AF1977643500E4F882 /* SSPostmark.framework */,
-				943759BA1977643500E4F882 /* SSPostmarkTests.xctest */,
+				943759D41977677100E4F882 /* libSSPostmark.a */,
+				943759DF1977677100E4F882 /* SSPostmarkTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		943759B11977643500E4F882 /* SSPostmark */ = {
+		943759D61977677100E4F882 /* SSPostmark */ = {
 			isa = PBXGroup;
 			children = (
-				943759B41977643500E4F882 /* SSPostmark.h */,
-				943759B21977643500E4F882 /* Supporting Files */,
+				943759D71977677100E4F882 /* SSPostmark.h */,
+				943759D91977677100E4F882 /* SSPostmark.m */,
 			);
 			path = SSPostmark;
 			sourceTree = "<group>";
 		};
-		943759B21977643500E4F882 /* Supporting Files */ = {
+		943759E31977677100E4F882 /* SSPostmarkTests */ = {
 			isa = PBXGroup;
 			children = (
-				943759B31977643500E4F882 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		943759BE1977643500E4F882 /* SSPostmarkTests */ = {
-			isa = PBXGroup;
-			children = (
-				943759C11977643500E4F882 /* SSPostmarkTests.m */,
-				943759BF1977643500E4F882 /* Supporting Files */,
+				943759E41977677100E4F882 /* Supporting Files */,
+				943759EE197767E100E4F882 /* SSPostmarkTests.m */,
 			);
 			path = SSPostmarkTests;
 			sourceTree = "<group>";
 		};
-		943759BF1977643500E4F882 /* Supporting Files */ = {
+		943759E41977677100E4F882 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				943759C01977643500E4F882 /* Info.plist */,
+				943759E51977677100E4F882 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		943759AC1977643500E4F882 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				943759B51977643500E4F882 /* SSPostmark.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
-		943759AE1977643500E4F882 /* SSPostmark */ = {
+		943759D31977677100E4F882 /* SSPostmark */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 943759C51977643500E4F882 /* Build configuration list for PBXNativeTarget "SSPostmark" */;
+			buildConfigurationList = 943759E81977677100E4F882 /* Build configuration list for PBXNativeTarget "SSPostmark" */;
 			buildPhases = (
-				943759AA1977643500E4F882 /* Sources */,
-				943759AB1977643500E4F882 /* Frameworks */,
-				943759AC1977643500E4F882 /* Headers */,
-				943759AD1977643500E4F882 /* Resources */,
+				943759D01977677100E4F882 /* Sources */,
+				943759D11977677100E4F882 /* Frameworks */,
+				943759D21977677100E4F882 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -131,72 +125,65 @@
 			);
 			name = SSPostmark;
 			productName = SSPostmark;
-			productReference = 943759AF1977643500E4F882 /* SSPostmark.framework */;
-			productType = "com.apple.product-type.framework";
+			productReference = 943759D41977677100E4F882 /* libSSPostmark.a */;
+			productType = "com.apple.product-type.library.static";
 		};
-		943759B91977643500E4F882 /* SSPostmarkTests */ = {
+		943759DE1977677100E4F882 /* SSPostmarkTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 943759C81977643500E4F882 /* Build configuration list for PBXNativeTarget "SSPostmarkTests" */;
+			buildConfigurationList = 943759EB1977677100E4F882 /* Build configuration list for PBXNativeTarget "SSPostmarkTests" */;
 			buildPhases = (
-				943759B61977643500E4F882 /* Sources */,
-				943759B71977643500E4F882 /* Frameworks */,
-				943759B81977643500E4F882 /* Resources */,
+				943759DB1977677100E4F882 /* Sources */,
+				943759DC1977677100E4F882 /* Frameworks */,
+				943759DD1977677100E4F882 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				943759BD1977643500E4F882 /* PBXTargetDependency */,
+				943759E21977677100E4F882 /* PBXTargetDependency */,
 			);
 			name = SSPostmarkTests;
 			productName = SSPostmarkTests;
-			productReference = 943759BA1977643500E4F882 /* SSPostmarkTests.xctest */;
+			productReference = 943759DF1977677100E4F882 /* SSPostmarkTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		943759A61977643500E4F882 /* Project object */ = {
+		943759CC1977677100E4F882 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "OpenSky, LLC";
 				TargetAttributes = {
-					943759AE1977643500E4F882 = {
+					943759D31977677100E4F882 = {
 						CreatedOnToolsVersion = 6.0;
 					};
-					943759B91977643500E4F882 = {
+					943759DE1977677100E4F882 = {
 						CreatedOnToolsVersion = 6.0;
-						TestTargetID = 943759AE1977643500E4F882;
+						TestTargetID = 943759D31977677100E4F882;
 					};
 				};
 			};
-			buildConfigurationList = 943759A91977643500E4F882 /* Build configuration list for PBXProject "SSPostmark" */;
+			buildConfigurationList = 943759CF1977677100E4F882 /* Build configuration list for PBXProject "SSPostmark" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 943759A51977643500E4F882;
-			productRefGroup = 943759B01977643500E4F882 /* Products */;
+			mainGroup = 943759CB1977677100E4F882;
+			productRefGroup = 943759D51977677100E4F882 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				943759AE1977643500E4F882 /* SSPostmark */,
-				943759B91977643500E4F882 /* SSPostmarkTests */,
+				943759D31977677100E4F882 /* SSPostmark */,
+				943759DE1977677100E4F882 /* SSPostmarkTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		943759AD1977643500E4F882 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		943759B81977643500E4F882 /* Resources */ = {
+		943759DD1977677100E4F882 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -206,33 +193,34 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		943759AA1977643500E4F882 /* Sources */ = {
+		943759D01977677100E4F882 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				943759DA1977677100E4F882 /* SSPostmark.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		943759B61977643500E4F882 /* Sources */ = {
+		943759DB1977677100E4F882 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				943759C21977643500E4F882 /* SSPostmarkTests.m in Sources */,
+				943759EF197767E100E4F882 /* SSPostmarkTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		943759BD1977643500E4F882 /* PBXTargetDependency */ = {
+		943759E21977677100E4F882 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 943759AE1977643500E4F882 /* SSPostmark */;
-			targetProxy = 943759BC1977643500E4F882 /* PBXContainerItemProxy */;
+			target = 943759D31977677100E4F882 /* SSPostmark */;
+			targetProxy = 943759E11977677100E4F882 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		943759C31977643500E4F882 /* Debug */ = {
+		943759E61977677100E4F882 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -249,9 +237,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -271,13 +257,10 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		943759C41977643500E4F882 /* Release */ = {
+		943759E71977677100E4F882 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -294,9 +277,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -309,44 +290,31 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		943759C61977643500E4F882 /* Debug */ = {
+		943759E91977677100E4F882 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = SSPostmark/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
-		943759C71977643500E4F882 /* Release */ = {
+		943759EA1977677100E4F882 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = SSPostmark/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
-		943759C91977643500E4F882 /* Debug */ = {
+		943759EC1977677100E4F882 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
@@ -363,7 +331,7 @@
 			};
 			name = Debug;
 		};
-		943759CA1977643500E4F882 /* Release */ = {
+		943759ED1977677100E4F882 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
@@ -379,32 +347,32 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		943759A91977643500E4F882 /* Build configuration list for PBXProject "SSPostmark" */ = {
+		943759CF1977677100E4F882 /* Build configuration list for PBXProject "SSPostmark" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				943759C31977643500E4F882 /* Debug */,
-				943759C41977643500E4F882 /* Release */,
+				943759E61977677100E4F882 /* Debug */,
+				943759E71977677100E4F882 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		943759C51977643500E4F882 /* Build configuration list for PBXNativeTarget "SSPostmark" */ = {
+		943759E81977677100E4F882 /* Build configuration list for PBXNativeTarget "SSPostmark" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				943759C61977643500E4F882 /* Debug */,
-				943759C71977643500E4F882 /* Release */,
+				943759E91977677100E4F882 /* Debug */,
+				943759EA1977677100E4F882 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
-		943759C81977643500E4F882 /* Build configuration list for PBXNativeTarget "SSPostmarkTests" */ = {
+		943759EB1977677100E4F882 /* Build configuration list for PBXNativeTarget "SSPostmarkTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				943759C91977643500E4F882 /* Debug */,
-				943759CA1977643500E4F882 /* Release */,
+				943759EC1977677100E4F882 /* Debug */,
+				943759ED1977677100E4F882 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 943759A61977643500E4F882 /* Project object */;
+	rootObject = 943759CC1977677100E4F882 /* Project object */;
 }

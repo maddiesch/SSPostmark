@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "943759AE1977643500E4F882"
-               BuildableName = "SSPostmark.framework"
+               BlueprintIdentifier = "943759D31977677100E4F882"
+               BuildableName = "libSSPostmark.a"
                BlueprintName = "SSPostmark"
                ReferencedContainer = "container:SSPostmark.xcodeproj">
             </BuildableReference>
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "943759B91977643500E4F882"
+               BlueprintIdentifier = "943759DE1977677100E4F882"
                BuildableName = "SSPostmarkTests.xctest"
                BlueprintName = "SSPostmarkTests"
                ReferencedContainer = "container:SSPostmark.xcodeproj">
@@ -42,8 +42,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "943759AE1977643500E4F882"
-            BuildableName = "SSPostmark.framework"
+            BlueprintIdentifier = "943759D31977677100E4F882"
+            BuildableName = "libSSPostmark.a"
             BlueprintName = "SSPostmark"
             ReferencedContainer = "container:SSPostmark.xcodeproj">
          </BuildableReference>
@@ -61,8 +61,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "943759AE1977643500E4F882"
-            BuildableName = "SSPostmark.framework"
+            BlueprintIdentifier = "943759D31977677100E4F882"
+            BuildableName = "libSSPostmark.a"
             BlueprintName = "SSPostmark"
             ReferencedContainer = "container:SSPostmark.xcodeproj">
          </BuildableReference>
@@ -79,8 +79,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "943759AE1977643500E4F882"
-            BuildableName = "SSPostmark.framework"
+            BlueprintIdentifier = "943759D31977677100E4F882"
+            BuildableName = "libSSPostmark.a"
             BlueprintName = "SSPostmark"
             ReferencedContainer = "container:SSPostmark.xcodeproj">
          </BuildableReference>
