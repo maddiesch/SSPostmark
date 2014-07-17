@@ -9,7 +9,7 @@
 #ifndef SSPostmark_SSPostmark_h
 #define SSPostmark_SSPostmark_h
 
-@import Foundation;
+#import "SSPostmarkMessage.h"
 
 @interface SSPostmark : NSObject
 

@@ -11,6 +11,8 @@
 		943759DA1977677100E4F882 /* SSPostmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 943759D91977677100E4F882 /* SSPostmark.m */; };
 		943759E01977677100E4F882 /* libSSPostmark.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 943759D41977677100E4F882 /* libSSPostmark.a */; };
 		943759EF197767E100E4F882 /* SSPostmarkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 943759EE197767E100E4F882 /* SSPostmarkTests.m */; };
+		943759F21977696E00E4F882 /* SSPostmarkMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 943759F11977696E00E4F882 /* SSPostmarkMessage.m */; };
+		9494EF5419776E31003CB502 /* SSPostmarkMessageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9494EF5319776E31003CB502 /* SSPostmarkMessageTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +45,9 @@
 		943759DF1977677100E4F882 /* SSPostmarkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SSPostmarkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		943759E51977677100E4F882 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		943759EE197767E100E4F882 /* SSPostmarkTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkTests.m; sourceTree = "<group>"; };
+		943759F01977696E00E4F882 /* SSPostmarkMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPostmarkMessage.h; sourceTree = "<group>"; };
+		943759F11977696E00E4F882 /* SSPostmarkMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkMessage.m; sourceTree = "<group>"; };
+		9494EF5319776E31003CB502 /* SSPostmarkMessageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkMessageTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +92,8 @@
 			children = (
 				943759D71977677100E4F882 /* SSPostmark.h */,
 				943759D91977677100E4F882 /* SSPostmark.m */,
+				943759F01977696E00E4F882 /* SSPostmarkMessage.h */,
+				943759F11977696E00E4F882 /* SSPostmarkMessage.m */,
 			);
 			path = SSPostmark;
 			sourceTree = "<group>";
@@ -96,6 +103,7 @@
 			children = (
 				943759E41977677100E4F882 /* Supporting Files */,
 				943759EE197767E100E4F882 /* SSPostmarkTests.m */,
+				9494EF5319776E31003CB502 /* SSPostmarkMessageTests.m */,
 			);
 			path = SSPostmarkTests;
 			sourceTree = "<group>";
@@ -197,6 +205,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				943759F21977696E00E4F882 /* SSPostmarkMessage.m in Sources */,
 				943759DA1977677100E4F882 /* SSPostmark.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,6 +214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9494EF5419776E31003CB502 /* SSPostmarkMessageTests.m in Sources */,
 				943759EF197767E100E4F882 /* SSPostmarkTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,6 +373,7 @@
 				943759EA1977677100E4F882 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		943759EB1977677100E4F882 /* Build configuration list for PBXNativeTarget "SSPostmarkTests" */ = {
 			isa = XCConfigurationList;
@@ -371,6 +382,7 @@
 				943759ED1977677100E4F882 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
