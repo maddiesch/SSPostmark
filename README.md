@@ -6,6 +6,8 @@ This is a simple Objective-C class to send email using the Postmark API.
 
 Now with 64bit support.
 
+[If you're looking for < iOS 8.0 use `0.9`](https://github.com/skylarsch/SSPostmark/releases/tag/0.9)
+
 ***
 
 #### [Documentation](http://sspostmark.schipp.co/)
