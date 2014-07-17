@@ -8,7 +8,7 @@
 
 @import XCTest;
 
-#import "SSPostmarkMessage.h"
+#import "SSPostmarkMessagePrivate.h"
 
 @interface SSPostmarkMessageTests : XCTestCase
 
@@ -53,6 +53,34 @@
     
     message.replyToAddress = @"reply-to@test.com";
     XCTAssertTrue([message isValid]);
+}
+
+- (void)testJSONRepresentation {
+    SSPostmarkMessage *message = [SSPostmarkMessage new];
+    message.fromAddress = @"example@test.com";
+    message.subject = @"My Email";
+    message.textBody = @"Text Body";
+    message.HTMLBody = @"<div>HTML Body</div>";
+    message.toAddresses = [NSSet setWithArray:@[@"to@test.com"]];
+    message.tag = @"test-tag";
+    message.trackOpens = NO;
+    message.bccAddresses = [NSSet setWithArray:@[@"bcc@test.com"]];
+    message.ccAddresses = [NSSet setWithArray:@[@"cc@test.com",@"\"CC Two\" <cc2@test.com>"]];
+    message.replyToAddress = @"reply-to@test.com";
+    
+    NSDictionary *JSON = [message JSONRepresentation];
+    
+    XCTAssertNotNil(JSON);
+    XCTAssertEqualObjects(JSON[@"From"], @"example@test.com");
+    XCTAssertEqualObjects(JSON[@"To"], @"to@test.com");
+    XCTAssertEqualObjects(JSON[@"Cc"], @"\"CC Two\" <cc2@test.com>, cc@test.com");
+    XCTAssertEqualObjects(JSON[@"Bcc"], @"bcc@test.com");
+    XCTAssertEqualObjects(JSON[@"Subject"], @"My Email");
+    XCTAssertEqualObjects(JSON[@"Tag"], @"test-tag");
+    XCTAssertEqualObjects(JSON[@"HtmlBody"], @"<div>HTML Body</div>");
+    XCTAssertEqualObjects(JSON[@"TextBody"], @"Text Body");
+    XCTAssertEqualObjects(JSON[@"ReplyTo"], @"reply-to@test.com");
+    XCTAssertEqualObjects(JSON[@"TrackOpens"], @NO);
 }
 
 @end

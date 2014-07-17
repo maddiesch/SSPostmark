@@ -48,6 +48,7 @@
 		943759F01977696E00E4F882 /* SSPostmarkMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPostmarkMessage.h; sourceTree = "<group>"; };
 		943759F11977696E00E4F882 /* SSPostmarkMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkMessage.m; sourceTree = "<group>"; };
 		9494EF5319776E31003CB502 /* SSPostmarkMessageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkMessageTests.m; sourceTree = "<group>"; };
+		9494EF5519777090003CB502 /* SSPostmarkMessagePrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSPostmarkMessagePrivate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +94,7 @@
 				943759D71977677100E4F882 /* SSPostmark.h */,
 				943759D91977677100E4F882 /* SSPostmark.m */,
 				943759F01977696E00E4F882 /* SSPostmarkMessage.h */,
+				9494EF5519777090003CB502 /* SSPostmarkMessagePrivate.h */,
 				943759F11977696E00E4F882 /* SSPostmarkMessage.m */,
 			);
 			path = SSPostmark;
@@ -336,6 +338,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = SSPostmarkTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -349,6 +352,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = SSPostmarkTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

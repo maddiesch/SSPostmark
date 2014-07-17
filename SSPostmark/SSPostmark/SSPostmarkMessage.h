@@ -51,13 +51,11 @@
  */
 @property (nonatomic, strong) NSString *subject;
 /**
- *  HTML body of the message.  This will take priority over the `textBody`.
+ *  HTML body of the message.
  */
 @property (nonatomic, strong) NSString *HTMLBody;
 /**
  *  Text body of the message.
- *
- *  If both `HTMLBody` and `textBody` are set then `HTMLBody` will be sent in the API.
  */
 @property (nonatomic, strong) NSString *textBody;
 
