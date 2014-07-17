@@ -87,7 +87,7 @@
     static NSURL *URL;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        URL = [NSURL URLWithString:@"https://api.postmarkapp.com/email"];
+        URL = [NSURL URLWithString:@"http://api.postmarkapp.com/email"];
     });
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
     request.HTTPMethod = @"POST";
