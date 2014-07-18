@@ -54,21 +54,21 @@
 		943759F01977696E00E4F882 /* SSPostmarkMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPostmarkMessage.h; sourceTree = "<group>"; };
 		943759F11977696E00E4F882 /* SSPostmarkMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkMessage.m; sourceTree = "<group>"; };
 		9494EF5319776E31003CB502 /* SSPostmarkMessageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkMessageTests.m; sourceTree = "<group>"; };
-		9494EF5519777090003CB502 /* SSPostmarkMessagePrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSPostmarkMessagePrivate.h; sourceTree = "<group>"; };
 		9494EF561977758F003CB502 /* TestHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestHelpers.h; sourceTree = "<group>"; };
 		9494EF5719777BA6003CB502 /* SSAsync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSAsync.h; sourceTree = "<group>"; };
 		9494EF5819777BA6003CB502 /* SSAsync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSAsync.m; sourceTree = "<group>"; };
 		9494EF5B19777E16003CB502 /* SSPostmarkResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPostmarkResponse.h; sourceTree = "<group>"; };
 		9494EF5C19777E16003CB502 /* SSPostmarkResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkResponse.m; sourceTree = "<group>"; };
-		9494EF5E19777EA9003CB502 /* SSPostmarkResponsePrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSPostmarkResponsePrivate.h; sourceTree = "<group>"; };
 		94FFA70B1978E30B00432740 /* SSPostmarkHeaderItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPostmarkHeaderItem.h; sourceTree = "<group>"; };
 		94FFA70C1978E30B00432740 /* SSPostmarkHeaderItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkHeaderItem.m; sourceTree = "<group>"; };
-		94FFA70E1978E3BA00432740 /* SSPostmarkHeaderItemPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSPostmarkHeaderItemPrivate.h; sourceTree = "<group>"; };
 		94FFA70F1978E54300432740 /* SSPostmarkMessageAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPostmarkMessageAttachment.h; sourceTree = "<group>"; };
 		94FFA7101978E54300432740 /* SSPostmarkMessageAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkMessageAttachment.m; sourceTree = "<group>"; };
-		94FFA7121978E54D00432740 /* SSPostmarkMessageAttachmentPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSPostmarkMessageAttachmentPrivate.h; sourceTree = "<group>"; };
 		94FFA7131978E6E100432740 /* SSPostmarkAttachmentTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkAttachmentTests.m; sourceTree = "<group>"; };
 		94FFA7181978EC7000432740 /* SSPostmarkHeaderItemTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkHeaderItemTests.m; sourceTree = "<group>"; };
+		94FFA71A1978FAE700432740 /* SSPostmarkHeaderItemPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSPostmarkHeaderItemPrivate.h; path = "Private Headers/SSPostmarkHeaderItemPrivate.h"; sourceTree = "<group>"; };
+		94FFA71B1978FAE700432740 /* SSPostmarkMessageAttachmentPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSPostmarkMessageAttachmentPrivate.h; path = "Private Headers/SSPostmarkMessageAttachmentPrivate.h"; sourceTree = "<group>"; };
+		94FFA71C1978FAE700432740 /* SSPostmarkMessagePrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSPostmarkMessagePrivate.h; path = "Private Headers/SSPostmarkMessagePrivate.h"; sourceTree = "<group>"; };
+		94FFA71D1978FAE700432740 /* SSPostmarkResponsePrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSPostmarkResponsePrivate.h; path = "Private Headers/SSPostmarkResponsePrivate.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,10 +150,10 @@
 		9494EF5A19777E02003CB502 /* Private Headers */ = {
 			isa = PBXGroup;
 			children = (
-				9494EF5519777090003CB502 /* SSPostmarkMessagePrivate.h */,
-				9494EF5E19777EA9003CB502 /* SSPostmarkResponsePrivate.h */,
-				94FFA70E1978E3BA00432740 /* SSPostmarkHeaderItemPrivate.h */,
-				94FFA7121978E54D00432740 /* SSPostmarkMessageAttachmentPrivate.h */,
+				94FFA71A1978FAE700432740 /* SSPostmarkHeaderItemPrivate.h */,
+				94FFA71B1978FAE700432740 /* SSPostmarkMessageAttachmentPrivate.h */,
+				94FFA71C1978FAE700432740 /* SSPostmarkMessagePrivate.h */,
+				94FFA71D1978FAE700432740 /* SSPostmarkResponsePrivate.h */,
 			);
 			name = "Private Headers";
 			sourceTree = "<group>";
