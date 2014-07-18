@@ -15,6 +15,8 @@
 		9494EF5419776E31003CB502 /* SSPostmarkMessageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9494EF5319776E31003CB502 /* SSPostmarkMessageTests.m */; };
 		9494EF5919777BA6003CB502 /* SSAsync.m in Sources */ = {isa = PBXBuildFile; fileRef = 9494EF5819777BA6003CB502 /* SSAsync.m */; };
 		9494EF5D19777E16003CB502 /* SSPostmarkResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 9494EF5C19777E16003CB502 /* SSPostmarkResponse.m */; };
+		94FFA70D1978E30B00432740 /* SSPostmarkHeaderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FFA70C1978E30B00432740 /* SSPostmarkHeaderItem.m */; };
+		94FFA7111978E54300432740 /* SSPostmarkMessageAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FFA7101978E54300432740 /* SSPostmarkMessageAttachment.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,12 @@
 		9494EF5B19777E16003CB502 /* SSPostmarkResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPostmarkResponse.h; sourceTree = "<group>"; };
 		9494EF5C19777E16003CB502 /* SSPostmarkResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkResponse.m; sourceTree = "<group>"; };
 		9494EF5E19777EA9003CB502 /* SSPostmarkResponsePrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSPostmarkResponsePrivate.h; sourceTree = "<group>"; };
+		94FFA70B1978E30B00432740 /* SSPostmarkHeaderItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPostmarkHeaderItem.h; sourceTree = "<group>"; };
+		94FFA70C1978E30B00432740 /* SSPostmarkHeaderItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkHeaderItem.m; sourceTree = "<group>"; };
+		94FFA70E1978E3BA00432740 /* SSPostmarkHeaderItemPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSPostmarkHeaderItemPrivate.h; sourceTree = "<group>"; };
+		94FFA70F1978E54300432740 /* SSPostmarkMessageAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPostmarkMessageAttachment.h; sourceTree = "<group>"; };
+		94FFA7101978E54300432740 /* SSPostmarkMessageAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkMessageAttachment.m; sourceTree = "<group>"; };
+		94FFA7121978E54D00432740 /* SSPostmarkMessageAttachmentPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSPostmarkMessageAttachmentPrivate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +113,10 @@
 				943759F11977696E00E4F882 /* SSPostmarkMessage.m */,
 				9494EF5B19777E16003CB502 /* SSPostmarkResponse.h */,
 				9494EF5C19777E16003CB502 /* SSPostmarkResponse.m */,
+				94FFA70B1978E30B00432740 /* SSPostmarkHeaderItem.h */,
+				94FFA70C1978E30B00432740 /* SSPostmarkHeaderItem.m */,
+				94FFA70F1978E54300432740 /* SSPostmarkMessageAttachment.h */,
+				94FFA7101978E54300432740 /* SSPostmarkMessageAttachment.m */,
 				9494EF5A19777E02003CB502 /* Private Headers */,
 			);
 			path = SSPostmark;
@@ -136,6 +148,8 @@
 			children = (
 				9494EF5519777090003CB502 /* SSPostmarkMessagePrivate.h */,
 				9494EF5E19777EA9003CB502 /* SSPostmarkResponsePrivate.h */,
+				94FFA70E1978E3BA00432740 /* SSPostmarkHeaderItemPrivate.h */,
+				94FFA7121978E54D00432740 /* SSPostmarkMessageAttachmentPrivate.h */,
 			);
 			name = "Private Headers";
 			sourceTree = "<group>";
@@ -229,6 +243,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94FFA70D1978E30B00432740 /* SSPostmarkHeaderItem.m in Sources */,
+				94FFA7111978E54300432740 /* SSPostmarkMessageAttachment.m in Sources */,
 				9494EF5D19777E16003CB502 /* SSPostmarkResponse.m in Sources */,
 				943759F21977696E00E4F882 /* SSPostmarkMessage.m in Sources */,
 				943759DA1977677100E4F882 /* SSPostmark.m in Sources */,

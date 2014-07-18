@@ -47,6 +47,11 @@
 @property (nonatomic, strong) NSSet *bccAddresses;
 
 /**
+ *  A set of `SSPostmarkHeaderItem` objects to include in the request
+ */
+@property (nonatomic, strong) NSSet *additionalHeaders;
+
+/**
  *  The message subject
  */
 @property (nonatomic, strong) NSString *subject;

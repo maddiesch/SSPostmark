@@ -7,6 +7,7 @@
  */
 
 #import "SSPostmarkMessage.h"
+#import "SSPostmarkHeaderItemPrivate.h"
 
 @interface SSPostmarkMessage ()
 
@@ -65,7 +66,20 @@
         JSON[@"ReplyTo"] = self.replyToAddress;
     }
     
+    NSArray *headers = [self headerJSONArray];
+    if (headers.count > 0) {
+        JSON[@"Headers"] = headers;
+    }
+    
     return [JSON copy];
+}
+
+- (NSArray *)headerJSONArray {
+    NSMutableArray *headers = [NSMutableArray new];
+    for (SSPostmarkHeaderItem *headerItem in [self.additionalHeaders allObjects]) {
+        [headers addObject:[headerItem JSONRepresentation]];
+    }
+    return [headers copy];
 }
 
 + (NSString *)createEmailStringForSet:(NSSet *)set {
