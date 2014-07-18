@@ -15,6 +15,8 @@
 
 - (instancetype)initWithData:(NSData *)data response:(NSHTTPURLResponse *)response error:(NSError *)error;
 
++ (NSArray *)responsesWithData:(NSData *)data response:(NSHTTPURLResponse *)response error:(NSError *)error;
+
 @end
 
 #endif

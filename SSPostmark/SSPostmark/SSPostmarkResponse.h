@@ -25,13 +25,35 @@ typedef NS_ENUM(NSInteger, SSPostmarkAPIErrorCode) {
     SSPostmarkAPIErrorCodeForbiddenAttachmentType     = 411
 };
 
+/**
+ *  The response from the server.
+ */
 @interface SSPostmarkResponse : NSObject
 
+/**
+ *  The error code returned by the server
+ */
 @property (nonatomic) SSPostmarkAPIErrorCode errorCode;
+/**
+ *  The message returned from the server
+ */
 @property (nonatomic, strong) NSString *info;
+/**
+ *  The message ID you can use to lookup the message on Postmark
+ */
 @property (nonatomic, strong) NSString *messageID;
+/**
+ *  The date the message was submitted as a string.
+ */
 @property (nonatomic, strong) NSString *submittedAt;
 
+/**
+ *  The response error.
+ *
+ *  This could be either a Cocoa error from the NSURLSession, a SSPostmarkErrorCodePostmarkHTTP or SSPostmarkErrorCodeJSONResponseError 
+ *
+ *  @return The response error.
+ */
 - (NSError *)responseError;
 
 @end

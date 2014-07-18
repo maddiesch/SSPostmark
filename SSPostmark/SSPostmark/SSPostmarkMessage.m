@@ -8,6 +8,7 @@
 
 #import "SSPostmarkMessage.h"
 #import "SSPostmarkHeaderItemPrivate.h"
+#import "SSPostmarkMessageAttachmentPrivate.h"
 
 @interface SSPostmarkMessage ()
 
@@ -71,6 +72,11 @@
         JSON[@"Headers"] = headers;
     }
     
+    NSArray *attachments = [self attachmentsJSONArray];
+    if (attachments.count > 0) {
+        JSON[@"Attachments"] = attachments;
+    }
+    
     return [JSON copy];
 }
 
@@ -80,6 +86,13 @@
         [headers addObject:[headerItem JSONRepresentation]];
     }
     return [headers copy];
+}
+- (NSArray *)attachmentsJSONArray {
+    NSMutableArray *attachments = [NSMutableArray new];
+    for (SSPostmarkMessageAttachment *attachment in self.attachments) {
+        [attachments addObject:[attachment JSONRepresentation]];
+    }
+    return [attachments copy];
 }
 
 + (NSString *)createEmailStringForSet:(NSSet *)set {

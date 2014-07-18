@@ -52,6 +52,11 @@
 @property (nonatomic, strong) NSSet *additionalHeaders;
 
 /**
+ *  a set of `SSPostmarkMessageAttachment` objects to include in the request.
+ */
+@property (nonatomic, strong) NSSet *attachments;
+
+/**
  *  The message subject
  */
 @property (nonatomic, strong) NSString *subject;

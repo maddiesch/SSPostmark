@@ -29,6 +29,36 @@
     }
     return self;
 }
++ (NSArray *)responsesWithData:(NSData *)data response:(NSHTTPURLResponse *)response error:(NSError *)error {
+    NSError *JSONError = nil;
+    NSArray *responsesObjects = [NSJSONSerialization JSONObjectWithData:data options:0 error:&JSONError];
+    if (JSONError) {
+        SSPostmarkResponse *r = [[SSPostmarkResponse alloc] initWithData:nil response:response error:error];
+        r.JSONParseError = JSONError;
+        return @[r];
+    }
+    
+    if (![responsesObjects isKindOfClass:[NSArray class]]) {
+        SSPostmarkResponse *r = [[SSPostmarkResponse alloc] initWithData:nil response:response error:error];
+        [r setJSONValues:(NSDictionary *)responsesObjects];
+        return @[r];
+    }
+    
+    NSMutableArray *responses = [NSMutableArray arrayWithCapacity:responsesObjects.count];
+    for (NSDictionary *info in responsesObjects) {
+        SSPostmarkResponse *r = [[SSPostmarkResponse alloc] initWithData:nil response:response error:error];
+        [r setJSONValues:info];
+        [responses addObject:r];
+    }
+    return [responses copy];
+}
+
+- (void)setJSONValues:(NSDictionary *)JSON {
+    self.errorCode = [JSON[@"ErrorCode"] integerValue];
+    self.info = JSON[@"Message"];
+    self.messageID = JSON[@"MessageID"];
+    self.submittedAt = JSON[@"SubmittedAt"];
+}
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"<%@ MessageID: %@ Error Code: %li Info: %@>",NSStringFromClass(self.class),self.messageID,(long)self.errorCode,self.info];
@@ -42,10 +72,7 @@
         if (err) {
             self.JSONParseError = err;
         }
-        self.errorCode = [info[@"ErrorCode"] integerValue];
-        self.info = info[@"Message"];
-        self.messageID = info[@"MessageID"];
-        self.submittedAt = info[@"SubmittedAt"];
+        [self setJSONValues:info];
     }
 }
 
