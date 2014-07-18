@@ -28,4 +28,11 @@
              };
 }
 
+- (id)copyWithZone:(NSZone *)zone {
+    SSPostmarkHeaderItem *item = [[SSPostmarkHeaderItem alloc] init];
+    item.name = [self.name copyWithZone:zone];
+    item.value = [self.value copyWithZone:zone];
+    return item;
+}
+
 @end

@@ -41,11 +41,18 @@
  */
 - (void)sendMessage:(SSPostmarkMessage *)message completion:(void(^)(SSPostmarkResponse *, NSError *))completion;
 
+/**
+ *  Send up to 500 messages in one request.
+ *
+ *  @param messages   The array of SSPostmarkMessage message objects
+ *  @param completion The completion handler for the request
+ */
 - (void)sendBatchMessages:(NSArray *)messages completion:(void(^)(NSArray *, NSError *))completion;
 
 @end
 
 FOUNDATION_EXTERN NSString *const SSPostmarkErrorDomain;
+
 typedef NS_ENUM(NSInteger, SSPostmarkErrorCode) {
     SSPostmarkErrorCodeUnknown            = -1,
     SSPostmarkErrorCodeInvalidMessage     = 1,
