@@ -17,6 +17,8 @@
 		9494EF5D19777E16003CB502 /* SSPostmarkResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 9494EF5C19777E16003CB502 /* SSPostmarkResponse.m */; };
 		94FFA70D1978E30B00432740 /* SSPostmarkHeaderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FFA70C1978E30B00432740 /* SSPostmarkHeaderItem.m */; };
 		94FFA7111978E54300432740 /* SSPostmarkMessageAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FFA7101978E54300432740 /* SSPostmarkMessageAttachment.m */; };
+		94FFA7141978E6E100432740 /* SSPostmarkAttachmentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FFA7131978E6E100432740 /* SSPostmarkAttachmentTests.m */; };
+		94FFA7191978EC7000432740 /* SSPostmarkHeaderItemTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FFA7181978EC7000432740 /* SSPostmarkHeaderItemTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		94FFA70F1978E54300432740 /* SSPostmarkMessageAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPostmarkMessageAttachment.h; sourceTree = "<group>"; };
 		94FFA7101978E54300432740 /* SSPostmarkMessageAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkMessageAttachment.m; sourceTree = "<group>"; };
 		94FFA7121978E54D00432740 /* SSPostmarkMessageAttachmentPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSPostmarkMessageAttachmentPrivate.h; sourceTree = "<group>"; };
+		94FFA7131978E6E100432740 /* SSPostmarkAttachmentTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkAttachmentTests.m; sourceTree = "<group>"; };
+		94FFA7181978EC7000432740 /* SSPostmarkHeaderItemTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPostmarkHeaderItemTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,11 +129,11 @@
 		943759E31977677100E4F882 /* SSPostmarkTests */ = {
 			isa = PBXGroup;
 			children = (
-				9494EF561977758F003CB502 /* TestHelpers.h */,
-				9494EF5719777BA6003CB502 /* SSAsync.h */,
-				9494EF5819777BA6003CB502 /* SSAsync.m */,
+				94FFA7151978E70100432740 /* Helpers */,
 				943759EE197767E100E4F882 /* SSPostmarkTests.m */,
 				9494EF5319776E31003CB502 /* SSPostmarkMessageTests.m */,
+				94FFA7131978E6E100432740 /* SSPostmarkAttachmentTests.m */,
+				94FFA7181978EC7000432740 /* SSPostmarkHeaderItemTests.m */,
 				943759E41977677100E4F882 /* Supporting Files */,
 			);
 			path = SSPostmarkTests;
@@ -152,6 +156,16 @@
 				94FFA7121978E54D00432740 /* SSPostmarkMessageAttachmentPrivate.h */,
 			);
 			name = "Private Headers";
+			sourceTree = "<group>";
+		};
+		94FFA7151978E70100432740 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				9494EF561977758F003CB502 /* TestHelpers.h */,
+				9494EF5719777BA6003CB502 /* SSAsync.h */,
+				9494EF5819777BA6003CB502 /* SSAsync.m */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,7 +269,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94FFA7191978EC7000432740 /* SSPostmarkHeaderItemTests.m in Sources */,
 				9494EF5919777BA6003CB502 /* SSAsync.m in Sources */,
+				94FFA7141978E6E100432740 /* SSPostmarkAttachmentTests.m in Sources */,
 				9494EF5419776E31003CB502 /* SSPostmarkMessageTests.m in Sources */,
 				943759EF197767E100E4F882 /* SSPostmarkTests.m in Sources */,
 			);

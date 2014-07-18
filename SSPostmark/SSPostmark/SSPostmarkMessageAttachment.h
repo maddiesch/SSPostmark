@@ -10,8 +10,15 @@
 #define SSPostmark_SSPostmarkMessageAttachment_h
 
 @import Foundation;
+@import MobileCoreServices;
 
 @interface SSPostmarkMessageAttachment : NSObject
+
+@property (nonatomic, strong) NSString *filename;
+@property (nonatomic, strong) NSString *contentType;
+
+@property (nonatomic, strong) NSURL *fileURL;
+@property (nonatomic, strong) NSData *fileData;
 
 @end
 

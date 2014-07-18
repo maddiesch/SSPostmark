@@ -14,6 +14,13 @@
 
 @implementation SSPostmarkHeaderItem
 
++ (instancetype)headerWithName:(NSString *)name value:(id)value {
+    SSPostmarkHeaderItem *item = [[self alloc] init];
+    item.name = name;
+    item.value = value;
+    return item;
+}
+
 - (NSDictionary *)JSONRepresentation {
     return @{
              @"Name": self.name,

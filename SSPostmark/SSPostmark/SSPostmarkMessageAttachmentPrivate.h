@@ -13,6 +13,11 @@
 
 @interface SSPostmarkMessageAttachment (PrivateMethods)
 
+- (NSDictionary *)JSONRepresentation;
+- (NSString *)base64EncodedData;
+
++ (NSString *)contentTypeForFileExtension:(NSString *)fileExt;
+
 @end
 
 #endif

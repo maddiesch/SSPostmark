@@ -9,8 +9,12 @@
 #ifndef SSPostmark_TestHelpers_h
 #define SSPostmark_TestHelpers_h
 
+@import XCTest;
+
 #import "SSPostmark.h"
-#import "SSPostmarkMessage.h"
+#import "SSPostmarkMessagePrivate.h"
+#import "SSPostmarkMessageAttachmentPrivate.h"
+#import "SSPostmarkHeaderItemPrivate.h"
 
 #import "SSAsync.h"
 

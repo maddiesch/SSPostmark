@@ -13,6 +13,8 @@
 
 @interface SSPostmarkHeaderItem : NSObject
 
++ (instancetype)headerWithName:(NSString *)name value:(id)value;
+
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) id value; // Must be a valid JSON object
 
