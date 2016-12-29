@@ -1,0 +1,30 @@
+//
+//  SSPostmark-Base.xcconfig
+//  SSPostmark
+//
+//  Created by Skylar Schipper on 12/28/16.
+//  Copyright © 2016 Skylar Schipper. All rights reserved.
+//
+
+////////////////////
+
+INSTALL_PATH = $(LOCAL_LIBRARY_DIR)/Frameworks
+SKIP_INSTALL = YES
+
+////////////////////
+
+DYLIB_COMPATIBILITY_VERSION = 1
+DYLIB_CURRENT_VERSION = 1
+DYLIB_INSTALL_NAME_BASE = @rpath
+LD_RUNPATH_SEARCH_PATHS = $(inherited) @executable_path/Frameworks @loader_path/Frameworks
+
+////////////////////
+
+DEFINES_MODULE = YES
+INFOPLIST_FILE = SSPostmark/Info.plist
+PRODUCT_BUNDLE_IDENTIFIER = com.skylarsch.SSPostmark
+PRODUCT_NAME = SSPostmark
+
+////////////////////
+
+CODE_SIGN_IDENTITY =

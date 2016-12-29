@@ -1,0 +1,34 @@
+/*
+  Localizable.strings
+  SSPostmark
+
+  Created by Skylar Schipper on 12/28/16.
+  Copyright © 2016 Skylar Schipper. All rights reserved.
+*/
+
+/* An unknown error occurred */
+"pm.error.unknown" = "An unknown error occurred.";
+
+/* Error when a message doesn't have a from address */
+"pm.message.error.missingFromAddress" = "Messages are required to have a \"From Address\"";
+
+/* Error when a message doesn't have a subject */
+"pm.message.error.missingSubject" = "Messages are required to have a \"Subject\"";
+
+/* Error when a message doesn't have a body */
+"pm.message.error.missingBody" = "Message are required to have a \"Body\"";
+
+/* Error when a message doesn't have any To Addresses */
+"pm.message.error.missingToAddresses" = "Messages must have at least one recipient.";
+
+/* The URL Session didn't return a valid HTTPURLResponse */
+"pm.response.error.invalid-url-response" = "An unknown HTTP error occurred.";
+
+/* An HTTP Error occured.  The status code was not 200 - 299 */
+"pm.http-error.message" = "An HTTP error occurred.";
+
+/* The HTTP response gave content type application/json but there was no body */
+"pm.response.error.missing-body" = "Expected the response to contain body data.";
+
+/* An attachment must specify either attachment Data or File URL */
+"pm.attachment.error.missing-content" = "The attachment has no file URL or file data to construct the content with.";
